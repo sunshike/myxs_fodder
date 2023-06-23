@@ -1,0 +1,61 @@
+<!--myxs_fodder/pages/MySet/MySet.wxml-->
+<i-toast id="toast" />
+<view class='wxf1'>
+  <view class='werow DiyNav DiyNavBrb'>
+    <view class='Navicon wecolumn' style='padding-left:5px;color:#000;'>
+      <view class='wxf1'></view>
+      <text class="iconfont iconzuojiantou" bindtap='fanhui' style="font-size: 20px;"></text>
+      <view class='wxf1'></view>
+    </view>
+    <view class='wxf1 NavText'>修改信息</view>
+    <view class='Navicon'></view>
+  </view>
+  <view class='Userimg werow' bindtap='chooseImages'>
+    <view class='wxf1 ml20 wecolumn'>
+      <view class='wxf1'></view>
+      <view>头像</view>
+
+      <view class='wxf1'></view>
+    </view>
+    <view class=' mr20 tr wecolumn'>
+      <view class='wxf1'></view>
+      <image class='ImageInfo' src='{{UserImages}}'></image>
+      <view class='wxf1'></view>
+
+    </view>
+  </view>
+  <view class='Name werow '>
+    <view class='ml20 wecolumn'>
+      <view class='wxf1'></view>
+      <view class=''>用户昵称</view>
+      <view class='wxf1'></view>
+    </view>
+    <input class='wxf1 ml20 mr20 setinp' value='{{Name}}' bindblur='NameData'></input>
+  </view>
+  <view class='Name werow '>
+    <view class='ml20 wecolumn'>
+      <view class='wxf1'></view>
+      <view class=''>联系方式</view>
+      <view class='wxf1'></view>
+    </view>
+    <input class='wxf1 ml20 mr20 setinp' value='{{Phone==null?"无":Phone}}' bindblur='PhoneData'></input>
+  </view>
+  <button class='circleCreateSub' bindtap='Sub'>保存</button>
+
+</view>
+
+<view wx:if='{{advshow == 1}}' class='actf' style='position: flex'>
+  <view class='GGHide' bindtap='Closeadvert'>关闭</view>
+  <ad unit-id="{{advCode}}"></ad>
+</view>
+<view style='height:9%'>
+
+</view>
+<view class='footerText' >
+  {{banquan}}
+</view>
+
+
+<!-- <view class='footerText' bindtap='copyright'>
+  Copyright © 2018-2020 myxs.ltd 
+</view> -->

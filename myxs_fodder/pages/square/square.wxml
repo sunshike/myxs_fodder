@@ -1,0 +1,45 @@
+<view class="page">
+	<view id="header" style="background-color: white; padding-top: {{tabbarHeight - 60}}px; ">
+		<view class="cu-bar center-header">
+			<view class="content text-bold" style="line-height: 90rpx;">
+				社群列表
+			</view>
+		</view>
+		<view class="cu-bar search bg-white">
+			<view class="action">
+				<text class='iconfont iconweizhi'></text>
+				<text class="square-pos">{{address}}</text>
+			</view>
+			<view class="search-form round">
+				<text class="cuIcon-search cuIcon"></text>
+				<input type="text" placeholder="搜索" disabled="{{ true }}" confirm-type="search" bindtap="toSearch"></input>
+			</view>
+		</view>
+		<view class="square-sort-box"> 
+			<view class="sort-row bg-white">
+				<view bindtap="openClassify" class="{{classifyShow ? 'select-active' : ''}}">
+					<text>{{classifyShowValue}}</text>
+					<text class='iconfont icondown1'></text>
+				</view>
+				<view class="{{ orderShow ? 'select-active' : '' }}" bindtap="openOrder">
+					<text>{{orderShowValue}}</text>
+					<text class='iconfont icondown1'></text>
+				</view>
+			</view>
+
+			<block wx:if="{{ classifyShow }}">
+				<scroll-view scroll-y="true" class="square-scroll">
+					<view bindtap="onClassifyClick" data-index="{{index}}" wx:for="{{ classifyList }}" wx:key="index" class="{{ item.checked ? 'select-active' : '' }}">{{item.class_name}} <text wx:if="{{item.checked}}" class="cuIcon-check cuIcon"></text></view>
+				</scroll-view>
+				<view class="square-cover"></view>
+			</block>
+			<block wx:if="{{ orderShow }}">
+				<scroll-view scroll-y="true" class="square-scroll">
+					<view bindtap="onOrderItemClick" data-index="{{index}}" wx:for="{{orderList}}" wx:key="index" class="{{ item.checked ? 'select-active' : '' }}">{{item.class_name}} <text wx:if="{{item.checked}}" class="cuIcon-check cuIcon"></text></view>
+				</scroll-view>
+				<view class="square-cover"></view>
+			</block>
+		</view>
+	</view>
+	<square-list id="squarelist" bind:refresh="onListRefresh" height="{{squareListHeight}}" />
+</view>

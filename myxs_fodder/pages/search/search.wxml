@@ -1,0 +1,35 @@
+<view style="height: 100vh; overflow: hidden; position: relative;">
+  
+  <view class="cu-bar search bg-white" id="header">
+    <view class="search-form cu-round">
+      <text class="cuIcon-search cuIcon"></text>
+      <input type="text" placeholder="查找社群、素材" value="{{inputValue}}" bindinput="onInput" bindconfirm="searchResultMess" confirm-type="search"></input>
+    </view>
+    <view class="cu-action">
+      <text bindtap="searchResultMess">搜索</text>
+    </view>
+  </view>
+
+  <block wx:if="{{!isSearch}}">
+    <view class="search-hot-title">热门社群</view>
+    <view class="search-recommdbox">
+      <text wx:for="{{hotTags}}" wx:key="index" class="search-hot-tag" data-id="{{item.id}}" bindtap="toGroupPage">{{item.name}}</text>
+    </view>
+  </block>
+  <scroll-view scroll-x class="bg-white nav" id="selectBar" hidden="{{!isSearch}}">
+    <view class="flex text-center">
+      <view class="cu-item flex-sub {{index==TabCur?'text-orange cur':''}}" wx:for="{{tabList}}" wx:key="index" bindtap="tabSelect" data-id="{{index}}">
+        {{item}}
+      </view>
+    </view>
+  </scroll-view>
+  <block wx:if="{{isSearch}}">
+    <content-list id='content' class_id="{{class_id}}" hidden="{{TabCur == 1}}" requestIntface="searchMess" bindtogglecomment="togglecommentCover" height="{{contentListHeight}}"  />
+    <square-list  bind:refresh="onListRefresh"  height="{{contentListHeight}}" id="squarelist"  hidden="{{TabCur == 0}}"  />
+  </block>
+  
+</view>
+
+<i-toast id="toast" />
+<!-- 全屏遮罩 -->
+<view  class="cover-index-full" style="display:{{commentShow ? 'block':'none'}};"></view>

@@ -1,0 +1,31 @@
+/* myxs_fodder/pages/Discover/discover.wxss */
+
+.release-container {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* 返回按钮样式 */
+.back-btn {
+  font-size: 25px;
+  display: flex;
+  justify-content: center;
+  padding: 1rpx 10rpx;
+  margin-top: 20rpx;
+  position: relative;
+  align-items: center;
+}
+.margin-left-cus {
+  margin-left: 17rpx;
+}
+
+.release-del-video {
+  margin: 0 !important;
+  padding: 20rpx !important;
+  width: 0 !important;
+  left: 170px;
+  top: 10rpx !important;
+
+}

@@ -1,0 +1,8 @@
+{
+  "component": true,
+  "usingComponents": {
+    "i-load-more": "../../iview_ui/load-more/index",
+    "my-comment": "../Comment/comment",
+    "i-progress": "../ProgressBox/index"
+  }
+} 

@@ -1,0 +1,8 @@
+/* myxs_fodder/pages/hello/hello.wxss */
+.hello {
+  padding: 30rpx;
+
+}
+.action {
+  margin-left: 0 !important;
+}

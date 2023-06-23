@@ -1,0 +1,7 @@
+{
+  "backgroundTextStyle": "light",
+  "backgroundColor": "#F5F5F5",
+  "usingComponents": {
+    "square-list": "../../components/SquareList/index"
+  } 
+}

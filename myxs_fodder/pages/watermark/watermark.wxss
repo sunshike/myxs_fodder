@@ -1,0 +1,163 @@
+/* myxs_fodder/pages/watermark/watermark.wxss */
+
+.container {
+    position: absolute;
+    top: 65px;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    width: 100%;
+}
+
+.preview-wrap {
+    height: 50%;
+    background: rgba(0,0,0,0.6);
+}
+
+.img-del {
+    position: absolute;
+    right: -5px;
+    top: -3px;
+    background: rgba(0,0,0,0.6);
+    color: #fff;
+    width: 30px;
+    height: 30px;
+    text-align: center;
+    line-height: 30px;
+    border-radius: 50%;
+    font-size: 10px;
+}
+
+.sets-wrap {
+    padding: 10px;
+}
+
+.images-list-wrap {
+    height: 10%;
+    white-space: nowrap;
+}
+
+.image-wrap {
+    width: 100px;
+    height: 100%;
+    display: inline-block;
+    margin: 5px;
+    position: relative;
+}
+
+.preview-img {
+    width: 100%;
+    height: 100%;
+}
+
+.buttons {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    box-sizing: border-box;
+    background: #fff;
+    margin-top: 5px;
+    padding: 5px;
+}
+
+.select-color-wrap {
+    display: flex;
+    flex-direction: row;
+    align-items: left;
+}
+
+.select-color {
+    margin-right: 10px;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    margin-top: 6px;
+}
+
+.active {
+    width: 30px!important;
+    height: 30px!important;
+    margin-top: 3px!important;
+}
+
+.sets-row {
+    display: flex;
+    flex-direction: row;
+    align-items: left;
+}
+
+.share-btn {
+    position: fixed;
+    bottom: 30px;
+    right: 20px;
+    border-radius: 50%;
+    padding: 0px!important;
+    line-height: 40px!important;
+    width: 40px;
+    height: 40px;
+}
+
+.navigator {
+    color: #4169E1;
+    text-decoration: underline;
+    text-align: center;
+    position: fixed;
+    bottom: 8px;
+    left: 50%;
+    margin-left: -50rpx;
+    font-size: 30rpx;
+}
+
+
+
+
+
+
+
+.TextOn {
+  padding: 10px 15px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  align-items: center;
+}
+
+.circleCreateSub {
+  width: 85%;
+  height: 45px;
+  background-color: rgb(26, 173, 25);
+  margin-top: 25px;
+  color: #fff;
+}
+
+.ReleaseBtnGroup {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 65px;
+  background-color: #fff;
+  height: 45px;
+  font-size: 16px;
+  line-height: 45px;
+  
+}
+.pdlr10{
+  padding-left: 10px;
+  padding-right: 10px;
+}
+.h35{
+  height: 35px;
+}
+.ReleIconSty{
+  /* color: #d2d2d2; */
+}
+.actf{
+  position: fixed;
+  bottom:8%;
+  left: 10px;
+  right: 10px 
+}

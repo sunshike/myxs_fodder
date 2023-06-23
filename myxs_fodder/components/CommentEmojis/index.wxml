@@ -1,0 +1,10 @@
+<view class="emoji" style="height:{{height}}px;" hidden="{{isHide}}">
+  <image src="https://s1.ax1x.com/2020/08/12/ajdybd.png" bindload="onload" hidden="true"></image>
+  <scroll-view scroll-y="true" style="height:{{height}}px;" class="scroolView">
+    <view class="icons">
+      <view class="img" wx:for="{{emojis}}" wx:key="id" wx:for-item="img" bindtap="addEmoijs" data-item="{{img}}" >
+        <span class="{{img.className}} sprite"></span>
+      </view>
+    </view>
+  </scroll-view>
+</view>

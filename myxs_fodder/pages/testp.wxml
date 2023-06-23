@@ -1,0 +1,3 @@
+<!--myxs_fodder/pages/testp.wxml-->
+<text>myxs_fodder/pages/testp.wxml</text>
+<view>{{option}}</view>

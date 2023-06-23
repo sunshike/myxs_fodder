@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "我的",
+  "usingComponents": {
+    "to-group": "../../components/ToGroup/group"
+  }
+}

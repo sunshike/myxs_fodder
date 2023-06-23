@@ -1,0 +1,64 @@
+<!--pages/Release/Release.wxml-->
+<i-toast id="toast" />
+<xs-cover isDownload="false" wx:if="{{coverShow}}"></xs-cover>
+<view class='RCents'>
+  <view class='werow DiyNav2' style=" padding-top:{{barHeight-37}}px;">
+    <view class='Navicon wecolumn' style='padding-left:5px;color:#000;'>
+      <view class='wxf1'></view>
+        <text class="iconfont iconzuojiantou" bindtap='NextF' style="font-size: 20px;"></text>
+      <view class='wxf1'></view>
+    </view>
+    <view class='wxf1 NavText'>水印管理</view>
+    <view class='Navicon'></view>
+  </view>
+  <view class='ReleaseCent'>
+    <view class='imgNowContainer'>
+      <view class="mark-title">
+        <text>已添加水印图:</text>
+        <text class="iconfont iconbangzhu" data-target="Modal" bindtap="openRuleBox" style="font-size: 20px;"></text>
+      </view>
+      <block wx:if="{{groupBgstatus==1}}">
+        <view class="marked-img">
+          <image mode="aspectFit" src='{{groupBg}}' class="upload-img"  bindtap="previewNowImage" id='{{groupBg}}'></image>
+        </view>
+      </block>
+      <block wx:if="{{groupBgstatus==0}}">
+        <text class='noMess'>无</text> 
+      </block>
+    </view>
+    <view class='choseImgContainer'>
+      <text>上传图片:</text>
+      <view>
+        <view class="weui-uploader__files" id="uploaderFiles">
+        
+          <block wx:if="{{fileType=='img'}}" wx:for="{{files}}" wx:key="*this">
+            <view class="weui-uploader__filea updateImg" bindtap="previewImage" id="{{item}}">
+              <image mode="aspectFit" class="weui-uploader__img upload-img" src="{{item}}"   />
+            </view>
+          </block> 
+        </view>
+        <view class="weui-uploader__input-boxs chosebtn" hover-class="weui-uploader__input-box_active" wx:if='{{addbl}}'>
+        点击上传图片
+          <view class="weui-uploader__input" bindtap="chooseImage"></view>
+        </view>
+      </view>
+    </view>
+    <view class='saveBtn' hover-class='saveBtnActive' bindtap="Release">保存</view>
+  </view>
+</view>
+
+
+
+<view class="cu-modal {{modalName=='Modal'?'show':''}}">
+  <view class="cu-dialog">
+    <view class="cu-bar bg-white justify-end">
+      <view class="content">说明</view>
+      <view class="action" bindtap="hideModal">
+        <text class="cuIcon-close cuIcon text-red"></text>
+      </view>
+    </view>
+    <view class="notify-padding" style="font-size: .9rem;">
+      不上传则显示默认启动页,建议尺寸:50px*50px
+    </view>
+  </view>
+</view>

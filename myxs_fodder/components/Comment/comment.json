@@ -1,0 +1,7 @@
+{
+  "component": true,
+  "usingComponents": {
+    "comment-item": "../CommentItem/commentItem",
+    "i-load-more": "../../iview_ui/load-more/index"
+  }
+}

@@ -1,0 +1,13 @@
+
+<view style="height: 100vh; overflow: hidden; position: relative;">
+  <view id="header" class='werow DiyNav DiyNavBrb' style="position: static; padding-top:{{barHeight-37}}px;">
+    <view class='Navicon wecolumn' style='padding-left:5px;color:#000;'>
+      <view class='wxf1'></view>
+        <text class="iconfont iconzuojiantou" bindtap='ReturnNew' style="font-size: 20px;"></text>
+      <view class='wxf1'></view>
+    </view>
+    <view class='wxf1 NavText'>我的下载</view>
+    <view class='Navicon'></view>
+  </view>
+  <content-list showComment="{{ false }}" likeBtnShow="{{ false }}" height="{{contentListHeight}}" commentBtnShow="{{ false }}" id='content'  requestIntface="DownloadContentList"  />
+</view>

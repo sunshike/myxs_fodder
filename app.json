@@ -1,0 +1,97 @@
+{
+  "pages": [
+    "myxs_fodder/pages/start/start",
+    "myxs_fodder/pages/GroupManagement/GroupManagement",
+    "myxs_fodder/pages/OpeningAdv/OpeningAdv",
+    "myxs_fodder/pages/integral/integral",
+    "myxs_fodder/pages/integralLog/integralLog",
+    "myxs_fodder/pages/Release/Release",
+    "myxs_fodder/pages/watermark/watermark",
+    "myxs_fodder/pages/MySet/MySet",
+    "myxs_fodder/pages/index/index",
+    "myxs_fodder/pages/My/My",
+    "myxs_fodder/pages/Activation/Activation",
+    "myxs_fodder/pages/MyRelease/MyRelease",
+    "myxs_fodder/pages/copyright/copyright",
+    "myxs_fodder/pages/login/login",
+    "myxs_fodder/pages/search/search",
+    "myxs_fodder/pages/MyCollection/MyCollection",
+    "myxs_fodder/pages/MyDownload/MyDownload",
+    "myxs_fodder/pages/Daysign/Daysign",
+    "myxs_fodder/pages/AddMark/addMark",
+    "myxs_fodder/pages/Discover/discover",
+    "myxs_fodder/pages/square/square",
+    "myxs_fodder/pages/SocialRelease/index",
+    "myxs_fodder/pages/SquareDetail/index",
+    "myxs_fodder/pages/material-detail/index",
+    "myxs_fodder/pages/MySocialGroup/index",
+    "myxs_fodder/pages/hello/hello",
+    "myxs_fodder/pages/testp"
+  ],
+  "requiredPrivateInfos ":[
+    "getLocation"
+  ],
+  "tabBar": {
+    "custom": true,
+    "selectedColor": "#F53C7A",
+    "list": [
+      {
+        "pagePath": "myxs_fodder/pages/index/index",
+        "text": "素材",
+        "iconPath": "myxs_fodder/images/sucai.png",
+        "selectedIconPath": "myxs_fodder/images/sucai-select.png"
+      },
+      {
+        "pagePath": "myxs_fodder/pages/square/square",
+        "text": "首页",
+        "iconPath": "myxs_fodder/images/home.png",
+        "selectedIconPath": "myxs_fodder/images/home-select.png"
+      },
+      {
+        "pagePath": "myxs_fodder/pages/Discover/discover",
+        "text": "发现",
+        "iconPath": "myxs_fodder/images/discover.png",
+        "selectedIconPath": "myxs_fodder/images/discover-select.png"
+      },
+      {
+        "pagePath": "myxs_fodder/pages/My/My",
+        "text": "我的",
+        "iconPath": "myxs_fodder/images/mine.png",
+        "selectedIconPath": "myxs_fodder/images/mine-select.png"
+      }
+    ]
+  },
+  "window": {
+    "backgroundColor": "#f9f9f9",
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "素材文案",
+    "navigationBarTextStyle": "black",
+    "navigationStyle": "custom"
+  },
+  "sitemapLocation": "sitemap.json",
+  "usingComponents": {
+    "i-toast": "./myxs_fodder/iview_ui/toast/index",
+    "xs-cover": "./myxs_fodder/components/Loading/Loading",
+    "i-emoijs": "./myxs_fodder/components/CommentEmojis/index"
+  },
+  "plugins": {
+    "chatGroupPlugin": {
+      "version": "1.1.2",
+      "provider": "wxaae6519cee98d824"
+    },
+    "chooseLocation": {
+      "version": "1.0.10",
+      "provider": "wx76a9a06e5b4e693e"
+    },
+    "materialPlugin": {
+      "version": "1.0.8",
+          "provider": "wx4d2deeab3aed6e5a"
+    }
+  },
+  "permission": {
+    "scope.userLocation": {
+      "desc": "你的位置信息将用于小程序定位"
+    }
+  }
+}

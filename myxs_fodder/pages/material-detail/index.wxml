@@ -1,0 +1,60 @@
+<view class="page">
+  <!-- 导航栏 -->
+  <mp-sticky>
+    <view class="cu-bar bg-white" style="padding-top:{{barHeight-42}}px;">
+      <view class="action" bindtap="back">
+        <text class="cuIcon-back text-gray cuIcon"></text>
+      </view>
+    </view>
+  </mp-sticky>
+  <!-- 素材区 --> 
+  <view class="material-detail-material">
+    <!-- 素材 -->
+    <view class="material-detail-material-content">
+      <text>
+        {{content_text}}
+      </text>
+      <view class="index-list-img">
+        <block wx:if="{{type=='video'}}" class='plays'>
+          <video  id='video_{{content_id}}' src='{{content[0]}}' autoplay="{{ false }}" enable-play-gesture="{{ true }}" bindaderror="adVideoError"  ad-unit-id="adunit-37f744dedb423770"  style='width:100%;'></video>
+        </block>
+        <block wx:else>
+          <image 
+            style="width: calc((100vw - 40rpx) / {{ content.length <=2 ? content.length : content.length <=4 ? 2 : 3 }});height: calc((100vw - 68rpx) / {{ content.length <=2 ? content.length : content.length <=4 ? 2 : 3 }});" 
+            wx:for='{{ (content2 != false && content2 != null) ? content2:content }}' 
+            wx:for-item='imgs' 
+            wx:key="d"  
+            data-originImgIndex="{{index}}" 
+            data-pageindex="{{pageIndex}}" 
+            data-index='{{i}}' 
+            src='{{imgs}}' 
+            mode="aspectFill" 
+            catchtap="previewImage"></image>
+        </block>
+      </view>
+      <view>发布于：{{time}}</view>
+    </view>
+  </view>
+  <!-- 圈子区 -->
+  <view class="material-detail-circle" wx:if="{{circle_title}}">
+    <view class="material-detail-circle-title">所属圈子</view>
+    <view class="material-detail-circle-content">
+      <image src="{{circle_img}}"></image>
+      <view class="material-detail-circle-center">
+        <view class="material-detail-circle-center-top">{{circle_title}}  <text class="cuIcon-right cuIcon"></text></view>
+        <view class="material-detail-circle-center-bottom">
+          <text>{{hot_num}} 人气 </text>
+          <text>{{material_num}} 素材</text>
+        </view>
+      </view>
+      <view style="{{hasJoin ? 'color: #aaa;' : ''}}" class="material-detail-circle-btn"  catchtap="onJoin" >{{hasJoin ? '已加入' : '加入'}}</view>
+    </view>
+  </view>
+  <!-- 评论区 -->
+  <view class="material-detail-comment">
+    <view class="material-detail-comment-title">评论 {{commentNum}}</view>
+    <view class="material-detail-comment-content">
+      <my-comment  show="{{commentShow}}" bind:getcommentnum="setCommentNum" binddelcomment="onDelComment" bindaddcomment="onAddComment" bindhide="toggleComment" commentId="{{content_id}}" isDetail="true" />
+    </view>
+  </view>
+</view>

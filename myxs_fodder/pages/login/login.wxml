@@ -1,0 +1,24 @@
+<!--myxs_fodder/pages/login/login.wxml-->
+<i-toast id="toast" />
+<view class='werow DiyNav'>
+  <view class='Navicon'> </view>
+  <view class='wxf1 NavText'>授权登陆</view>
+  <view class='Navicon'></view>
+</view>
+<view class='loginCent'>
+  <image class='login' src='{{topimg}}'>
+  
+  </image>
+  <view class='tip'>允许微信授权后，可体验更多功能</view>
+  <button open-type="getUserInfo" bindgetuserinfo="uploadUserinfo" class='shouquan'>授权登陆</button>
+  <view style='position: relative;width:90%;margin:auto;'>
+   <button class='fanhui' style='position: initial;' bindtap='fanhui'>返回首页</button>
+  </view>
+ 
+
+
+</view>
+
+<!-- <view class='footerText'>
+  鑫尚科技提供技术支持
+</view> -->

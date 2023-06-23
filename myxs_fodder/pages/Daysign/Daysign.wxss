@@ -1,0 +1,140 @@
+/* pages/Daysign/Daysign.wxss */
+
+.pr {
+  position: relative;
+}
+
+.Day_d {
+  position: absolute;
+  left: 0;
+  right: 0;
+  text-align: center;
+  font-size: 140px;
+  top: -75px;
+  color: rgb(255, 64, 129);
+}
+
+.DayBiaoti {
+  margin-top: 20px;
+  text-align: center;
+  font-size: 36px;
+  font-weight: 800;
+}
+
+.w30 {
+  width: 60px;
+}
+
+.DayButGroup {
+  width: 180px;
+  height: 60px;
+  margin: auto;
+  font-size: 14px;
+  border-radius: 40px;
+  border: rgb(255, 64, 129) solid 1px;
+  position: relative;
+  margin-top: 40px;
+}
+
+.Day_share {
+  position: absolute;
+  left: 0;
+  top: -1px;
+  height: 62px;
+  background-color: rgb(255, 64, 129);
+  border-radius: 40px;
+  font-size: 16px;
+  text-align: center;
+  border: rgb(255, 64, 129) 1px solid;
+  color: #fff;
+}
+
+.Day_download {
+  font-family: PingFangSC, sans-serif;
+  padding-left: 45px;
+  text-align: center;
+  line-height: 61px;
+  font-size: 16px;
+  color: rgb(255, 64, 129);
+}
+
+.DayText {
+  font-size: 14px;
+  margin-top: 15px;
+  color: rgb(177, 177, 177);
+}
+
+.Day_Ym {
+  width: 95px;
+  text-align: right;
+  font-family: PingFangSC, sans-serif;
+  font-weight: 300;
+  font-size: 20px;
+  color: rgb(177, 177, 177);
+  font-style: normal;
+  letter-spacing: 0px;
+  line-height: 28px;
+  text-decoration: none;
+}
+
+.Day_week {
+  width: 90px;
+  font-size: 18px;
+  font-weight: 600;
+  color: rgb(105, 105, 105);
+}
+
+.Day_weektxt {
+  font-size: 14px;
+  color: rgb(177, 177, 177);
+  font-weight: 300;
+}
+
+.csbut {
+  position: fixed;
+  z-index: 18;
+  bottom: 0;
+  left: 122px;
+}
+
+.imagePathBox {
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 10;
+}
+
+.shengcheng {
+  width: 80%;
+  height: 80%;
+  position: fixed;
+  top: 10%;
+  left: 50%;
+  margin-left: -40%;
+  z-index: 10;
+}
+
+.baocun {
+  display: block;
+  width: 80%;
+  height: 80rpx;
+  padding: 0;
+  line-height: 80rpx;
+  text-align: center;
+  position: fixed;
+  bottom: 50rpx;
+  left: 10%;
+  background: #ffe200;
+  color: #333;
+  font-size: 32rpx;
+  border-radius: 44rpx;
+}
+
+button[class="baocun"]::after {
+  border: 0;
+}

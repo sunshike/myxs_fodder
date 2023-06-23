@@ -1,0 +1,5 @@
+{
+  "usingComponents": {
+    "square-list": "../../components/SquareList/index"
+  }
+}

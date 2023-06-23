@@ -1,0 +1,45 @@
+
+<view class="discover-container">
+  <swiper wx:if="{{showSwiper}}" id="swiper" class="screen-swiper {{DotStyle?'square-dot':'round-dot'}}" indicator-dots="true" circular="true" autoplay="true" interval="5000" duration="500">
+    <swiper-item wx:for="{{swiperList}}" wx:key="index">
+      <image src="{{item.url}}" mode="aspectFill" wx:if="{{item.type=='image'}}"></image>
+    </swiper-item>
+  </swiper>
+  <view id="selectBar">
+    <scroll-view  scroll-x="true" enable-flex="true" scroll-left='{{menuleft}}' scroll-with-animation='true' class='row-classify-menu'>
+      <view bindtap='scrollSelect' wx:for='{{menulist}}' wx:for-item="x" wx:key="aa" class="menu-item {{x.id == selectId ?'sbb':'wbb'}}" id='{{x.id}}'>{{x.name}}</view>
+    </scroll-view>
+  </view>  
+  <view id="noticeBar">
+    <i-notice-bar icon="systemprompt" loop bindtap="onNotice" id="noticeBar">
+        {{noticeTitle}}
+    </i-notice-bar>
+  </view>
+  
+  <list-content id="content" height="{{contentListHeight}}" requestIntface="listContentAll" hidden="{{selectId == 3}}"  class_id="{{selectId}}" bindtogglecomment="togglecommentCover" />
+  <square-list  bind:refresh="onListRefresh"  height="{{contentListHeight}}" id="squarelist"  hidden="{{selectId == 2}}"  />
+</view>
+
+
+ <!-- 遮罩  -->
+<view class="discover-cover" style="display:{{commentShow ? 'block':'none'}};"></view>
+
+<!-- 弹窗 -->
+<view class="cu-modal {{modalName=='Modal'?'show':''}}">
+  <view class="cu-dialog">
+    <view class="cu-bar bg-white justify-end">
+      <view class="content" style="height: 100%; padding: 20rpx 0;">
+        <view>{{noticeTitle}}</view>
+        <view style="font-size: .8rem;">{{noticeTime}}</view>
+      </view>
+      <view class="action" bindtap="hideModal">
+        <text class="cuIcon-close cuIcon text-red"></text>
+      </view>
+    </view>
+    <view class="notify-padding">
+      {{noticeMessage}}
+    </view>
+  </view>
+</view>
+
+<i-toast id="toast" />

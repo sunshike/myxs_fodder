@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "category-nav": "../../components/verticalNav/verticalnav",
+    "i-load-more": "../../iview_ui/load-more/index",
+    "content-list": "../../components/ContentList/index"
+  }
+}

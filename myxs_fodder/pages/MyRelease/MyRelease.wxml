@@ -1,0 +1,23 @@
+<view style="height: 100vh; overflow: hidden; position: relative;">
+  <view id="header" class='werow DiyNav' style="position: static; padding-top:{{barHeight-37}}px;">
+    <view class='Navicon wecolumn' style='padding-left:5px;color:#000;'>
+      <view class='wxf1'></view>
+        <text class="iconfont iconzuojiantou" bindtap='ReturnNew' style="font-size: 20px;"></text>
+      <view class='wxf1'></view>
+    </view>
+    <view class='wxf1 NavText'>内容管理</view>
+    <view class='Navicon'></view>
+  </view>  
+
+  <scroll-view id="selectBar" scroll-x="true" enable-flex="true" scroll-left='{{menuleft}}' scroll-with-animation='true' class='menulistStyle top' style=" white-space: nowrap;width: 100%; margin: 0; position: static;">
+    <view bindtap='scrollSelect' wx:for='{{menulist}}' wx:for-item="x" wx:key="a" class="menus {{menubl==x.class_id ?'sbb':'wbb'}}" id='{{x.class_id}}'>{{x.class_name}}</view>
+  
+  </scroll-view>
+
+
+  <!-- 内容组件 -->
+  <content-list id='content' class_id="{{class_id}}" isMyRelease="{{ true }}" requestIntface="listContent" bindtogglecomment="togglecommentCover" height="{{contentListHeight}}"  />
+</view>  
+
+<view  class="cover-index" style="display:{{commentShow ? 'block':'none'}};"></view>
+<i-toast id="toast" />

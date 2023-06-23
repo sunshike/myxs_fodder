@@ -1,0 +1,60 @@
+ <view class="tabbar-container" hidden="{{tabbarHidden}}">
+ 	<view class="item-box" wx:if="{{boxShow}}">
+ 		<view class="release-cover-header">
+
+ 			<view class="release-cover-anim anim1" bindtap="toRelease" data-url="/myxs_fodder/pages/SocialRelease/index">
+ 				<view class="release-cover-header-item bg-cu-red">
+					<text class='iconfont iconshejiao-duihuakuang' style="font-size: 30rpx;"></text>
+ 				</view>
+ 				<view class="text-center margin-20 release-cover-anim-text">社群</view>
+ 			</view>
+
+ 			<view class="release-cover-anim anim2" bindtap="toRelease" data-url="/myxs_fodder/pages/Release/Release?id=0">
+ 				<view class="release-cover-header-item bg-cu-blue">
+ 					<text class='iconfont iconxiangce' style="font-size: 30rpx;"></text>
+ 				</view>
+ 				<view class="text-center margin-20 release-cover-anim-text">图文</view>
+ 			</view>
+
+ 			<view class="release-cover-anim anim3" bindtap="toRelease" data-url="/myxs_fodder/pages/Release/Release?id=1">
+ 				<view class="release-cover-header-item bg-cu-green">
+ 					<text class='iconfont iconshipin' style="font-size: 30rpx;"></text>
+ 				</view>
+ 				<view class="text-center margin-20 release-cover-anim-text">视频</view>
+ 			</view>
+
+ 			<view class="release-cover-anim anim4" bindtap="toRelease" data-url="">
+ 				<view class="release-cover-header-item bg-cu-perple">
+ 					<text class='iconfont iconyinpinbofang' style="font-size: 30rpx;"></text>
+ 				</view>
+ 				<view class="text-center margin-20 release-cover-anim-text">音频</view>
+ 			</view>
+
+ 			<view class="release-cover-anim anim5" bindtap="toRelease" data-url="">
+ 				<view class="release-cover-header-item bg-cu-yellow">
+ 					<text class='iconfont iconxiangmuxuqiu' style="font-size: 30rpx;"></text>
+ 				</view>
+ 				<view class="text-center margin-20 release-cover-anim-text">需求</view>
+ 			</view>
+
+ 		</view>
+ 	</view>
+ 	<view class="cu-bar tabbar bg-white">
+		<view class="action  {{ selected == 2 ? 'active' : 'text-cu' }}" bindtap="switchTab" data-url="/myxs_fodder/pages/Discover/discover" data-index="2">
+			<text class='cuIcon-homefill cuIcon'></text>首页
+ 		</view>
+ 		<view class="action {{ selected == 0 ? 'active' : 'text-cu' }}" bindtap="switchTab" data-url="/myxs_fodder/pages/square/square" data-index="0">
+ 			<view class="iconfont iconqunzu tabbar-cu-icon" style="font-size:50rpx;"></view> 社群
+ 		</view>
+ 		
+ 		<view class="action text-cu  add-action" bindtap="showList">
+ 			<button id="release" class="cu-btn cuIcon-add cuIcon bg-cu shadow"></button> 发布
+ 		</view>
+ 		<view class="action {{ selected == 1 ? 'active' : 'text-cu' }}" bindtap="switchTab" data-url="/myxs_fodder/pages/index/index" data-index="1">
+ 			<text class='iconfont iconsucaiku tabbar-cu-icon'></text>素材
+ 		</view>
+ 		<view class="action {{ selected == 3 ? 'active' : 'text-cu' }}" bindtap="switchTab" data-url="/myxs_fodder/pages/My/My" data-index="3">
+ 			<view class="cuIcon-my cuIcon"></view> 我的
+ 		</view>
+ 	</view>
+ </view>

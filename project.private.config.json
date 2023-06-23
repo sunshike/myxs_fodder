@@ -1,0 +1,46 @@
+{
+  "setting": {
+    "compileHotReLoad": true,
+    "urlCheck": true,
+    "autoAudits": false
+  },
+  "condition": {
+    "miniprogram": {
+      "list": [
+        {
+          "name": "watermark_Test",
+          "pathName": "myxs_fodder/pages/watermark/watermark",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "login_test",
+          "pathName": "myxs_fodder/pages/login/login",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "myxs_fodder/pages/hello/hello",
+          "pathName": "myxs_fodder/pages/hello/hello",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "myxs_fodder/pages/testp",
+          "pathName": "myxs_fodder/pages/testp",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "myxs_fodder/pages/testp",
+          "pathName": "myxs_fodder/pages/testp",
+          "query": "name=111",
+          "scene": null
+        }
+      ]
+    }
+  },
+  "projectname": "myxs_fodder",
+  "description": "项目私有配置文件。此文件中的内容将覆盖 project.config.json 中的相同字段。项目的改动优先同步到此文件中。详见文档：https://developers.weixin.qq.com/miniprogram/dev/devtools/projectconfig.html",
+  "libVersion": "2.30.4"
+}

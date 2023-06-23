@@ -1,0 +1,170 @@
+.intergralContainer {
+  margin-top: 174rpx;
+  /* height: 400rpx; */
+  background-color: #fff;
+}
+
+.indextop {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  z-index: 9999;
+}
+
+.indextop2 {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+}
+
+.intergralText {
+  text-align: center;
+  margin-top: 60rpx;
+  font-size: 30rpx;
+  font-weight: 400;
+}
+
+.intergralNum {
+  text-align: center;
+  margin-top: 16rpx;
+  font-size: 78rpx;
+}
+
+.rechargeBtn {
+  width: 360rpx;
+  margin: 20rpx 0 0 200rpx;
+  background-color: rgb(101, 214, 209);
+  color: #fff;
+}
+
+.TipContainer {
+  margin: 10rpx 20rpx 0 20rpx;
+  margin-top: 10%;
+  font-size: 32rpx;
+  background-color: rgb(236, 235, 235);
+  display: flex;
+  flex-direction: column;
+  padding: 10rpx;
+  height: 310rpx
+}
+
+.tip_Title {
+  color: red;
+}
+
+.tip_Mess {
+  display: flex;
+  flex-direction: column;
+  font-size: 28rpx;
+  color: rgb(155, 153, 153);
+}
+
+.intergralRecord {
+  padding-left: 10rpx;
+  height: 90rpx;
+  background-color: rgb(197, 197, 197);
+  padding-top: 10rpx;
+  /* display: flex; */
+  /* flex-direction: row; */
+  width: 100%;
+  color: white;
+
+}
+picker{
+  width: 40%
+}
+.allRecord {
+  display: flex;
+  flex-direction: row;
+  font-size: 26rpx;
+  color: white;
+  width: 60%;
+
+}
+
+.lessenRecord {
+  margin-left: 20rpx;
+}
+
+.recordMess {
+  height: 100%;
+  overflow: auto;
+  background-color: #fff;
+  box-sizing: border-box;
+  padding-bottom: 200rpx;
+
+}
+
+.recordContent {
+  display: flex;
+  flex-direction: row;
+  border-bottom: 1px solid rgb(223, 220, 220);
+}
+
+.recordImg image {
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 50rpx;
+  margin: 16rpx 0 0 16rpx;
+}
+
+.recordCenter {
+  font-size: 28rpx;
+}
+
+.recordText {
+  margin: 22rpx 0 0 16rpx;
+}
+
+.recordTime {
+  margin-left: 16rpx;
+  color: #999;
+}
+
+.recordNum {
+  margin: 32rpx 0 0 240rpx;
+  font-size: 36rpx;
+}
+.red {
+  color: red;
+  font-size: 38rpx;
+  margin-left: 244rpx;
+}
+
+.green {
+  color: green;
+}
+.weui-loadmore_line{
+  margin-top: 11.4em
+}
+
+
+
+
+
+
+.intlog-nav-box {
+  height: 100vh;
+  overflow: hidden;
+}
+.intlog-nav {
+  padding: 20rpx;
+  margin-top: 60rpx;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  
+}
+.intlog-nav-title {
+  flex: 1;
+}
+.intlog-section {
+  padding: 20rpx;
+  background-color: #ecf0f1;
+}
+.intlog-nav-picker {
+  padding-bottom: 20rpx;
+  font-size: 1.3rem;
+}

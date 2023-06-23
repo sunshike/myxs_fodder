@@ -1,0 +1,94 @@
+<xs-cover isDownload="false" wx:if="{{coverShow}}" title="上传中...请稍等"></xs-cover>
+<i-toast id="toast" />
+<view class='werow DiyNav' style='position:absolute'>
+  <view class='Navicon wecolumn' style='padding-left:5px;'>
+    <view class='wxf1'></view>
+    <i-icon bindtap='fanhui' type='fanhui' size='20' style='line-height:4px;' />
+    <view class='wxf1'></view>
+  </view>
+  <view class='wxf1 NavText'>水印设置</view> 
+  <view class='Navicon'></view>
+</view>
+<view class="container">
+  <canvas canvasId="previewCanvas" style="width:{{previewCtxWidth}}px;height:{{previewCtxHeight}}px;margin:auto;"></canvas>
+  <view class="sets-wrap">
+    <view class="sets-row">
+      <view style="height:1.4rem;line-height:1.4rem;flex:3">水印文字：</view>
+      <input bindblur="inputBlur" bindinput="inputHandler" placeholder="请输入水印文字" style="flex:9;background:#fff;border-radius:5px;padding-left:10px;padding-right:10px;" value="{{text}}"></input>
+    </view>
+    <view class="sets-row" style="padding-top:10px;padding-bottom:10px;">
+      <view style="height:1.4rem;flex:3">水印颜色：</view>
+      <view class="select-color-wrap" style="flex:9">
+        <block wx:key="this" wx:for="{{colorArr}}">
+          <view bindtap="selectColor" class="select-color active" data-index="{{index}}" style="background:{{item}}" wx:if="{{index==colorIndex}}"></view>
+          <view bindtap="selectColor" class="select-color" data-index="{{index}}" style="background:{{item}}" wx:if="{{index!=colorIndex}}"></view>
+        </block>
+      </view>
+    </view>
+
+    <view class="sets-row">
+      <view style="flex:3;height:1.4rem;">水印位置：</view>
+      <picker bindchange="bindPickerChange" range="{{array}}" style="flex:9;background:#fff;border-radius:5px;padding-left:10px;padding-right:5px;" value="{{arrIndex}}">
+        <view class="picker">
+          {{array[arrIndex]}}
+        </view>
+      </picker>
+    </view>
+    <!-- <view class='werow'>
+      <view style='flex:2;'>二维码：</view>
+      <view style='flex:9;'>
+        <view class="TextOn">
+          <view class="weui-cell__bd">
+            <view class="weui-uploader" style='height:{{gifH}}px'>
+              <view class="weui-uploader__bd">
+                <view class="weui-uploader__files" id="uploaderFiles">
+                  <block wx:if="{{fileType=='img'}}" wx:for="{{files}}" wx:key="*this">
+                    <view class="weui-uploader__file" bindtap="previewImage" id="{{item}}">
+                      <image class="weui-uploader__img" src="{{item}}" mode="aspectFill" />
+                    </view>
+                  </block>
+
+                </view>
+                <view class="weui-uploader__input-box">
+                  <view class="weui-uploader__input" bindtap="chooseImage"></view>
+                </view>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+
+    </view> -->
+
+    <view class="sets-row" style="padding-top:10px;padding-bottom:10px;">
+      <view style="height:1.4rem;flex:3">二维码：</view>
+      <view class="select-color-wrap" style="flex:9">
+        <view class="TextOn">
+          <view class="weui-cell__bd">
+            <view class="weui-uploader" style='height:{{gifH}}px'>
+              <view class="weui-uploader__bd">
+                <view class="weui-uploader__files" id="uploaderFiles">
+                  <block wx:if="{{erweiType}}">
+                    <view class="weui-uploader__file" bindtap="SaveImg" >
+                      <image class="weui-uploader__img" src="{{erwei}}" mode="aspectFill" />
+                    </view>
+                  </block>
+
+                </view>
+                <view wx:if='{{!erweiType}}' class="weui-uploader__input-box">
+                  <view class="weui-uploader__input" bindtap="SaveImg"></view>
+                </view>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+    <!-- <view class="sets-row">
+      <view style="flex:3;height:1.4rem;"></view>
+    </view> -->
+
+<button class='circleCreateSub' bindtap='Sub'>保存</button>
+
+  </view>
+</view>

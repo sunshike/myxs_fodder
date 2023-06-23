@@ -1,0 +1,18 @@
+<view class="page">
+  <view id="header" class="cu-bar bg-white" style="padding-top:{{barHeight-37}}px;">
+    <view class="action" bindtap="back">
+      <text class="cuIcon-back text-gray cuIcon" style="font-size: 24px;color: black;"></text>
+    </view>
+    <view class="content text-bold" style="padding-top:{{barHeight-37}}px;">
+      我的社群
+    </view>
+  </view>
+  <scroll-view id="selectBar" scroll-x class="bg-white nav detail-tab-list" style="border-bottom: 1px solid #ecf0f1;">
+    <view class="flex text-center">
+      <view class="cu-item flex-sub {{index==TabCur?'text-cu':''}}" wx:for="{{tabList}}" wx:key="index" bindtap="tabSelect" data-id="{{index}}">
+        {{item}}
+      </view>
+    </view>
+  </scroll-view>
+  <square-list  bind:refresh="onListRefresh" bind:quit="onQuit" height="{{contentListHeight}}" id="squarelist" requestInterface="{{requestInterface}}" my_group="{{my_group}}" my_join="{{my_join}}" />
+</view>

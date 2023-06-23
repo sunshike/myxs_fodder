@@ -1,0 +1,81 @@
+<!--pages/Release/Release.wxml-->
+<i-toast id="toast" />
+<view class='RCents'>
+  <view class='werow DiyNav2' style=" padding-top:{{barHeight-37}}px;">
+    <view class='Navicon wecolumn' style='padding-left:5px;color:#000;'>
+      <view class='wxf1'></view>
+        <text class="iconfont iconzuojiantou" bindtap='NextF' style="font-size: 20px;"></text>
+      <view class='wxf1'></view>
+    </view>
+    <view class='wxf1 NavText'>分组管理</view>
+    <view class='Navicon'></view>
+  </view>
+  <view class='GroupManagement indextop'>
+    <view class='groupText'>
+      <text>当前分组为:</text>
+    </view> 
+    <view class='groupChose'>
+      <picker mode="selector" bindchange="bindAccount1Change" value="{{account1Index}}" range="{{accounts1}}">
+        <view class="groupChoseItem">{{accounts1[account1Index]}}(共{{allpeople}}人)</view>
+      </picker>
+    </view>
+  </view>
+  <view class='classCode indextop'>
+    <view class='codeText'>
+      <text>分组邀请码:</text>
+    </view>
+    <view class='codeNum'>
+    {{code}}
+    </view>
+    <view class='updateCode' hover-class='choseUpdateCode' data-pass="{{accountspass[account1Index]}}" bindtap='updateCode'>
+      修改
+    </view>
+  </view>
+</view>
+<view wx:if='{{dataNull===1}}' class='memberList'>
+  <block wx:key="this" wx:for="{{userList}}" wx:for-index="index" wx:for-item="item">
+    <view class='memberMess'>
+      <view class='memberImg'>
+        <image src='{{item.member_head_portrait}}'></image>
+      </view>
+      <view class='memberMessItem'>
+        <view class='memberName'>
+          <text>{{item.member_name}}</text>
+        </view>
+        <view class='memberAddTime'>
+          <text>{{item.update_time}}</text>
+        </view>
+      </view>
+      <block wx:if="{{item.member_id!=member_id}}">
+        <view class="adminPosition" hover-class='choseAdminPosition' data-indexid="{{index}}" data-userid="{{item.member_id}}" bindtap='kickOutGroup'>
+          <view>踢出分组</view>
+        </view>
+      </block>
+    </view>
+  </block>
+</view>
+<view wx:if='{{dataNull===0}}' class="weui-loadmore weui-loadmore_line noneUser">
+  <view class="weui-loadmore__tips weui-loadmore__tips_in-line">该分组暂无成员</view>
+</view>
+<view style='height:65px;'></view>
+
+
+<view class="mask" catchtouchmove="preventTouchMove" wx:if="{{showModal}}"></view>
+<view class="modalDlg" wx:if="{{showModal}}">
+  <view>邀请码修改</view>
+  <form bindsubmit='submit'>
+    <view class='nowCode'>
+      <text>当前邀请码:</text>
+      <input type='text' class='nowCodeNum' disabled='disabled' value='{{code}}' />
+    </view>
+    <view class='nowCode'>
+      <text>修改邀请码:</text>
+      <input type='text' class='nowCodeNum' placeholder='请输入修改后邀请码' bindinput='updateNowcode' />
+    </view>
+  </form>
+
+  <view class='nowCodeBtn'>
+    <text class='cancel codeBtn' bindtap='go'>取消</text>
+    <text class='sure codeBtn' data-now="{{accountspass[account1Index]}}"  bindtap='submit'>确认</text>
+  </view>
+</view>

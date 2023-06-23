@@ -1,0 +1,4 @@
+/* myxs_fodder/pages/MySocialGroup/index.wxss */
+.text-cu {
+  border-bottom: 7rpx solid rgb(255,64,129);
+}
