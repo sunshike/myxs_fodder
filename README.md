@@ -1,4 +1,4 @@
-# 素材管理小程序前端源码
+# 素材管理小程序源码
 ## 插件名称myxs_fodder
 
 ## 🔈 小程序端用微信原生框架开发
@@ -6,11 +6,17 @@
 ## 🔗 链接
 - 💻 演示地址：[demo演示站](https://w7.5ycz.com)
 
+### 目录说明
+- 小程序端：wechatApp
+- php接口端：myxs_fodder
+
 ### 联系方式
 
 ```txt
 
 微信客服：yuanmu-sun
+
+QQ：3538714687
 
 邮箱：demigod@myxs.ltd
 
