@@ -1,0 +1,43 @@
+{template 'common/header'}
+<style>
+    .wrap{
+        display: flex;
+        flex-wrap: wrap;
+    }
+    .copi{
+        width: 28%;margin: 1%;height: 150px;border: #ddd 2px solid;
+    }
+</style>
+<ul class="nav nav-tabs">
+    <li><a class="btn-lg" href="{php echo $this->createWebUrl('Community')}">分类列表</a></li>
+    <li {if $class == 'add_class'}class="active"{/if}><a class="btn-lg" href="{php echo $this->createWebUrl('Community', array('class' => 'add_class'))}">添加分类</a></li>
+    <li><a class="btn-lg" href="{php echo $this->createWebUrl('Community',array('class'=>'community_list'))}">社群列表</a></li>
+</ul>
+<div class="main">
+    <form action="" method="post" class="form-horizontal form" enctype="multipart/form-data" id="form1">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+            </div>
+            <div class="panel-body table-responsive">
+                <div class="form-group">
+                    <label class="col-xs-12 col-sm-3 col-md-2 control-label"><span style='color:red'></span>分类名称</label>
+                    <div class="col-sm-9 col-xs-12">
+                        <input type="text"  class="form-control" name="class_name" value="{$content['class_name']}" />
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-group col-sm-12">
+            <input type="submit" name="submit" value="提交" class="btn btn-success col-lg-1" />
+            <input type="hidden" name="id" value="{$content['id']}" />
+            <a href="{php echo $this->createWebUrl('Community')}" type="button" class="btn btn-primary col-lg-2" >返回上一页</a>
+        </div>
+
+    </form>
+</div>
+<style>
+    .selected{
+        border: 1px solid red
+    }
+</style>
+{template 'common/footer'}

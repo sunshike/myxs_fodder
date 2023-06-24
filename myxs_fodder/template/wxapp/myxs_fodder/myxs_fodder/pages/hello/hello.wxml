@@ -1,0 +1,17 @@
+<view class="hello" style="padding-top:{{barHeight-37}}px;    display: flex;flex-direction: column;height: 100vh;justify-content: space-between;    box-sizing: border-box;">
+  <view>
+    <view class="cu-bar bg-white">
+      <view class="action" bindtap="back" >
+        <text class="cuIcon-back text-gray cuIcon"></text>
+      </view>
+    </view>
+    <view >
+      <view wx:for="{{content}}" wx:key="index">{{item}}</view>
+    </view>
+    <button style="background-color:#e74c3c;color:white;margin: 40rpx 0;" bindtap="onCopy">一键复制</button>
+  </view>
+  <view >
+    <ad unit-id="adunit-8d29a68f07af4e86" ad-type="video" ad-theme="white"></ad>
+  </view>
+  
+</view>

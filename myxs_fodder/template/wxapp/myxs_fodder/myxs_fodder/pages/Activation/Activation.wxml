@@ -1,0 +1,25 @@
+<!--myxs_fodder/pages/Activation/Activation.wxml-->
+<i-toast id="toast" />
+<view class='werow DiyNav2' style=" padding-top:{{barHeight-37}}px;">
+  <view class='Navicon wecolumn' style='padding-left:5px;color:#000;'>
+    <view class='wxf1'></view>
+      <text class="iconfont iconzuojiantou" bindtap='ReturnNew' style="font-size: 20px;"></text>
+    <view class='wxf1'></view>
+  </view>
+  <view class='wxf1 NavText'>验证</view>
+  <view class='Navicon'></view>
+</view>
+<view >
+  <view class="weui-cells__title">如无邀请码，请联系管理员领取。</view>
+  <view class="weui-cells weui-cells_after-title">
+    <view class="weui-cell weui-cell_input">
+      <view class="weui-cell__hd">
+        <view class="weui-label">邀请码</view>
+      </view>
+      <view class="weui-cell__bd">
+        <input class="weui-input" bindinput='vfCode' confirm-hold="{{false}}" placeholder="请输入邀请码" />
+      </view>
+    </view>
+  </view>
+</view>
+<button class='circleCreateSub' bindtap='submt'>验证</button>

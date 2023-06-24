@@ -1,0 +1,28 @@
+/* myxs_fodder/pages/MySet/MySet.wxss */
+.Userimg{
+  margin-top: 75px;
+  background-color: #fff;
+  height: 75px;
+  
+}
+.Name{
+  margin-top: 10px;
+   background-color: #fff;
+  height: 45px;
+}
+
+.ImageInfo{
+  width: 52px;
+  height: 52px;
+  border-radius: 180px;
+}
+.actf{
+  position: fixed;
+  bottom:8%;
+  left: 10px;
+  right: 10px 
+}
+.setinp{
+  height:100%;
+  background-color:rgb(245, 245, 245)
+}

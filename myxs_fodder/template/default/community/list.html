@@ -1,0 +1,57 @@
+{template 'common/header'}
+    <ul class="nav nav-tabs">
+        <li><a class="btn-lg" href="{php echo $this->createWebUrl('Community')}">分类列表</a></li>
+        <li><a class="btn-lg" href="{php echo $this->createWebUrl('Community', array('class' => 'add_class'))}">添加分类</a></li>
+        <li class="active"><a class="btn-lg" href="{php echo $this->createWebUrl('Community',array('class'=>'community_list'))}">社群列表</a></li>
+    </ul>
+<div class="main">
+<div class="category">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            社群列表(<span style="color: #FF0000">可在本页面管理所有社群</span>)
+        </div>
+        <div class="panel-body table-responsive">
+            <table class="table table-hover">
+                <thead>
+                <tr>
+                    <th width="150">社群分类</th>
+                    <th width="150">社群名称</th>
+                    <th width="150">社群LOGO</th>
+                    <th width="240">社群简介</th>
+                    <th width="150">群主</th>
+                    <th width="150">群主微信</th>
+                    <th width="150">创建时间</th>
+                    <th width="150">状态</th>
+                    <th width="150" style="text-align: center">操作</th>
+                </tr>
+                </thead>
+                <tbody>
+                {loop $community $index $row}
+                <tr>
+                    <td width="150">{$row['class']}</td>
+                    <td width="150">{$row['group_name']}</td>
+                    <td width="150"><img style="width: 50px;height: 50px" src="{$row['group_logo']}" /></td>
+                    <td width="240">{$row['group_message']}</td>
+                    <td width="150"><a href="{php echo $this->createWebUrl('memberPost', array('op' => 'update','id'=>$row['group_user']))}">{$row['member_name']}</a></td>
+                    <td width="150">{$row['group_user_wx']}</td>
+                    <td width="150">{$row['group_create_time']}</td>
+                    <td width="150">{$row['group_status_mess']}</td>
+                    <td width="150" style="text-align: center">
+                        <a href="{php echo $this->createWebUrl('Community', array('class' => 'community_list','id'=>$row['id']))}" class="btn btn-primary btn-sm" style="padding: 4px 8px;"> 编辑</a>
+
+                        {if $row['group_status'] == 0}
+                        <a href="{php echo $this->createWebUrl('Community', array('class' => 'audit','id'=>$row['id']))}" class="btn btn-success btn-sm" style="padding: 4px 8px;">审核通过</a>
+                        {/if}
+                    </td>
+                </tr>
+                {/loop}
+                </tbody>
+            </table>
+            {$pager}
+        </div>
+    </div>
+</div>
+
+
+</div>
+{template 'common/footer'}

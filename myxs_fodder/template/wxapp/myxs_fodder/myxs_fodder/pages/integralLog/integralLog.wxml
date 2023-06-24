@@ -1,0 +1,54 @@
+<view class="intlog-nav-box">
+  <view class="intlog-nav">
+    <text class="iconfont iconzuojiantou" bindtap='fanhui' style="font-size: 20px;"></text>
+    <text class="intlog-nav-title" style="font-weight: 700;">积分明细</text>
+  </view>
+  <view class="intlog-section">
+    <picker class="intlog-nav-picker" mode="date" fields="month" value="{{date}}" start="" bindchange="getDateTime">
+      <view class="selectDate">
+        {{years}}年{{months}}月
+      </view>
+    </picker> 
+    <view class="intlog-nav-loginfo">
+      <text>增加：{{addIntergral}}</text>
+      <text>消耗：{{lessenIntergral}}</text>
+    </view>
+  </view>
+  <view wx:if='{{dataNull===1}}' class='recordMess'>
+    <block wx:key="this" wx:for="{{intergralList}}" wx:for-index='index' wx:for-item='item'>
+      <block wx:for='{{item.content}}' wx:for-index='i' wx:for-item='x' wx:key="a_i">
+        <view class='recordContent'>
+          <view class='recordImg'>
+            <block wx:if="{{x.getMemberImg==null}}">
+              <block wx:if="{{x.logo_bg}}">
+                <image src='{{logo_bg}}'></image>
+              </block>
+              <block wx:else>
+                <image src='{{memberimg}}'> </image>
+              </block>
+            </block>
+            <block wx:else>
+              <image src='{{x.getMemberImg}}'></image>
+            </block>
+          </view>
+          <view class='recordCenter'>
+            <view class='recordText'>
+              <text>{{x.text}}</text>
+            </view>
+            <view class='recordTime'>
+              <text>{{x.add_time}}</text>
+            </view>
+          </view>
+          <view class="recordNum {{x.type==2?'red':'green'}}">
+            <text wx:if="{{x.type==2}}">+</text>
+            <text wx:else="{{x.type==1}}">-</text>
+            <text>{{x.amount}}</text>
+          </view>
+        </view>
+      </block>
+    </block>
+  </view>
+  <view wx:if='{{dataNull===0}}' class="weui-loadmore weui-loadmore_line">
+    <view class="weui-loadmore__tips weui-loadmore__tips_in-line">暂无积分记录</view>
+  </view>
+</view>

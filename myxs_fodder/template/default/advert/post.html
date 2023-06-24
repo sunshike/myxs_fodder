@@ -1,0 +1,176 @@
+{template 'common/header'}
+<style>
+    .wrap{
+        display: flex;
+        flex-wrap: wrap;
+    }
+    .copi{
+        width: 28%;margin: 1%;height: 150px;border: #ddd 2px solid;
+    }
+</style>
+<ul class="nav nav-tabs">
+    <li><a class="btn-lg" href="{php echo $this->createWebUrl('Advert')}">广告列表</a></li>
+    <li {if $operation == 'add'}class="active"{/if}><a class="btn-lg" href="{php echo $this->createWebUrl('AdvertPost', array('op' => 'add'))}">发布广告</a></li>
+</ul>
+<div class="main">
+    <form action="" method="post" class="form-horizontal form" enctype="multipart/form-data" id="form1">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                {if $operation == 'add'}
+                发布广告
+                {/if}
+                {if $operation == 'update'}
+                修改广告(广告ID:{$content['advert_id']})
+                {/if}
+                {if $operation == 'look'}
+                查看广告(广告ID:{$content['advert_id']})
+                {/if}
+
+            </div>
+            <div class="panel-body table-responsive">
+                <div class="form-group">
+                    <label class="col-xs-12 col-sm-3 col-md-2 control-label"><span style='color:red'>*</span>广告身份</label>
+                    <div class="col-sm-9 col-xs-12">
+                        {loop $advertClass $row $class}
+                        <label class="radio-inline">
+                            <input type="radio" name="advert_class" value="{$row}" onclick="checkAdvert({$row})" {if $row==2}checked="checked"{/if} {if $content['advert_class']==$row}checked="checked"{/if}/>{$class}
+                        </label>
+                        {/loop}
+                    </div>
+                </div>
+                <script>
+                    function checkAdvert(type) {
+                        if(type == 1){
+                            $('#flow').show();
+                            $('#tu').hide();
+                            $('#position').show();
+                            $('#times').hide();
+                            $('#video').hide();
+                            $('#image').hide();
+                        }else{
+                            $('#flow').hide();
+                            $('#tu').show();
+                            $('#position').hide();
+                            $('#times').show();
+                        }
+                    }
+                </script>
+                <div class="form-group" id="tu"  style="display: {if $content['advert_class'] != 1}black{else}none{/if}">
+                    <label class="col-xs-12 col-sm-3 col-md-2 control-label"><span style='color:red'>*</span>广告类型</label>
+                    <div class="col-sm-9 col-xs-12">
+                        {loop $advertClassTu $row $class}
+                        <label class="radio-inline">
+                            <input type="radio" name="advert_class_type" value="{$row}" onclick="checkAdvertType('{$row}')"  {if $content['advert_class_type']==$row}checked="checked"{/if}/>{$class}
+                        </label>
+                        {/loop}
+                    </div>
+                </div>
+                <div class="form-group" id="flow" style="display: {if $content['advert_class'] == 1}black{else}none{/if}">
+                    <label class="col-xs-12 col-sm-3 col-md-2 control-label"><span style='color:red'>*</span>广告类型</label>
+                    <div class="col-sm-9 col-xs-12">
+                        {loop $advertClassFlow $row $class}
+                        <label class="radio-inline">
+                            <input type="radio" name="advert_class_type" value="{$row}"  {if $content['advert_class_type']==$row}checked="checked"{/if}/>{$class}
+                        </label>
+                        {/loop}
+                    </div>
+                </div>
+                <script>
+                    function checkAdvertType(t) {
+                        if(t == 'video'){
+                            $('#video').show();
+                            $('#image').hide();
+                        }else if(t == 'image'){
+                            $('#video').hide();
+                            $('#image').show();
+                        }else{
+                            $('#video').hide();
+                            $('#image').hide();
+                        }
+                    }
+                </script>
+                <div class="form-group" id="video" style="display: {if $content['advert_class_type']=='video'}block{else}none{/if}">
+                    <label class="col-xs-12 col-sm-3 col-md-2 control-label"><span style='color:red'></span>视频：</label>
+                    <div class="col-sm-9 col-xs-12">
+                        {php echo tpl_form_field_video('advert_video',$content['advert_video']);}
+                        <div class="help-block">支持MP4</div>
+                    </div>
+                </div>
+
+
+                <div class="form-group" id="image" style="display: {if $content['advert_class_type']=='image'}block{else}none{/if}">
+                    <label class="col-xs-12 col-sm-3 col-md-2 control-label"><span style='color:red'></span>图片：</label>
+                    <div class="col-sm-9 col-xs-12 gimgs">
+                        {php echo tpl_form_field_multi_image('advert_image', $content['advert_image']);}
+                    </div>
+                </div>
+
+                <div class="form-group" id="times"  style="display:{if $content['advert_class']==1}none{/if} " >
+                    <label class="col-xs-12 col-sm-3 col-md-2 control-label"><span style='color:red'>*</span>曝光次数</label>
+                    <div class="col-sm-9 col-xs-12">
+                        <input type="number" min="0" class="form-control" name="advert_times" value="{php echo $content['advert_times']?$content['advert_times']:0}" />
+                        <div class="help-block">广告曝光次数  默认为0  为0时不限制曝光次数</div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-xs-12 col-sm-3 col-md-2 control-label"><span style='color:red'></span>广告名称</label>
+                    <div class="col-sm-9 col-xs-12">
+                        <input type="text"  class="form-control" name="advert_name" value="{$content['advert_name']}" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-xs-12 col-sm-3 col-md-2 control-label"><span style='color:red'></span>广告位置</label>
+                    <div class="col-sm-9 col-xs-12">
+                        <select name="advert_position" class="form-control" required="required" id="advert_position">
+                            {loop $advertPosition $row $value}
+                            <option {if $content['advert_position']==$row} selected="selected"{/if} value="{$row}">{$value}</option>
+                            {/loop}
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group" id="position" style="display:{if $content['advert_class']!=1}none{/if} " >
+                    <label class="col-xs-12 col-sm-3 col-md-2 control-label"><span style='color:red'></span>广告位ID</label>
+                    <div class="col-sm-9 col-xs-12">
+                        <input type="text"  class="form-control" name="advert_text" value="{$content['advert_text']}" />
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-group col-sm-12">
+            {if $sub}
+            <input type="submit" name="submit" value="提交" class="btn btn-success col-lg-1" />
+            <input type="hidden" name="id" value="{$content['advert_id']}" />
+            {/if}
+            &nbsp; &nbsp;
+            <a href="{php echo $this->createWebUrl('Advert')}" type="button" class="btn btn-primary col-lg-2" >返回上一页</a>
+        </div>
+
+    </form>
+</div>
+<script type="text/javascript">
+
+    function getObjectURL(file){
+        var url = null;
+        if(window.createObjectURL != undefined){
+            url = window.createObjectURL(file);
+        }else if(window.URL != undefined){
+            url = window.URL.createObjectURL(file);
+        }else if(window.webkitURL != undefined){
+            url = window.webkitURL.createObjectURL(file);
+        }
+        return url;
+    }
+    function getimg(id){
+        $("#"+id).change(function(){
+            var path = $("#"+id).value;
+            var objUrl = getObjectURL(this.files[0]);
+            if(objUrl){
+                $('.'+id).attr("style","background:url('"+objUrl+"') no-repeat ;background-size:100%;");
+                $('.'+id).find('i').hide();
+                $('.zi'+id).hide();
+                $('#'+id+'mess').val(id);
+            }
+        })
+    }
+</script>
+{template 'common/footer'}

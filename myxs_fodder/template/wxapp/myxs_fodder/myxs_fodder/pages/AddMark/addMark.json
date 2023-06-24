@@ -1,0 +1,5 @@
+{
+  "usingComponents": {
+    "xs-cover": "../../components/Loading/Loading"
+  }
+} 

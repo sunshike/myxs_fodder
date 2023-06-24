@@ -1,0 +1,130 @@
+<view class='Cent'>
+  <view class='my-header'>
+    <view class="my-set-row" style="padding-top:{{10+barHeight}}rpx;">
+    </view>
+    <view class="my-info-row" style="justify-content: flex-end;    margin-bottom: -40rpx;padding-top: 15rpx;">
+      <text class="iconfont iconshezhi-xue" bindtap='MySet' style="font-size: 22px;"></text>
+    </view>
+    <view class="my-info-row">
+      <view style="display: flex;padding-bottom: 35rpx;">
+        <image class='my-info-row-img' bindtap='MySet' src='{{memberImg}}'></image>
+        <view class="my-info-row-info">
+          <view class="my-info-row-info-name" bindtap='gologin'>{{name}}</view>
+          <view class="my-info-row-info-id">会员ID：{{memberid}}</view>
+        </view>
+      </view>
+      <view class="my-info-row-intergral" bindtap='MyIntergral'>
+        <text class="iconfont iconjifen1" style="font-size: 23px;"></text>
+        <text>{{intergral}}</text>
+      </view>
+    </view>
+  </view>
+  <view wx:if='{{isAdmin!=0}}' class='NavButGroupa'>
+    <view class='btnStyle werow' bindtap='MyRelease'>
+      <view class='wxf1 ml10 fz16'>
+        <text class="iconfont iconfabu4" style="font-size: 20px; color: rgb(241,58,120); margin-right:10px; display: inline-block;"></text>我的发布
+      </view>
+      <icon class='weui-cell__ft_in-access mr20'></icon>
+    </view>
+  </view>
+  <view class='NavButGroup'>
+    <view class='btnStyle werow' bindtap='MyCollection'>
+      <view class='wxf1 ml10 fz16'>
+        <text class="iconfont iconcollection-b" style="font-size: 18px; color: rgb(241,58,120); margin-right:10px; display: inline-block;"></text>我的收藏
+      </view>
+      <icon class='weui-cell__ft_in-access mr20'></icon>
+    </view>
+  </view>
+  <view class='NavButGroup'>
+    <view class='btnStyle werow' bindtap='MyDownload'>
+      <view class='wxf1 ml10 fz16'>
+        <text class="iconfont iconxiazai8" style="font-size: 19px; color: rgb(241,58,120); margin-right:10px; display: inline-block;"></text>我的下载
+      </view>
+      <icon class='weui-cell__ft_in-access mr20'></icon>
+    </view>
+  </view>
+  <view class='NavButGroup'>
+    <view class='btnStyle werow' bindtap='toMyGroup'>
+      <view class='wxf1 ml10 fz16'>
+        <text class="iconfont iconqunzu" style="font-size: 19px; color: rgb(241,58,120); margin-right:10px; display: inline-block;"></text>我的社群
+      </view>
+      <icon class='weui-cell__ft_in-access mr20'></icon>
+    </view>
+  </view>
+  <view wx:if='{{is_class_admin!=0}}' class='NavButGroupa'>
+    <view class='btnStyle werow' bindtap='GroupManagement'>
+      <view class='wxf1 ml10 fz16'>
+        <text class="iconfont iconpengyou" style="font-size: 19px; color: rgb(241,58,120); margin-right:10px; display: inline-block;"></text>分组管理
+      </view>
+      <icon class='weui-cell__ft_in-access mr20'></icon>
+    </view>
+  </view>
+  <view class='NavButGroup'>
+    <view class='btnStyle werow' bindtap='OpenMark'>
+      <view class='wxf1 ml10 fz16'>
+        <text class="iconfont iconguanli-fill" style="font-size: 16px; color: rgb(241,58,120); margin-right:10px; display: inline-block;"></text>水印管理
+      </view>
+      <icon class='weui-cell__ft_in-access mr20'></icon>
+    </view>
+  </view>
+  <view wx:if='{{watermark_status==1}}' class="{{isAdmin!=0 ? 'NavButGroup': 'NavButGroupa'}}">
+    <view style='position:relative' bindtap='watermark'>
+      <button class='btnStyle werow'>
+        <view class='wxf1 ml10 fz16'>
+          <text class="iconfont iconguanli-fill" style="font-size: 16px; color: rgb(241,58,120); margin-right:10px; display: inline-block;"></text>水印管理
+        </view>
+        <icon class='weui-cell__ft_in-access mr20'></icon>
+      </button>
+    </view>
+  </view>
+  <view class="NavButGroup">
+    <view class='btnStyle werow' bindtap='Activation'>
+      <view class='wxf1 ml10 fz16'>
+        <text class="iconfont iconyaoqingmatianchong" style="font-size: 16px; color: rgb(241,58,120); margin-right:10px; display: inline-block;"></text>邀请码验证
+      </view>
+      <icon class='weui-cell__ft_in-access mr20'></icon>
+    </view>
+  </view>
+  <view class="NavButGroup">
+    <view class='btnStyle werow' bindtap='toLove'>
+      <view class='wxf1 ml10 fz16'>
+        <text class="iconfont iconaixin" style="font-size: 16px; color: rgb(241,58,120); margin-right:10px; display: inline-block;"></text>爱心专属
+      </view>
+      <icon class='weui-cell__ft_in-access mr20'></icon>
+    </view>
+  </view>
+  <view class="{{isAdmin!=0 ? 'NavButGroup': 'NavButGroupa'}} margin-interval margin-bottom-interval">
+    <view class="NavButGroup">
+      <view class='btnStyle werow' bindtap='toGroup'>
+        <view class='wxf1 ml10 fz16'>
+          <text class="iconfont iconqunliao" style="font-size: 22px; color: rgb(241,58,120); margin-right:10px; display: inline-block;"></text>售后服务群
+        </view>
+        <icon class='weui-cell__ft_in-access mr20'></icon>
+      </view>
+    </view>
+    <view class="NavButGroup">
+      <view class='btnStyle werow' bindtap='wechatService'>
+        <view class='wxf1 ml10 fz16'>
+          <text class="iconfont iconqunliao" style="font-size: 22px; color: rgb(241,58,120); margin-right:10px; display: inline-block;"></text>企业客服
+        </view>
+        <icon class='weui-cell__ft_in-access mr20'></icon>
+      </view>
+    </view>
+    <view style='position:relative'>
+      <button class='btnStyle werow' session-from='{"nickName":"{{name}}","avatarUrl":"{{memberImg}}"}' open-type="contact">
+        <view class='wxf1 ml10 fz16'>
+          <text class="iconfont icontongyong-lianxikefutubiao" style="font-size: 22px; color: rgb(241,58,120); margin-right:10px; display: inline-block;"></text>小程序客服
+        </view>
+        <icon class='weui-cell__ft_in-access mr20'></icon>
+      </button>
+    </view>
+  </view>
+  <view wx:if='{{advshow == 1}}' class='actf'>
+    <ad unit-id="{{adv}}"></ad>
+  </view>
+  <view class='footerText'>{{banquan}}</view>
+</view>
+<view class="my-cover" wx:if='{{!toGroupShow}}'></view>
+<to-group hidden="{{ toGroupShow }}" bind:hide="toGroup" groupId="{{groupId}}" />
+<!-- 提示弹窗 -->
+<i-toast id="toast" />

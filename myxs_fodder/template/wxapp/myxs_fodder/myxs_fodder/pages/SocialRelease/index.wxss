@@ -1,0 +1,40 @@
+/* myxs_fodder/pages/Discover/discover.wxss */
+
+.release-container {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* 返回按钮样式 */
+.back-btn {
+  font-size: 25px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 1rpx 10rpx;
+  margin-top: 20rpx;
+}
+.margin-left-cus {
+  margin-left: 17rpx;
+}
+
+.release-del-video {
+  margin: 0 !important;
+  padding: 20rpx !important;
+  width: 0 !important;
+  left: 170px;
+  top: 10rpx !important;
+
+}
+.socialrelease-pos {
+  overflow: hidden;
+  width: 300rpx;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.social-release-btn-delete {
+  padding: 0 30rpx;
+  padding-bottom: 20rpx;
+}

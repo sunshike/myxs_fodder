@@ -1,0 +1,107 @@
+/* myxs_fodder/pages/OpeningAdv/OpeningAdv.wxss */
+/* pages/Release/Release.wxss */
+
+page {
+  background-color: rgb(243, 243, 243);
+  
+}
+.indextop {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  z-index: 8000;
+  height: 46px;
+  background-color: rgb(238, 238, 238);
+}
+
+.GroupManagement {
+  background-color: #f2f2f2;
+  height: 80rpx;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  margin-top: 118rpx;
+  padding: 40rpx 0 0 20rpx;
+}
+.groupChose {
+  margin-left: 210rpx;
+}
+.ReleaseCent {
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+  margin-top: 246rpx
+}
+.RCents{
+  padding-top: 1px;
+}
+.actf{
+  margin-left: 10px;
+  margin-right: 10px 
+}
+
+.imgNowContainer{
+  display: flex;
+  flex-direction: column;
+  background-color: #fff;
+  padding: 40rpx 0 40rpx 0;
+  border-top: 1px solid rgb(243, 243, 243);
+  border-bottom: 1px solid rgb(243, 243, 243);
+
+}
+.imgNowContainer image{
+  height:375rpx;
+  margin-top: 20rpx;
+  align-self: center;
+
+}
+.noMess{
+  padding-left: 150rpx
+}
+.choseImgContainer{
+   display: flex;
+  flex-direction: column;
+  background-color: #fff;
+}
+.chosebtn{
+  margin:30rpx 0 0 160rpx
+}
+.choseImgContainer text{
+  margin: 30rpx 0 0 20rpx
+}
+.updateImg image{
+  width: 200rpx;
+  height:375rpx;
+  margin-left: 150rpx;
+  margin-top: 30rpx
+}
+.saveBtn{
+  width: 100%;
+  height: 80rpx;
+  border-radius: 10rpx;
+  background-color: rgb(77, 129, 224);
+  color: #fff;
+  text-align: center;
+  line-height: 80rpx
+}
+.tips{
+  font-size: 28rpx;
+  color: red;
+  text-align: center
+}
+.openAdv-upload-box {
+  position: relative;
+  border: 1px solid #d9d9d9;
+  height: 200rpx;
+  margin: 20rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: gray;
+
+}
+.mark-title {
+  display: flex;
+  justify-content: space-between;
+  margin: 0 20rpx;
+}

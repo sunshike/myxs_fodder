@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns="http://www.we7.cc" versionCode="">
+	
+	<application setting='false'>
+		<name><![CDATA[素材文案小程序]]></name>
+
+		<identifie><![CDATA[myxs_fodder]]></identifie>
+
+		<version><![CDATA[1.0.35]]></version>
+
+		<ability><![CDATA[素材文案小程序，轻松管理素材]]></ability>
+
+		<type><![CDATA[biz]]></type>
+
+		<description><![CDATA[素材文案]]></description>
+
+		<author><![CDATA[DemigodTeam]]></author>
+
+		<url><![CDATA[https://www.myxs.ltd]]></url>
+
+		<setting><![CDATA[]]></setting>
+
+	</application>
+
+	
+	<platform>
+		<rule embed="false" />
+
+		<rule embed="false" />
+
+	<supports>
+
+			<item type="wxapp" />
+	</supports>
+
+	</platform>
+	<bindings>
+
+		<menu>
+			<entry title="基础设置" do="Basics" state="Basics" direct="" />
+			<entry title="分类管理" do="class" state="class" direct="" />
+			<entry title="会员管理" do="member" state="member" direct="" />
+			<entry title="日签设置" do="DaySign" state="DaySign" direct="" />
+			<entry title="内容管理" do="content" state="content" direct="" />
+			<entry title="分组管理" do="grouping" state="grouping" direct="" />
+			<entry title="广告管理" do="advert" state="advert" direct="" />
+			<entry title="轮播管理" do="shuffling" state="shuffling" direct="" />
+			<entry title="公告管理" do="notice" state="notice" direct="" />
+			<entry title="社群管理" do="community" state="community" direct="" />
+		</menu>
+
+		<page>
+			<entry title="首页" do="/myxs_fodder/pages/index/index" state="" direct="" />
+		</page>
+
+	</bindings>
+
+	<install><![CDATA[install.php]]></install>
+	<uninstall><![CDATA[uninstall.php]]></uninstall>
+	<upgrade><![CDATA[upgrade.php]]></upgrade>
+</manifest>

@@ -1,0 +1,48 @@
+<!--pages/Daysign/Daysign.wxml-->
+<view class='werow DiyNav DiyNavBrb'>
+  <view class='Navicon wecolumn' style='padding-left:5px;color:#000;'>
+    <view class='wxf1'></view>
+    <i-icon bindtap='ReturnNew' type='fanhui' size='20'  />
+    <view class='wxf1'></view>
+  </view>
+  <view class='wxf1 NavText'>每日一签</view>
+  <view class='Navicon'></view>
+</view>
+
+<view style='margin-top:65px;height:249.75px'>
+  <image class='DaysignImg' src='{{DaySign.sign_img}}' mode="widthFix" style='width:100%;'>
+  </image>
+</view>
+
+<view>
+  <view class='werow'>
+    <view class='Day_Ym'>{{n}}/{{y}}</view>
+    <view class='pr wxf1'>
+      <view class='Day_d'>
+        <image src='{{Rqiimg}}' style='width:160px' mode="widthFix"></image>
+      </view>
+    </view>
+    <view>
+      <view class='Day_week'>{{week}}</view>
+      <view class='Day_weektxt'>{{eW}}</view>
+    </view>
+  </view>
+  <view class='DayBiaoti'>{{DaySign.sign_title}}</view>
+  <view class='werow'>
+    <view class='w30'></view>
+    <view class='DayText wxf1'>{{DaySign.sign_content}}</view>
+    <view class='w30'></view>
+  </view>
+  <view class='DayButGroup'>
+    <button class='Day_share wecolumn' open-type="share" style='width:62px;padding:0;margin:0;border:rgb(255, 64, 129) 1px solid;' animation='{{animationData}}'>
+      <view class='wxf1'></view>
+      <view wx:if='{{iconBl}}'></view>
+      <view>{{shareText}}</view>
+      <view class='wxf1'></view>
+    </button>
+    <view class='Day_download' bindtap='formSubmit'> 下载海报</view>
+  </view>
+</view>
+<view class="canvas-box">
+  <canvas type="2d" style='width:750px; height:1134px;position:fixed;top:9999px' canvas-id='share'></canvas>
+</view>

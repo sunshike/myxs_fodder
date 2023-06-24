@@ -1,0 +1,259 @@
+@import "/myxs_fodder/style/iconfont.wxss";
+@import "/myxs_fodder/style/icon.wxss";
+
+.nav .cu-item.cur {
+  border-bottom: 4rpx solid;
+}
+  
+.nav .cu-item {
+  height: 90rpx;
+  display: inline-block;
+  line-height: 90rpx;
+  margin: 0 10rpx;
+  padding: 0 20rpx;
+
+}
+.text-green, .line-green, .lines-green {
+  color: #39b54a;
+}
+.padding-lr {
+  padding-left: 30rpx;
+  padding-right: 30rpx;
+
+}
+.padding-top {
+  padding-top: 30rpx;
+}
+.bg-white {
+  background-color: #ffffff;
+  color: #666666;
+  
+}
+.cu-bar {
+  display: flex;
+  position: relative;
+  align-items: center;
+  min-height: 100rpx;
+  justify-content: space-between;
+
+}
+.cu-list.menu-avatar {
+  overflow: hidden;
+
+}
+.cu-bar .action:last-child {
+  margin-right: 30rpx;
+}
+.cu-bar .action:first-child {
+  margin-left: 30rpx;
+  font-size: 30rpx;
+  
+}
+.cu-bar .action {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  justify-content: center;
+  max-width: 100%;
+
+}
+.solid-bottom::after {
+  border-bottom: 1rpx solid rgba(0, 0, 0, 0.1);
+
+}
+.solid::after,
+.solid-top::after,
+.solid-right::after,
+.solid-bottom::after,
+.solid-left::after,
+.solids::after,
+.solids-top::after,
+.solids-right::after,
+.solids-bottom::after,
+.solids-left::after,
+.dashed::after,
+.dashed-top::after, 
+.dashed-right::after, 
+.dashed-bottom::after, 
+.dashed-left::after {
+  content: " ";
+  width: 200%;
+  height: 200%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-radius: inherit;
+  transform: scale(0.5);
+  transform-origin: 0 0;
+  pointer-events: none;
+  box-sizing: border-box;
+  
+}
+.cu-list.menu-avatar>.cu-item {
+  position: relative;
+  display: flex;
+  padding-right: 10rpx;
+  height: 140rpx;
+  background-color: #ffffff;
+  justify-content: flex-end;
+  align-items: center;
+
+}
+.cu-list>.cu-item {
+  transition: all .6s ease-in-out 0s;
+  transform: translateX(0rpx);
+
+}
+.grayscale {
+  filter: grayscale(1);
+
+}
+.cu-list.menu-avatar>.cu-item>.cu-avatar {
+  position: absolute;
+  left: 30rpx;
+
+}
+.cu-avatar.lg {
+  width: 96rpx;
+  height: 96rpx;
+  font-size: 2em;
+
+}
+.cu-avatar {
+  font-variant: small-caps;
+  margin: 0;
+  padding: 0;
+  display: inline-flex;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  background-color: #ccc;
+  color: #ffffff;
+  white-space: nowrap;
+  position: relative;
+  width: 64rpx;
+  height: 64rpx;
+  background-size: cover;
+  background-position: center;
+  vertical-align: middle;
+  font-size: 1.5em;
+
+}
+.round {
+  border-radius: 5000rpx;
+
+}
+.cu-list.menu-avatar>.cu-item .content {
+  position: absolute;
+  left: 146rpx;
+  width: calc(100% - 96rpx - 60rpx - 120rpx - 20rpx);
+  line-height: 1.6em;
+
+}
+
+.text-grey, .line-grey, .lines-grey {
+  color: #8799a3;
+
+}
+.text-sm {
+  font-size: 24rpx;
+
+}
+.flex {
+  display: flex;
+
+}
+.cu-list.menu-avatar>.cu-item .flex .text-cut {
+  max-width: 510rpx;
+
+}
+.text-cut {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+
+}
+.text-red, .line-red, .lines-red {
+  color: #e54d42;
+
+}
+.margin-right-xs {
+  margin-right: 10rpx;
+
+}
+
+.cu-list.menu-avatar>.cu-item .action {
+  width: 105rpx;
+  text-align: center;
+
+}
+.text-xs {
+  font-size: 20rpx;
+
+}
+
+.cuIcon-infofill {
+  margin-top: 10rpx;
+}
+.cu-tag.sm {
+  font-size: 20rpx;
+  padding: 0rpx 12rpx;
+  height: 32rpx;
+
+}
+.bg-grey {
+  background-color: #8799a3;
+  color: #ffffff;
+
+}
+.cu-tag {
+  font-size: 24rpx;
+  vertical-align: middle;
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  padding: 0rpx 16rpx;
+  height: 48rpx;
+  font-family: Helvetica Neue, Helvetica, sans-serif;
+  white-space: nowrap;
+
+}
+.VerticalNav.nav {
+  width: 200rpx;
+  white-space: initial;
+} 
+
+.VerticalNav.nav .cu-item {
+  width: 100%;
+  font-size: 12px;
+  background-color: #fff;
+  margin: 0;
+  border: none;
+  height: 50px;
+  position: relative;
+}
+
+.VerticalNav.nav .cu-item.cur {
+  background-color: #f1f1f1;
+}
+.VerticalNav.nav .cu-item.cur::after {
+  content: "";
+  width: 8rpx;
+  height: 30rpx;
+  border-radius: 10rpx 0 0 10rpx;
+  position: absolute;
+  background-color: currentColor;
+  top: 0;
+  right: 0rpx;
+  bottom: 0;
+  margin: auto;
+}
+.VerticalBox{
+  display: flex;
+}
+.VerticalMain{
+  background-color: #f1f1f1;
+}
+

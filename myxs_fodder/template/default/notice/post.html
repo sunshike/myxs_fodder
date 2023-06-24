@@ -1,0 +1,57 @@
+{template 'common/header'}
+<style>
+    .wrap{
+        display: flex;
+        flex-wrap: wrap;
+    }
+    .copi{
+        width: 28%;margin: 1%;height: 150px;border: #ddd 2px solid;
+    }
+</style>
+<ul class="nav nav-tabs">
+    <li><a class="btn-lg" href="{php echo $this->createWebUrl('notice')}">公告列表</a></li>
+    <li {if $operation == 'add'}class="active"{/if}><a class="btn-lg" href="{php echo $this->createWebUrl('NoticeMess', array('op' => 'add'))}">添加公告</a></li>
+</ul>
+<div class="main">
+    <form action="" method="post" class="form-horizontal form" enctype="multipart/form-data" id="form1">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                {if $operation == 'add'}
+                    添加公告
+                {/if}
+                {if $operation == 'update'}
+                    修改公告(公告ID:{$notice['id']})
+                {/if}
+                {if $operation == 'look'}
+                    查看公告(公告ID:{$notice['id']})
+                {/if}
+
+            </div>
+            <div class="panel-body table-responsive">
+                <div class="form-group">
+                    <label class="col-xs-12 col-sm-3 col-md-2 control-label"><span style='color:red'></span>公告标题(<span style="color: red">*必填</span>)</label>
+                    <div class="col-sm-9 col-xs-12">
+                        <input type="text" name="notice_title" id="sign_title" class="form-control" value="{$notice['notice_title']}" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-xs-12 col-sm-3 col-md-2 control-label"><span style='color:red'></span>公告内容(<span style="color: red">*必填</span>)</label>
+                    <div class="col-sm-9 col-xs-12">
+                        <textarea type="textarea" name="notice_content" class="form-control" style="height: 200px">{$notice['notice_content']}</textarea>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group col-sm-12">
+            {if $sub}
+                <input type="submit" name="submit" value="提交" class="btn btn-success col-lg-1" />
+                <input type="hidden" name="id" value="{$notice['id']}" />
+            {/if}
+            &nbsp; &nbsp;
+            <a href="{php echo $this->createWebUrl('notice')}" type="button" class="btn btn-primary col-lg-2" >返回上一页</a>
+        </div>
+
+    </form>
+</div>
+{template 'common/footer'}

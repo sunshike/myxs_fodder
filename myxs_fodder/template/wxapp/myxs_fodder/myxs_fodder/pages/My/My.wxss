@@ -1,0 +1,148 @@
+
+.center-header {
+  min-height: 150rpx;
+  background-color: rgb(255,64,129);
+  color: white;
+}
+.DiyNav,
+.MemberInfo {
+  background-color: rgb(255, 64, 129);
+  color: #fff;
+}
+
+.weui-cell__ft_in-access {
+  padding-right: 20px;
+}
+
+.MemberInfo {
+  padding-top: 25px;
+  padding-bottom: 20px;
+}
+
+.my-icon {
+  color: rgb(255, 64, 129);
+}
+
+.MemberName {
+  font-size: 16px;
+}
+
+.MemberId {
+  font-size: 14px;
+  line-height: 14px;
+}
+
+.mt40 {
+  margin-top: 40rpx
+}
+
+.inter {
+  font-size: 28rpx;
+}
+
+.NavButGroup,
+.MyD_C {
+  background-color: #fff;
+}
+
+.NavButGroup {
+  margin-top: 1px;
+}
+
+.MyD_C {
+  height: 50px;
+}
+
+.NavButGroup>view {
+  line-height: 35px;
+  color: #000;
+}
+
+.memberImg {
+  border-radius: 80px;
+  border: #fff solid 1px;
+}
+
+.icons {
+  color: rgb(255, 64, 129);
+}
+
+.actf {
+  margin-top: 1.5rem;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.footerTexts {
+  text-align: center;
+  font-size: 12px;
+  color: rgb(119, 118, 118);
+  height: 2rem;
+  line-height: 2rem;
+}
+
+.swiper-view {
+  margin: 20rpx 20rpx 0 20rpx
+}
+
+
+
+.margin-interval {
+  margin-top: 30rpx;
+}
+
+.margin-bottom-interval {
+  margin-bottom: 30rpx;
+}
+
+
+/* 加入群聊遮罩 */
+.my-cover {
+  width: 100vw;
+  height: 100vh;
+  background-color: black;
+  opacity: .7;
+  position: fixed;
+  z-index: 2;
+}
+
+
+.my-header {
+  background-color: rgb(255,64,129);
+  color: white;
+}
+.my-set-row {
+  padding: 60rpx;
+}
+.my-info-row {
+  display: flex;
+  padding: 0 20rpx;
+  align-items: center;
+}
+.my-info-row-img {
+  height: 100rpx;
+  width: 100rpx;
+  border-radius: 50%;
+}
+.my-info-row-info {
+  margin: 0 20rpx;
+  font-weight: 550;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+}
+.my-info-row-info-name {
+  font-size: 1.3rem;
+  
+}
+.my-info-row-info-id {
+  font-size: .8rem;
+  color: rgba(236, 240, 241,0.8);
+}
+.my-info-row-intergral {
+  margin-left: auto;
+  font-size: 36rpx;
+  display: flex;
+  align-items: center;
+}

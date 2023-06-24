@@ -1,0 +1,87 @@
+{template 'common/header'}
+<style>
+    .wrap{
+        display: flex;
+        flex-wrap: wrap;
+    }
+    .copi{
+        width: 28%;margin: 1%;height: 150px;border: #ddd 2px solid;
+    }
+</style>
+<ul class="nav nav-tabs">
+    <li><a class="btn-lg" href="{php echo $this->createWebUrl('class')}">分类列表</a></li>
+    <li {if $operation == 'add'}class="active"{/if}><a class="btn-lg" href="{php echo $this->createWebUrl('classmess', array('op' => 'add'))}">添加分类</a></li>
+</ul>
+<div class="main">
+    <form action="" method="post" class="form-horizontal form" enctype="multipart/form-data" id="form1">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                {if $operation == 'add'}
+                添加分类
+                {/if}
+                {if $operation == 'update'}
+                修改分类(分类ID:{$content['class_id']})
+                {/if}
+                {if $operation == 'look'}
+                查看分类(分类ID:{$content['class_id']})
+                {/if}
+
+            </div>
+            <div class="panel-body table-responsive">
+                <div class="form-group">
+                    <label class="col-xs-12 col-sm-3 col-md-2 control-label"><span style='color:red'></span>分类名称</label>
+                    <div class="col-sm-9 col-xs-12">
+                        <input type="text"  class="form-control" name="class_name" value="{$content['class_name']}" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-xs-12 col-sm-3 col-md-2 control-label"><span style='color:red'></span>状态</label>
+                    <div class="col-sm-9 col-xs-12">
+                        <label class="radio-inline">
+                            <input type="radio" name="class_status" value="1" {if $content['class_status']==1}checked="checked"{/if}/>启用
+                        </label>
+                        <label class="radio-inline">
+                            <input type="radio" name="class_status" value="0" {if $content['class_status']==2}checked="checked"{/if}/>删除
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-group col-sm-12">
+            {if $sub}
+            <input type="submit" name="submit" value="提交" class="btn btn-success col-lg-1" />
+            <input type="hidden" name="id" value="{$content['class_id']}" />
+            {/if}
+            &nbsp; &nbsp;
+            <a href="{php echo $this->createWebUrl('class')}" type="button" class="btn btn-primary col-lg-2" >返回上一页</a>
+        </div>
+
+    </form>
+</div>
+<script type="text/javascript">
+
+    function getObjectURL(file){
+        var url = null;
+        if(window.createObjectURL != undefined){
+            url = window.createObjectURL(file);
+        }else if(window.URL != undefined){
+            url = window.URL.createObjectURL(file);
+        }else if(window.webkitURL != undefined){
+            url = window.webkitURL.createObjectURL(file);
+        }
+        return url;
+    }
+    function getimg(id){
+        $("#"+id).change(function(){
+            var path = $("#"+id).value;
+            var objUrl = getObjectURL(this.files[0]);
+            if(objUrl){
+                $('.'+id).attr("style","background:url('"+objUrl+"') no-repeat ;background-size:100%;");
+                $('.'+id).find('i').hide();
+                $('.zi'+id).hide();
+                $('#'+id+'mess').val(id);
+            }
+        })
+    }
+</script>
+{template 'common/footer'}

@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "my-comment": "../../components/Comment/comment",
+    "mp-sticky": "../../components/sticky/index"
+  }
+}

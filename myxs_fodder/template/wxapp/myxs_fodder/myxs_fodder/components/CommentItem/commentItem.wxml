@@ -1,0 +1,26 @@
+<view class="comment-item-container" bindlongpress="openOption">
+  
+  <view  class="comment-item-row1">
+    <image src="{{avatar}}" class="cu-avatar round" mode="aspectFill" wx:if="{{!isChild}}"></image>
+    <view class="content" bindtap="onReply">
+      <view class="comment-item-title">
+        <text class="{{ isChild ? 'text-reply-active' : ''}}"  style="{{ isChild ? 'width: 66rpx;overflow: hidden;white-space: nowrap;text-overflow: ellipsis;' : ''}}">{{name}}</text>
+        <text wx:if="{{isAdmin}}" class="comment-item-author">作者</text>
+        <text wx:if="{{replyChild}}" class="margin-10">回复:</text>
+        <text wx:if="{{replyChild}}" class="text-reply-active" >{{replyChildName}}</text>
+        <text style="font-size: 14px;" class="text-grey comment-date">{{date}}</text> 
+      </view> 
+      <view class="text-content-comment">
+        <rich-text nodes="{{content}}"></rich-text>
+      </view>
+    </view>
+    <view class="comment-icon-like" style="{{isChild ? '' : 'margin-right: 40rpx;'}}">
+      <text class="like-num">{{likeNum}}</text>
+      <text class="iconfont icondianzan" style="font-size: 20px; color: {{hasLike ? 'rgb(243,59,121)':''}}; " bindtap="onLike"></text>
+    </view>
+  </view>
+  <view class="comment-item-row2">
+    <slot></slot>
+  </view>
+</view>
+

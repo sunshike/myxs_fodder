@@ -1,0 +1,14 @@
+/* myxs_fodder/pages/Activation/Activation.wxss */
+.DiyNav2 {
+  box-sizing: content-box;
+  overflow: hidden;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 35px;
+  padding-top: 30px;
+  padding-bottom: 20rpx;
+  background-color: #fff;
+  font-size: 18px;
+  z-index: 1;
+}

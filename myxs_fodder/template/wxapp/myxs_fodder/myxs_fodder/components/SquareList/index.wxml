@@ -1,0 +1,39 @@
+<scroll-view 
+	lower-threshold="800px"
+	bindscrolltolower="getMore"
+	class="scroll-view" 
+	scroll-y="true" 
+	style="height: {{height}};" 
+	hidden="{{hidden}}"  
+	scroll-top="0" 
+	refresher-enabled="{{ true }}" 
+	refresher-triggered="{{ refreshState }}" 
+	bindrefresherrefresh="onRefresherrefresh">
+
+	<view class="square-list-item" wx:for="{{list}}" wx:key="index" bindtap="toDetail" data-id="{{item.id}}">
+		<view class="square-list-item-left">
+			<view class="square-list-item-left-top">
+				<image src="{{item.group_logo}}" mode="aspectFill" class="image"></image>
+				<text class="text">{{item.group_class_name}}</text>
+			</view>
+			<p class="p">{{item.group_name}}</p>
+			<view class="square-list-item-left-bottom">
+				<text>时间:{{item.group_create_timeStr}}</text>
+				<text class="margin-left-sm square-text-hot">人气: {{item.group_number > 1000 ? item.group_number > 10000 ? (item.group_number - (item.group_number % 1000) ) / 10000 + 'w' : (item.group_number - (item.group_number % 100) ) / 1000 + 'k' : item.group_number }}</text>
+				<text class="margin-left-sm">素材: {{item.group_num > 1000 ? item.group_num > 10000 ? (item.group_num - (item.group_num % 1000) ) / 10000 + 'w' : (item.group_num - (item.group_num % 100) ) / 1000 + 'k' : item.group_num }}</text>
+			</view>
+		</view>
+		<view class="square-list-item-btn {{item.is_join && !my_group && !my_join ? 'join-active' : '' }}" catchtap="catchBubble"  >
+			<view class="square-list-item-btn-box">
+				<button wx:if="{{isgetmobile}}" open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber" data-join="{{item.is_join}}" data-group_id="{{item.id}}" data-index="{{index}}"   class="square-list-item-btn-top">{{my_join ? '退出' : my_group ? '编辑' : item.is_join ? '已加入' : '立即加入' }}</button>
+
+				<button wx:if="{{!isgetmobile}}"  catchtap="onJoin" data-join="{{item.is_join}}" data-group_id="{{item.id}}" data-index="{{index}}"   class="square-list-item-btn-top">{{my_join ? '退出' : my_group ? '编辑' : item.is_join ? '已加入' : '立即加入' }}</button>
+
+
+				<view wx:if="{{!my_group}}" class="square-list-item-btn-bottom">{{ (item.km || item.km === 0)  ? item.km < 1000 ? item.km+' m' : (item.km / 1000)+' km' : '' }} </view>
+			</view>
+		</view>
+	</view>
+<!-- 加载更多状态显示 -->
+<i-load-more loading="{{ isLoadMore }}" tip="{{loadingTitle}}" />
+</scroll-view> 

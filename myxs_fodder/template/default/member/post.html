@@ -1,0 +1,229 @@
+{template 'common/header'}
+<style>
+    .wrap{
+        display: flex;
+        flex-wrap: wrap;
+    }
+    .copi{
+        width: 28%;margin: 1%;height: 150px;border: #ddd 2px solid;
+    }
+    .memberFz{
+        margin: 5px;
+        height: 30px;
+        line-height: 30px;
+        padding-left: 10px;
+        padding-right: 10px;
+        background: #fff;
+        border: #f7e3e3 solid 1px;
+        border-radius: 5px;
+        text-align: center;
+        font-size: 12px;
+        cursor:pointer
+    }
+    .Fztelt{
+        text-align: center;
+        font-size: 14px;
+        line-height: 40px;
+    }
+    .memberF>.FzDlt:hover{
+        background-color: #fc0600;
+        color: #fff;
+    }
+    .memberF>.mofz:hover{
+        background-color: #eeece4;
+    }
+    .Xtfz>div:hover{
+        background-color: #34ba00;
+        color: #fff;
+
+    }
+
+</style>
+<ul class="nav nav-tabs">
+    <li class="active"><a class="btn-lg" href="{php echo $this->createWebUrl('Member')}">会员列表</a></li>
+</ul>
+<div class="main">
+    <form action="" method="post" class="form-horizontal form" enctype="multipart/form-data" id="form1">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                {if $operation == 'update'}
+                    修改会员(会员ID:{$member['member_id']})
+                {/if}
+                {if $operation == 'look'}
+                    查看会员(会员ID:{$member['member_id']})
+                {/if}
+            </div>
+            <div class="panel-body table-responsive">
+                <div class="form-group">
+                    <label class="col-xs-12 col-sm-3 col-md-2 control-label"><span style='color:red'></span>OPEN_ID</label>
+                    <div class="col-sm-9 col-xs-12">
+                        <input type="text" name="" id="" class="form-control" value="{$member['open_id']}"  disabled/>
+                    </div>
+                </div>
+                <!--<select name="grouping_id" class="form-control" required="required" id="grouping_id">-->
+                    <!--<option {if $member['grouping_id']==0} selected="selected"{/if} value="0">默认分组</option>-->
+                    <!--{loop $groupingList $row}-->
+                    <!--<option {if $member['grouping_id']==$row['grouping_id']} selected="selected"{/if} value="{$row['grouping_id']}">{$row['grouping_name']}</option>-->
+                    <!--{/loop}-->
+                <!--</select>-->
+
+                <div class="form-group">
+                    <label class="col-xs-12 col-sm-3 col-md-2 control-label"><span style='color:red'></span>所属分组</label>
+                    <div class="col-sm-4 col-xs-6">
+                        <div class="Fztelt">用户所属</div>
+                        <div class="memberF" style=" background-color: #f5f5f5;min-height: 100px;display: flex;flex-wrap: wrap">
+                            <div class="mofz memberFz" data-id="{$row['grouping_id']}">默认分组</div>
+                            {loop $member_groupingList $row}
+                            <div class="FzDlt memberFz" data-id="{$row['grouping_id']}">{$row['grouping_name']}</div>
+<!--                            <input class="FzDlt memberFz" data-id="{$row['grouping_id']}">{$row['grouping_name']}</input>-->
+                            {/loop}
+                        </div>
+                    </div>
+                    <div class="col-sm-4 col-xs-6">
+                        <div class="Fztelt">系统分组</div>
+                        <div class="Xtfz" style=" background-color: #f5f5f5;min-height: 100px;display: flex;flex-wrap: wrap">
+                            {loop $groupingList $row}
+                            <div class="FzAdd memberFz" data-id="{$row['grouping_id']}">{$row['grouping_name']}</div>
+                            {/loop}
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-xs-12 col-sm-3 col-md-2 control-label"><span style='color:red'></span>会员昵称(<span style="color: red">*必填</span>)</label>
+                    <div class="col-sm-9 col-xs-12">
+                        <input type="text" name="member_name" id="member_name" class="form-control" value="{$member['member_name']}" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-xs-12 col-sm-3 col-md-2 control-label"><span style='color:red'></span>会员头像(<span style="color: red">*必填</span>)</label>
+                    <div class="col-sm-9 col-xs-12">
+                        {php echo tpl_form_field_image('member_head_portrait', $member['member_head_portrait']);}
+                        <div class="help-block">建议图片尺寸H:500,W:500</div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-xs-12 col-sm-3 col-md-2 control-label"><span style='color:red'></span>会员联系方式</label>
+                    <div class="col-sm-9 col-xs-12">
+                        <input type="text" name="member_mobile" id="member_mobile" class="form-control" value="{$member['member_mobile']}" />
+                    </div>
+                </div>
+                <!--<div class="form-group">-->
+                    <!--<label class="col-xs-12 col-sm-3 col-md-2 control-label"><span style='color:red'></span>联系方式绑定状态状态</label>-->
+                    <!--<div class="col-sm-9 col-xs-12">-->
+                        <!--<label class="radio-inline">-->
+                            <!--<input type="radio" name="member_is_bind" value="0" {if $member['member_is_bind']==0}checked="checked"{/if}/>未绑定-->
+                        <!--</label>-->
+                        <!--<label class="radio-inline">-->
+                            <!--<input type="radio" name="member_is_bind" value="1" {if $member['member_is_bind']==1}checked="checked"{/if}/>已绑定-->
+                        <!--</label>-->
+                    <!--</div>-->
+                <!--</div>-->
+                <div class="form-group">
+                    <label class="col-xs-12 col-sm-3 col-md-2 control-label"><span style='color:red'></span>注册时间</label>
+                    <div class="col-sm-9 col-xs-12">
+                        {php echo tpl_form_field_date('create_time',$member['create_time'])}
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-xs-12 col-sm-3 col-md-2 control-label"><span style='color:red'></span>发布内容权限</label>
+                    <div class="col-sm-9 col-xs-12">
+                        <label class="radio-inline">
+                            <input type="radio" name="is_system" value="0" {if $member['is_system']==0}checked="checked"{/if}/>未开启
+                        </label>
+                        <label class="radio-inline">
+                            <input type="radio" name="is_system" value="1" {if $member['is_system']==1}checked="checked"{/if}/>已开启
+                        </label>
+                    </div>
+                </div>
+
+        <div class="form-group col-sm-12">
+            {if $sub}
+                <input type="submit" name="submit" value="提交" class="btn btn-success col-lg-1" />
+                <input type="hidden" id="member_id" name="id" value="{$member['member_id']}" />
+            {/if}
+            &nbsp; &nbsp;
+            <a href="{php echo $this->createWebUrl('Member')}" type="button" class="btn btn-primary col-lg-2" >返回上一页</a>
+        </div>
+
+    </form>
+</div>
+<!--<script src="../addons/myxs_fodder/static/js/jquery-3.0.0.min.js"></script>-->
+<script type="text/javascript">
+    let member_id = $('#member_id').val();
+    //删除身份
+    $('.memberF').on("click",".FzDlt",function () {
+        let text =  $(this).text();
+        let id = $(this).attr('data-id');
+
+
+       let ths = $(this);
+        $.ajax({
+            type: 'POST',
+            url: "{php echo $this->createWebUrl('MemberEdit')}",
+            data: {
+                id:id,
+                type:'del',
+                member_id:member_id
+            },
+            success: function (res) {
+                if (res){
+                    ths.remove();
+                    let html = "<div class='FzAdd memberFz' data-id='"+id+"'>"+text+"</div>";
+                    $('.Xtfz').append(html);
+                }
+            }
+        });
+    });
+
+    //添加身份
+    $('.Xtfz').on("click",".FzAdd",function () {
+        let text =  $(this).text();
+        let id = $(this).attr('data-id');
+
+        let ths = $(this);
+        $.ajax({
+            type: 'POST',
+            url: "{php echo $this->createWebUrl('MemberEdit')}",
+            data: {
+                id:id,
+                type:'add',
+                member_id:member_id
+            },
+            success: function (res) {
+                if (res){
+                    ths.remove();
+                    let html = "<div class='FzDlt memberFz' data-id='"+id+"'>"+text+"</div>";
+                    $('.memberF').append(html);
+                }
+            }
+        });
+    });
+
+
+
+    function getObjectURL(file){
+        var url = null;
+        if(window.createObjectURL != undefined){
+            url = window.createObjectURL(file);
+        }else if(window.URL != undefined){
+            url = window.URL.createObjectURL(file);
+        }else if(window.webkitURL != undefined){
+            url = window.webkitURL.createObjectURL(file);
+        }
+        return url;
+    }
+    function getimg(id){
+        $("#"+id).change(function(){
+            var path = $("#"+id).value;
+            var objUrl = getObjectURL(this.files[0]);
+            if(objUrl){
+                $('.'+id).attr("style","background:url('"+objUrl+"') no-repeat ;background-size:100%;");
+                $('.'+id).find('i').hide();
+                $('.zi'+id).hide();
+                $('#'+id+'mess').val(id);
+            }
+        })
+    }
+</script>
+{template 'common/footer'}

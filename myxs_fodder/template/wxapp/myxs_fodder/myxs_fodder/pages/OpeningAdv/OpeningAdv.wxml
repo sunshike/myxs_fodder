@@ -1,0 +1,75 @@
+<!--pages/Release/Release.wxml-->
+<i-toast id="toast" />
+<xs-cover isDownload="false" wx:if="{{coverShow}}" title="上传中...请稍等"></xs-cover>
+<view class='RCents'>
+  <view class='werow DiyNav'>
+    <view class='Navicon wecolumn' style='padding-left:5px;color:#000;'>
+      <view class='wxf1'></view>
+      <i-icon bindtap='NextF' type='fanhui' size='20'  />
+      <view class='wxf1'></view>
+    </view>
+    <view class='wxf1 NavText'>开屏广告管理</view>
+    <view class='Navicon'></view>
+  </view>
+  <view class='GroupManagement indextop'> 
+    <view class='groupText'>
+      <text>当前分组为:</text>
+    </view>
+    <view class='groupChose'>
+      <picker mode="selector" bindchange="bindAccount1Change" value="{{account1Index}}" range="{{accounts1}}">
+        <view class="groupChoseItem">{{accounts1[account1Index]}}</view>
+      </picker>
+    </view>
+  </view>
+  <view class='ReleaseCent'>
+    <view class='imgNowContainer'>
+      <view class="mark-title">
+        <text>当前开屏广告图</text>
+        <i-icon type='help' size='20' custom="" data-target="Modal" bindtap="openRuleBox" />
+      </view>
+      <block wx:if="{{groupBgstatus==1}}">
+        <image  mode="aspectFit" src='{{groupBg}}' bindtap="previewNowImage" id='{{groupBg}}'></image>
+      </block>
+      <block wx:if="{{groupBgstatus==0}}">
+        <text class='noMess'>无</text>
+      </block>
+    </view>
+    <view class='choseImgContainer'>
+      <text>上传开屏广告图</text>
+      <view>
+        <view class="weui-uploader__files" id="uploaderFiles">
+          <block wx:if="{{fileType=='img'}}" wx:for="{{files}}" wx:key="*this">
+            <view class="weui-uploader__file updateImg" bindtap="previewImage" id="{{item}}">
+              <image class="weui-uploader__img" src="{{item}}" mode="aspectFit" />
+            </view>
+          </block>
+        </view> 
+        <view class="openAdv-upload-box" hover-class="weui-uploader__input-box_active" wx:if='{{addbl}}'>
+        点击上传图片
+          <view class="weui-uploader__input" bindtap="chooseImage"></view>
+        </view>
+      </view>
+    </view>
+    <view class='saveBtn' hover-class='saveBtnActive' bindtap='Release'>保存</view>
+  </view>
+  <view wx:if='{{advshow == 1}}' class='actf'>
+    <view class='GGHide' bindtap='Closeadvert'>关闭</view>
+    <ad unit-id="{{advCode}}"></ad>
+  </view>
+</view>
+
+
+
+<view class="cu-modal {{modalName=='Modal'?'show':''}}">
+  <view class="cu-dialog">
+    <view class="cu-bar bg-white justify-end">
+      <view class="content">说明</view>
+      <view class="action" bindtap="hideModal">
+        <text class="cuIcon-close cuIcon text-red"></text>
+      </view>
+    </view>
+    <view class="notify-padding" style="font-size: .9rem;padding: 20rpx 0;">
+      不上传则显示默认启动页,建议尺寸:750px*400px
+    </view>
+  </view>
+</view>

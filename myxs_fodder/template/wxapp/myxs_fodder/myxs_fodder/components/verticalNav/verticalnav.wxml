@@ -1,0 +1,38 @@
+<view class="VerticalBox">
+  <scroll-view class="VerticalNav nav" scroll-y scroll-with-animation scroll-top="{{VerticalNavTop}}" style="height:300px;">
+    <view class="cu-item {{index==TabCur?'text-green cur':''}}" wx:for="{{list}}" wx:key="a" bindtap='tabSelect' data-id="{{index}}">
+      {{item.class_name}}
+    </view>
+  </scroll-view>
+  <scroll-view class="VerticalMain" scroll-y scroll-with-animation style="height:300px;" scroll-into-view="main-{{MainCur}}" bindscroll="VerticalMain">
+    <view class="padding-top padding-lr" wx:for="{{list}}" wx:key="b" id="main-{{index}}" wx:for-item="item">
+      <view class='cu-bar solid-bottom bg-white'>
+        <view class='action'>
+          <text class='cuIcon-title text-green cuIcon'></text>{{item.class_name}} 
+        </view>
+      </view> 
+      <view class="cu-list menu-avatar">
+
+      
+      <!-- 渲染列表项 -->
+      <view class="cu-item" wx:for="{{listItems[item.class_id]}}" wx:key="c" wx:for-item="childItem" bindtap="toDetail" data-id="{{childItem.content_id}}">
+        <view class="cu-avatar round lg" style="background-image:url({{childItem.member_head_portrait}});"></view>
+        <view class="content">
+          <view class="text-grey">{{childItem.member_name}}</view>
+          <view class="text-gray text-sm flex">
+            <text class="text-cut" style="height: 50rpx;">
+              <text class="text-red  margin-right-xs"></text> {{childItem.text}}
+            </text>
+          </view>
+        </view>
+        <view class="action">
+          <view class="text-grey text-xs">{{childItem.create_time}}</view>
+          <text wx:if="{{childItem.type === 'img'}}" class="iconfont iconxiangce" style="font-size: 20px; " ></text>
+          <text wx:else class="iconfont iconVideo" style="font-size: 20px; " ></text>
+        </view>
+      </view>
+
+      </view>
+    </view>
+  </scroll-view>
+</view>

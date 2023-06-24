@@ -1,0 +1,42 @@
+{template 'common/header'}
+    <ul class="nav nav-tabs">
+        <li class="active"><a class="btn-lg" href="">分类列表</a></li>
+        <li><a class="btn-lg" href="{php echo $this->createWebUrl('Community',array('class'=>'add_class'))}">添加分类</a></li>
+        <li><a class="btn-lg" href="{php echo $this->createWebUrl('Community',array('class'=>'community_list'))}">社群列表</a></li>
+    </ul>
+<div class="main">
+<div class="category">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            分类列表(<span style="color: #FF0000">可在本页面管理所有社群分类</span>)
+        </div>
+        <div class="panel-body table-responsive">
+            <table class="table table-hover">
+                <thead>
+                <tr>
+                    <th width="100">ID</th>
+                    <th width="150">分类名称</th>
+                    <th width="240" style="text-align: center">操作</th>
+                </tr>
+                </thead>
+                <tbody>
+                {loop $communityClass $index $row}
+                <tr>
+                    <td width="100">{$row['id']}</td>
+                    <td width="150">{$row['class_name']}</td>
+                    <td width="240" style="text-align: center">
+                        <a href="{php echo $this->createWebUrl('Community', array('class' => 'add_class','id'=>$row['id']))}" class="btn btn-primary btn-sm" style="padding: 4px 8px;"> 编辑</a>
+                        <a href="{php echo $this->createWebUrl('Community', array('class' => 'delete','id'=>$row['id']))}" class="btn btn-danger btn-sm" style="padding: 4px 8px;"> 删除</a>
+                    </td>
+                </tr>
+                {/loop}
+                </tbody>
+            </table>
+            {$pager}
+        </div>
+    </div>
+</div>
+
+
+</div>
+{template 'common/footer'}

@@ -1,0 +1,699 @@
+{template 'common/header'}
+<style>
+    .myrow{
+        display: flex;
+        flex-direction: row;
+    }
+</style>
+<ul class="nav nav-tabs">
+    <li class="active"><a class="btn-lg" href="">会员列表</a></li>
+</ul>
+<div class="main">
+    <div class="main">
+        <div class="category">
+            <div class="panel panel-default">
+                <div class="panel-heading myrow" style="line-height: 36px;">
+                    会员列表(<span style="color: #FF0000">可在本页面管理所有会员数据</span>)
+                    <div style="flex: 1"></div>
+                    <div style="width: 230px;">
+                        <div class="input-group">
+                            <input type="text" id="searchmess" class="form-control" placeholder="请输入昵称" aria-describedby="basic-addon2">
+                            <span style="cursor:pointer;" class="input-group-addon" id="search">搜索</span>
+                        </div>
+                    </div>
+
+
+
+                </div>
+                <div class="panel-body table-responsive">
+                    <table class="table table-hover">
+                        <thead>
+                        <tr>
+                            <th width="100">编号</th>
+                            <th width="180">信息</th>
+                            <th width="180">手机号</th>
+                            <th width="200">用户分组</th>
+                            <th width="200">注册时间</th>
+                            <th width="200">积分</th>
+                            <th width="200">余额</th>
+                            <th width="240" style="text-align: center">操作</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {loop $memberList $index $row}
+                        <tr>
+                            <td>{$row['member_id']}</td>
+                            <td>
+                                <img style="height: 40px;width: 40px;border-radius: 50%" src="{$row['member_head_portrait']}">
+                                {$row['member_name']}
+                            </td>
+                            <td>{$row['member_mobile']}</td>
+                            <td>{$row['grouping_id']}</td>
+                            <td>{$row['create_time']}</td>
+                            <td>{$row['intergral']}</td>
+                            <td>{$row['balance']}</td>
+                            <td width="240" style="text-align: center">
+                                <a href="{php echo $this->createWebUrl('memberPost', array('op' => 'update','id'=>$row['member_id']))}" class="btn btn-primary btn-sm" style="padding: 4px 8px;"> 编辑</a>
+                                <a href="{php echo $this->createWebUrl('memberPost', array('op' => 'delete','id'=>$row['member_id']))}" class="btn btn-danger btn-sm" style="padding: 4px 8px;"> 删除</a>
+                                <div data-id="{$row['member_id']}" data-inter="{$row['intergral']}" data-username="{$row['member_name']}" class="btn btn-danger btn-sm addintergral" style="padding: 4px 8px;"> 充值</div>
+                                <div data-id="{$row['member_id']}" data-downone="{$row['downOne']}" data-downtwo="{$row['downTwo']}" data-downall="{$row['downall']}" data-balance="{$row['balance']}" data-phone="{$row['member_mobile']}" data-inter="{$row['intergral']}" data-username="{$row['member_name']}" data-avatar="{$row['member_head_portrait']}" class="btn btn-primary btn-sm lookmess" style="padding: 4px 8px;"> 查看</div>
+
+                            </td>
+<!--                            onclick="addintergral({$row['member_id']},{$row['intergral']})"-->
+                        </tr>
+                        {/loop}
+                        </tbody>
+                    </table>
+                    {$pager}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="credit-Modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+<div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+<!--        <form class="table-responsive form-inline" method="post" action="" id="form-credit">-->
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                <h4 class="modal-title" id="myModalLabel">会员[<span id="userName"></span>]积分操作<span id="tip" style="margin-left: 310px;color: red"></span></h4>
+            </div>
+            <div class="modal-body">
+                <table class="table table-hover table-bordered">
+                    <tbody>
+                    <tr>
+
+                        <th width="150">会员ID</th>
+                        <td>
+                            <div class="form-group">
+                                <input type="text" value="" disabled="" name="username" id="userId" class="form-control">
+                            </div>
+                        </td>
+                    </tr>
+                    <tr id="user">
+                        <th>当前积分</th>
+                        <td>
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <strong class="form-control-static" id="userIntergral"></strong>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>修改积分(增减)</th>
+                        <td>
+                            <div class="form-group">
+                                <input type="text" value="" name="num" id="total" class="form-control">
+                                <div class="help-block">输入500,则标识增加500;输入-500则表示减少500</div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>备注</th>
+                        <td>
+                            <textarea name="remark" id="remark" class="form-control" cols="81"></textarea>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                <input type="button" class="btn btn-primary" id="submit" name="提交" value="提交">
+            </div>
+<!--        </form>-->
+    </div>
+</div>
+</div>
+<style>
+    .checkeds{
+        border-bottom: 2px solid red;
+    }
+    .myfriend{
+        display: flex;flex-direction: row;width: 100%;text-align: center;height: 44px;line-height: 44px;border-bottom: 1px solid #e0dcdc;
+    }
+    .imgs{
+        width: 40px;height: 40px;border-radius: 50%;
+    }
+    .w25{
+        width: 25%;
+    }
+    .body1{
+        margin: 30px;border: 1px solid #dad4d4;
+    }
+    .w100{
+        display: flex;flex-direction: row;width: 100%
+    }
+    .w50{
+        width: 50%
+    }
+    .w50pl6{
+        width: 50%;padding-left: 6px
+    }
+    .w100m40{
+        display: flex;flex-direction: row;width: 100%;margin-top: 40px
+    }
+    .w33{
+        width: 33%
+    }
+    .w33pl6{
+        width: 33%;padding-left: 6px
+    }
+    .w100pd0{
+        margin: 30px;border: 1px solid #dad4d4;padding: 0;height: 40px;line-height: 40px
+    }
+    .myone{
+        margin:0 30px 30px 30px;border: 1px solid #dad4d4;padding: 0;height: 310px;overflow-x: hidden;
+    }
+    .mytwo{
+        margin:0 30px 30px 30px;border: 1px solid #dad4d4;padding: 0;height: 310px;overflow-x: hidden;
+    }
+    .mythree{
+        margin:0 30px 30px 30px;border: 1px solid #dad4d4;padding: 0;height: 310px;overflow-x: hidden;
+    }
+    .myfour{
+        margin:0 30px 30px 30px;border: 1px solid #dad4d4;padding: 0;height: 310px;overflow-x: hidden;
+    }
+    .w20{
+        width: 20%;
+    }
+</style>
+<div class="modal fade" id="look-Modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+<div class="modal-dialog modal-lg" role="document" style="width: 200px">
+    <div class="modal-content" style="height: 800px;max-height:800px">
+<!--        <form class="table-responsive form-inline" method="post" action="" id="form-credit">-->
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                <h4 style="text-align: center" class="modal-title" id="myModalLabel1">【<span class="nickname"></span>】会员信息</h4>
+            </div>
+            <div class="modal-body body1">
+                <div class="w100">
+                    <div class="w50">
+                        <img class="imgs" src="">
+                        <span class="nickname"></span>
+                    </div>
+                    <div class="w50">
+                        积分：<span class="intergral"></span>
+                    </div>
+                </div>
+                <div class="w100m40">
+                    <div class="w50pl6">
+                        电话：<span class="phone"></span>
+                    </div>
+                    <div class="w50">
+                        余额：<span class="balance"></span>
+                    </div>
+                </div>
+                <div class="w100m40">
+                    <div class="w33pl6">
+                        好友：<span class="myfriend1">100</span>人
+                    </div>
+                    <div class="w33">
+                        一级：<span class="onefriend">50</span>人
+                    </div>
+                    <div class="w33">
+                        二级：<span class="twofriend">50</span>人
+                    </div>
+                </div>
+            </div>
+            <div class="modal-body w100pd0" style="padding: 0px">
+                <div style="display: flex;flex-direction: row;width: 100%;text-align: center">
+                    <div class="w25"><span style="padding: 8px;cursor: pointer" class="type1 checkeds">一级好友</span></div>
+                    <div class="w25"><span style="padding: 8px;cursor: pointer" class="type2" >二级好友</span></div>
+                    <div class="w25"><span style="padding: 8px;cursor: pointer" class="type3">积分明细</span></div>
+                    <div class="w25"><span style="padding: 8px;cursor: pointer" class="type4">余额明细</span></div>
+                </div>
+            </div>
+            <div class="modal-body" id="down" style="margin: 30px 30px 0 30px;border: 1px solid #dad4d4;padding: 0;height: 40px;line-height: 40px">
+                <div style="display: flex;flex-direction: row;width: 100%;text-align: center">
+                    <div class="w25"><span style="padding: 8px;">头像</span></div>
+                    <div class="w25"><span style="padding: 8px;">昵称</span></div>
+                    <div class="w25"><span style="padding: 8px;">注册时间</span></div>
+                    <div class="w25"><span style="padding: 8px;">绑定时间</span></div>
+                </div>
+            </div>
+            <div class="modal-body" id="log" style="margin: 30px 30px 0 30px;border: 1px solid #dad4d4;padding: 0;height: 40px;line-height: 40px">
+                <div style="display: flex;flex-direction: row;width: 100%;text-align: center">
+                    <div class="w20"><span style="padding: 8px;">头像</span></div>
+                    <div class="w20"><span style="padding: 8px;">昵称</span></div>
+                    <div class="w20"><span style="padding: 8px;">描述</span></div>
+                    <div class="w20"><span style="padding: 8px;">数量</span></div>
+                    <div class="w20"><span style="padding: 8px;">时间</span></div>
+                </div>
+            </div>
+            <div class="modal-body myone" style="padding: 0"></div>
+            <div class="modal-body mytwo" style="padding: 0;display: none"></div>
+            <div class="modal-body mythree" style="padding: 0;display: none"></div>
+            <div class="modal-body myfour" style="padding: 0;display: none"></div>
+            <input class="userid" type="hidden"/>
+            <script>
+                let start = 0;
+                let start2 = 0;
+                let start3 = 0;
+                let start4 = 0;
+                $('.type1').click(function () {
+                    $('#down').show();
+                    $('#log').hide();
+                    let id = $('.userid').val();
+                    start = 0;
+                    start2 = 0;
+                    start3 = 0;
+                    start4 = 0;
+                    $('.type1').addClass('checkeds');
+                    $('.type2').removeClass('checkeds');
+                    $('.type3').removeClass('checkeds');
+                    $('.type4').removeClass('checkeds');
+
+                    $('.myone').show();
+                    $('.mytwo').hide();
+                    $('.mythree').hide();
+                    $('.myfour').hide();
+
+                    $.ajax({
+                        type: 'GET',
+                        url: "{php echo $this->createWebUrl('GetUserDown')}",
+                        data: {
+                            member_id:id,
+                            type:1,
+                            start:start,
+                            end:5
+                        },
+                        success: function (res) {
+                            let data = JSON.parse(res);
+                            let html = '';
+                            $('.myone').html('');
+                            if(data.count ==0){
+                                html += '<div style="width: 100%;text-align: center;height: 30px;line-height: 30px;margin-top: 20px;">暂无数据</div>';
+                            }else{
+                                for (let i=0;i<data.list.length;i++){
+                                    html += '<div class="myfriend">';
+                                    html +='<div class="w25"><img class="imgs" src="'+data.list[i].member_head_portrait+'"></div>';
+                                    html += '<div class="w25">'+data.list[i].member_name+'</div>';
+                                    html += '<div class="w25">'+data.list[i].create_time+'</div>';
+                                    html += '<div class="w25">'+data.list[i].parent_time+'</div>';
+                                    html += '</div>';
+                                }
+                                start += data.count;
+                                if(start < data.total){
+                                    html += '<div style="width:100%;text-align: center;cursor: pointer;margin-top: 20px;" class="more'+id+'" onclick="getmore('+id+',1)">点击加载更多>>></div>';
+                                }else{
+                                    html += '<div style="width:100%;text-align:center;;margin-top: 20px;">加载完成</div>';
+
+                                }
+                            }
+                            $('.myone').append(html);
+
+                        }
+                    });
+                })
+                $('.type2').click(function () {
+                    $('#down').show();
+                    $('#log').hide();
+                    start = 0;
+                    start2 = 0;
+                    start3 = 0;
+                    start4 = 0;
+                    let id = $('.userid').val();
+                    $('.type2').addClass('checkeds');
+                    $('.type1').removeClass('checkeds');
+                    $('.type3').removeClass('checkeds');
+                    $('.type4').removeClass('checkeds');
+
+                    $('.mytwo').show();
+                    $('.myone').hide();
+                    $('.mythree').hide();
+                    $('.myfour').hide();
+
+                    $.ajax({
+                        type: 'GET',
+                        url: "{php echo $this->createWebUrl('GetUserDown')}",
+                        data: {
+                            member_id:id,
+                            type:2,
+                            start:start2,
+                            end:5
+                        },
+                        success: function (res) {
+                            let data = JSON.parse(res);
+                            let html = '';
+                            $('.mytwo').html('');
+                            if(data.count == 0){
+                                html += '<div style="width: 100%;text-align: center;height: 30px;line-height: 30px;margin-top: 20px;">暂无数据</div>';
+                            }else{
+                                for (let i=0;i<data.list.length;i++){
+                                    html += '<div class="myfriend">';
+                                    html +='<div class="w25"><img class="imgs" src="'+data.list[i].member_head_portrait+'"></div>';
+                                    html += '<div class="w25">'+data.list[i].member_name+'</div>';
+                                    html += '<div class="w25">'+data.list[i].create_time+'</div>';
+                                    html += '<div class="w25">'+data.list[i].parent_time+'</div>';
+                                    html += '</div>';
+                                }
+                                start2 += data.count;
+                                if(start2 < data.total){
+                                    html += '<div style="width:100%;text-align: center;cursor: pointer;margin-top: 20px;" class="more'+id+'" onclick="getmore('+id+',2)">点击加载更多>>></div>';
+                                }else{
+                                    html += '<div style="width:100%;text-align:center;margin-top: 20px;">加载完成</div>';
+
+                                }
+                            }
+                            $('.mytwo').append(html);
+
+                        }
+                    });
+                })
+                $('.type3').click(function () {
+                    $('#down').hide();
+                    $('#log').show();
+                    start = 0;
+                    start2 = 0;
+                    start3 = 0;
+                    start4 = 0;
+                    let id = $('.userid').val();
+                    $('.type3').addClass('checkeds');
+                    $('.type1').removeClass('checkeds');
+                    $('.type2').removeClass('checkeds');
+                    $('.type4').removeClass('checkeds');
+
+                    $('.mythree').show();
+                    $('.mytwo').hide();
+                    $('.myone').hide();
+                    $('.myfour').hide();
+
+                    $.ajax({
+                        type: 'GET',
+                        url: "{php echo $this->createWebUrl('GetUserDown')}",
+                        data: {
+                            member_id:id,
+                            type:3,
+                            start:start3,
+                            end:5
+                        },
+                        success: function (res) {
+                            let data = JSON.parse(res);
+                            let html = '';
+                            $('.mythree').html('');
+                            if(data.count == 0){
+                                html += '<div style="width: 100%;text-align: center;height: 30px;line-height: 30px;margin-top: 20px;">暂无数据</div>';
+                            }else{
+                                for (let i=0;i<data.list.length;i++){
+                                    html += '<div class="myfriend">';
+                                    html +='<div class="w20"><img class="imgs" src="'+data.list[i].member_head_portrait+'"></div>';
+                                    html += '<div class="w20">'+data.list[i].member_name+'</div>';
+                                    html += '<div class="w20">'+data.list[i].text+'</div>';
+                                    html += '<div class="w20">'+data.list[i].amount+'</div>';
+                                    html += '<div class="w20">'+data.list[i].create_time+'</div>';
+                                    html += '</div>';
+                                }
+                                start3 += data.count;
+                                if(start3 < data.total){
+                                    html += '<div style="width:100%;text-align: center;cursor: pointer;margin-top: 20px;" class="morelog'+id+'" onclick="getmoreLog('+id+',3)">点击加载更多>>></div>';
+                                }else{
+                                    html += '<div style="width:100%;text-align:center;margin-top: 20px;">加载完成</div>';
+
+                                }
+                            }
+                            $('.mythree').append(html);
+
+                        }
+                    });
+                })
+                $('.type4').click(function () {
+                    $('#down').hide();
+                    $('#log').show();
+                    start = 0;
+                    start2 = 0;
+                    start3 = 0;
+                    start4 = 0;
+                    let id = $('.userid').val();
+                    $('.type4').addClass('checkeds');
+                    $('.type1').removeClass('checkeds');
+                    $('.type2').removeClass('checkeds');
+                    $('.type3').removeClass('checkeds');
+
+                    $('.myfour').show();
+                    $('.mythree').hide();
+                    $('.mytwo').hide();
+                    $('.myone').hide();
+
+                    $.ajax({
+                        type: 'GET',
+                        url: "{php echo $this->createWebUrl('GetUserDown')}",
+                        data: {
+                            member_id:id,
+                            type:4,
+                            start:start4,
+                            end:5
+                        },
+                        success: function (res) {
+                            let data = JSON.parse(res);
+                            let html = '';
+                            $('.myfour').html('');
+                            if(data.count == 0){
+                                html += '<div style="width: 100%;text-align: center;height: 30px;line-height: 30px;margin-top: 20px;">暂无数据</div>';
+                            }else{
+                                for (let i=0;i<data.list.length;i++){
+                                    html += '<div class="myfriend">';
+                                    html +='<div class="w20"><img class="imgs" src="'+data.list[i].member_head_portrait+'"></div>';
+                                    html += '<div class="w20">'+data.list[i].member_name+'</div>';
+                                    html += '<div class="w20">'+data.list[i].text+'</div>';
+                                    html += '<div class="w20">'+data.list[i].amount+'</div>';
+                                    html += '<div class="w20">'+data.list[i].create_time+'</div>';
+                                    html += '</div>';
+                                }
+                                start4 += data.count;
+                                if(start4 < data.total){
+                                    html += '<div style="width:100%;text-align: center;cursor: pointer;margin-top: 20px;" class="morelog'+id+'" onclick="getmoreLog('+id+',4)">点击加载更多>>></div>';
+                                }else{
+                                    html += '<div style="width:100%;text-align:center;margin-top: 20px;">加载完成</div>';
+
+                                }
+                            }
+                            $('.myfour').append(html);
+
+                        }
+                    });
+                })
+            </script>
+<!--        </form>-->
+    </div>
+</div>
+</div>
+<script>
+    let status=true;
+    let starts = 0;
+    $('#search').click(function () {
+        let searchmess=$('#searchmess').val();
+        window.location.href="{php echo $this->createWebUrl('member',array('op'=>'search'))}&searchmess="+searchmess;
+    });
+    $('.addintergral').click(function (e) {
+        let id=e.currentTarget.dataset.id;
+        let inter=e.currentTarget.dataset.inter;
+        let username=e.currentTarget.dataset.username;
+        $('#userName').text(username);
+        $('#userId').val(id);
+        $('#userIntergral').text(inter);
+        var dialog = $('#credit-Modal');
+        dialog.modal('show');
+    });
+    $('.lookmess').click(function (e) {
+        let id=e.currentTarget.dataset.id;
+        let inter=e.currentTarget.dataset.inter;
+        let username=e.currentTarget.dataset.username;
+        let avatar=e.currentTarget.dataset.avatar;
+        let phone=e.currentTarget.dataset.phone;
+        let balance=e.currentTarget.dataset.balance;
+        let downone=e.currentTarget.dataset.downone;
+        let downtwo=e.currentTarget.dataset.downtwo;
+        let downall = e.currentTarget.dataset.downall;
+        $('.myfriend1').html(downall);
+        $('.onefriend').html(downone);
+        $('.twofriend').html(downtwo);
+        $('.userid').val(id);
+        $('.nickname').text(username);
+        $('.imgs').attr('src',avatar);
+        $('.intergral').html(inter);
+        $('.phone').html(phone);
+        $('.balance').html(balance);
+        $('.myone').html('');
+
+        $('.myone').show();
+
+        $('#down').show();
+        $('#log').hide();
+        $('.type1').addClass('checkeds');
+        $('.type2').removeClass('checkeds');
+        $('.type3').removeClass('checkeds');
+        $('.type4').removeClass('checkeds');
+        start=0;
+        $.ajax({
+            type: 'GET',
+            url: "{php echo $this->createWebUrl('GetUserDown')}",
+            data: {
+                member_id:id,
+                type:1,
+                start:0,
+                end:5
+            },
+            success: function (res) {
+                $('.mytwo').html('');
+                $('.mythree').html('');
+                $('.myfour').html('');
+                let data = JSON.parse(res);
+                let html = '';
+                if(data.count == 0){
+                    html += '<div style="width: 100%;text-align: center;height: 30px;line-height: 30px;margin-top: 20px">暂无数据</div>';
+                }else{
+                    for (let i=0;i<data.list.length;i++){
+                        html += '<div class="myfriend">';
+                        html +='<div class="w25"><img class="imgs" src="'+data.list[i].member_head_portrait+'"></div>';
+                        html += '<div class="w25">'+data.list[i].member_name+'</div>';
+                        html += '<div class="w25">'+data.list[i].create_time+'</div>';
+                        html += '<div class="w25">'+data.list[i].parent_time+'</div>';
+                        html += '</div>';
+                    }
+                    start += data.count;
+                    if(start < data.total){
+                        html += '<div style="width:100%;text-align: center;cursor: pointer;margin-top: 20px" class="more'+id+'" onclick="getmore('+id+',1)">点击加载更多>>></div>';
+                    }else{
+                        html += '<div style="width:100%;text-align:center;margin-top: 20px">加载完成</div>';
+
+                    }
+                }
+                $('.myone').append(html);
+
+            }
+        });
+
+        var dialog = $('#look-Modal');
+        dialog.modal('show');
+    });
+    function getmore(id,type){
+        $('.more'+id).hide();
+        if(type == 1){
+            starts = start;
+        }else{
+            starts = start2;
+        }
+        $.ajax({
+            type: 'GET',
+            url: "{php echo $this->createWebUrl('GetUserDown')}",
+            data: {
+                member_id:id,
+                type:type,
+                start:starts,
+                end:5
+            },
+            success: function (res) {
+                let data = JSON.parse(res);
+                let html = '';
+                if(data != ''){
+                    for (let i=0;i<data.list.length;i++){
+                        html += '<div class="myfriend">';
+                        html +='<div class="w25"><img class="imgs" src="'+data.list[i].member_head_portrait+'"></div>';
+                        html += '<div class="w25">'+data.list[i].member_name+'</div>';
+                        html += '<div class="w25">'+data.list[i].create_time+'</div>';
+                        html += '<div class="w25">'+data.list[i].parent_time+'</div>';
+                        html += '</div>';
+                    }
+                }
+
+                start += data.count;
+                if(start < data.total){
+                    html += '<div style="width:100%;text-align:center;cursor: pointer;margin-top: 20px;" class="more'+id+'" onclick="getmore('+id+','+type+')">点击加载更多>>></div>';
+                }else{
+                    html += '<div style="width:100%;text-align:center;margin-top: 20px;">加载完成</div>';
+
+                }
+                if(type == 1){
+                    $('.myone').append(html);
+                }else if(type == 2){
+                    $('.mytwo').append(html);
+                }
+
+            }
+        });
+    }
+    function getmoreLog(id,type){
+        $('.morelog'+id).hide();
+        if(type == 3){
+            starts = start3;
+        }else{
+            starts = start4;
+        }
+        $.ajax({
+            type: 'GET',
+            url: "{php echo $this->createWebUrl('GetUserDown')}",
+            data: {
+                member_id:id,
+                type:type,
+                start:starts,
+                end:5
+            },
+            success: function (res) {
+                let data = JSON.parse(res);
+                let html = '';
+                if(data != ''){
+                    for (let i=0;i<data.list.length;i++){
+                        html += '<div class="myfriend">';
+                        html +='<div class="w20"><img class="imgs" src="'+data.list[i].member_head_portrait+'"></div>';
+                        html += '<div class="w20">'+data.list[i].member_name+'</div>';
+                        html += '<div class="w20">'+data.list[i].text+'</div>';
+                        html += '<div class="w20">'+data.list[i].amount+'</div>';
+                        html += '<div class="w20">'+data.list[i].create_time+'</div>';
+                        html += '</div>';
+                    }
+                }
+
+                start3 += data.count;
+                if(start3 < data.total){
+                    html += '<div style="width:100%;text-align:center;cursor: pointer;margin-top: 20px;" class="morelog'+id+'" onclick="getmoreLog('+id+','+type+')">点击加载更多>>></div>';
+                }else{
+                    html += '<div style="width:100%;text-align:center;margin-top: 20px;">加载完成</div>';
+
+                }
+                if(type == 3){
+                    $('.mythree').append(html);
+                }else if(type == 4){
+                    $('.myfour').append(html);
+                }
+
+            }
+        });
+    }
+    $('#submit').click(function () {
+        let total=$('#total').val();
+        let remark=$('#remark').val();
+        let is_num=/(^[\-0-9][0-9]*(.[0-9]+)?)$/.test(total);
+        let id=$('#userId').val();
+        if(!is_num){
+            $('#tip').text('请输入正整数或者负整数').css('color','red');
+            $('#total').val('');
+            total=$('#total').val();
+            status=false;
+        }else{
+            $('#tip').text('')
+            status=true;
+        }
+        if(status){
+            $.ajax({
+                type: 'POST',
+                url: "{php echo $this->createWebUrl('UpdateUserIntergral')}",
+                data: {
+                    member_id:id,
+                    total:total,
+                    remark:remark
+                },
+                success: function (res) {
+                    console.log(res)
+                    $('#tip').text('变更积分成功').css('color','green')
+                    setTimeout(function () {
+                        window.location.reload();
+                    },1000)
+                }
+            });
+        }
+
+    })
+</script>
+{template 'common/footer'}

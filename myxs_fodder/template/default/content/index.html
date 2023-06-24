@@ -1,0 +1,78 @@
+{template 'common/header'}
+
+    <ul class="nav nav-tabs">
+        <li class="active"><a class="btn-lg" href="{php echo $this->createWebUrl('content')}">内容列表</a></li>
+        <li {if $operation == 'add'}class="active"{/if}><a class="btn-lg" href="{php echo $this->createWebUrl('contentmess', array('op' => 'add'))}">添加内容</a></li>
+        <li {if $operation == 'content'}class="active"{/if}><a class="btn-lg" href="{php echo $this->createWebUrl('recycle', array('op' => 'content'))}">回收站</a></li>
+    </ul>
+<style>
+    .myrow{
+        display: flex;
+        flex-direction: row;
+    }
+</style>
+<div class="main">
+<div class="category">
+    <div class="panel panel-default">
+
+        <div class="panel-heading myrow"  style="line-height: 36px;">
+            广场内容(<span style="color: #FF0000">可在本页面管理所有广场内容</span>)
+            <div style="flex: 1"></div>
+            <div style="width: 230px;">
+                <div class="input-group ">
+                    <input type="text" id="searchmess" class="form-control" placeholder="请输入内容" aria-describedby="basic-addon2">
+                    <span style="cursor:pointer;" class="input-group-addon" id="search">搜索</span>
+                </div>
+            </div>
+        </div>
+        <div class="panel-body table-responsive">
+            <table class="table table-hover">
+                <thead>
+                <tr>
+                    <th width="100">ID</th>
+                    <th width="150">分类</th>
+                    <th width="350">内容</th>
+                    <th width="150">分组</th>
+                    <th width="100">状态</th>
+                    <th width="250">创建时间</th>
+                    <th width="200">操作</th>
+                </tr>
+                </thead>
+                <tbody>
+                {loop $contentList $index $row}
+                <tr>
+                    <td width="100">{$row['content_id']}</td>
+                    <td width="100">{$row['class_id']}</td>
+                    <td style="overflow: hidden" title="{$row['text']}">
+                        <div class="" style="overflow: hidden;    word-break: break-all;text-overflow: ellipsis;white-space: nowrap;width: 245px;">{$row['text']}</div>
+                    </td>
+                    <td width="100">{$row['grouping_id']}</td>
+                    <td width="100"  class="ShowStat" id="{$row['content_id']}" style="cursor:pointer">{$row['content_status']}</td>
+                    <td width="250">{$row['create_time']}</td>
+                    <td width="200">
+                        <a href="{php echo $this->createWebUrl('contentmess', array('op' => 'update','id'=>$row['content_id']))}" class="btn btn-primary btn-sm" style="padding: 4px 8px;"> 编辑</a>
+                        <a href="{php echo $this->createWebUrl('contentmess', array('op' => 'delete','id'=>$row['content_id']))}" class="btn btn-danger btn-sm" style="padding: 4px 8px;"> 删除</a>
+                    </td>
+                </tr>
+                {/loop}
+                </tbody>
+            </table>
+            {$pager}
+        </div>
+    </div>
+</div>
+    <script>
+        $('.ShowStat').click(function () {
+            var that = $(this)
+            var id =$(this).attr('id');
+            $.post("{php echo $this->createWebUrl('updateContent')}",{id:id},function(result){
+                that.text(result)
+            });
+        })
+        $('#search').click(function () {
+            let searchmess=$('#searchmess').val();
+            window.location.href="{php echo $this->createWebUrl('content',array('op'=>'search'))}&searchmess="+searchmess;
+        })
+    </script>
+</div>
+{template 'common/footer'}

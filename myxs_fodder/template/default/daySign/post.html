@@ -1,0 +1,107 @@
+{template 'common/header'}
+<style>
+    .wrap{
+        display: flex;
+        flex-wrap: wrap;
+    }
+    .copi{
+        width: 28%;margin: 1%;height: 150px;border: #ddd 2px solid;
+    }
+</style>
+<ul class="nav nav-tabs">
+    <li><a class="btn-lg" href="{php echo $this->createWebUrl('DaySign')}">日签列表</a></li>
+    <li {if $operation == 'add'}class="active"{/if}><a class="btn-lg" href="{php echo $this->createWebUrl('DaySignMess', array('op' => 'add'))}">添加日签</a></li>
+</ul>
+<div class="main">
+    <form action="" method="post" class="form-horizontal form" enctype="multipart/form-data" id="form1">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                {if $operation == 'add'}
+                    添加日签
+                {/if}
+                {if $operation == 'update'}
+                    修改日签(日签ID:{$daysign['sign_id']})
+                {/if}
+                {if $operation == 'look'}
+                    查看日签(日签ID:{$daysign['sign_id']})
+                {/if}
+
+            </div>
+            <div class="panel-body table-responsive">
+                <div class="form-group">
+                    <label class="col-xs-12 col-sm-3 col-md-2 control-label"><span style='color:red'></span>日签标题(<span style="color: red">*必填</span>)</label>
+                    <div class="col-sm-9 col-xs-12">
+                        <input type="text" name="sign_title" id="sign_title" class="form-control" value="{$daysign['sign_title']}" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-xs-12 col-sm-3 col-md-2 control-label"><span style='color:red'></span>日签内容(<span style="color: red">*必填</span>)</label>
+                    <div class="col-sm-9 col-xs-12">
+                        <textarea type="textarea" name="sign_content" class="form-control" style="height: 200px">{$daysign['sign_content']}</textarea>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-xs-12 col-sm-3 col-md-2 control-label"><span style='color:red'></span>指定显示时间</label>
+                    <div class="col-sm-9 col-xs-12">
+                        {php echo tpl_form_field_date('time',$daysign['display_time'])}
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-xs-12 col-sm-3 col-md-2 control-label"><span style='color:red'></span>图片(<span style="color: red">*必填</span>)</label>
+                    <div class="col-sm-9 col-xs-12">
+                        {php echo tpl_form_field_image('sign_img', $daysign['sign_img']);}
+                        <div class="help-block">建议图片尺寸H:500,W:750</div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-xs-12 col-sm-3 col-md-2 control-label"><span style='color:red'></span>状态</label>
+                    <div class="col-sm-9 col-xs-12">
+                        <label class="radio-inline">
+                            <input type="radio" name="sign_status" value="1" {if $daysign['sign_status']==1}checked="checked"{/if}/>显示
+                        </label>
+                        <label class="radio-inline">
+                            <input type="radio" name="sign_status" value="2" {if $daysign['sign_status']==2}checked="checked"{/if}/>隐藏
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group col-sm-12">
+            {if $sub}
+                <input type="submit" name="submit" value="提交" class="btn btn-success col-lg-1" />
+                <input type="hidden" name="id" value="{$daysign['sign_id']}" />
+            {/if}
+            &nbsp; &nbsp;
+            <a href="{php echo $this->createWebUrl('daySign')}" type="button" class="btn btn-primary col-lg-2" >返回上一页</a>
+        </div>
+
+    </form>
+</div>
+<script type="text/javascript">
+
+    function getObjectURL(file){
+        var url = null;
+        if(window.createObjectURL != undefined){
+            url = window.createObjectURL(file);
+        }else if(window.URL != undefined){
+            url = window.URL.createObjectURL(file);
+        }else if(window.webkitURL != undefined){
+            url = window.webkitURL.createObjectURL(file);
+        }
+        return url;
+    }
+    function getimg(id){
+        $("#"+id).change(function(){
+            var path = $("#"+id).value;
+            var objUrl = getObjectURL(this.files[0]);
+            if(objUrl){
+                $('.'+id).attr("style","background:url('"+objUrl+"') no-repeat ;background-size:100%;");
+                $('.'+id).find('i').hide();
+                $('.zi'+id).hide();
+                $('#'+id+'mess').val(id);
+            }
+        })
+    }
+</script>
+{template 'common/footer'}

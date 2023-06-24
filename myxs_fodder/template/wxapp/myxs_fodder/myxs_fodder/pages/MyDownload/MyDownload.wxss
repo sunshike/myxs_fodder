@@ -1,0 +1,4 @@
+/* myxs_fodder/pages/MyDownload/MyDownload.wxss */
+.Cent{
+  padding-top: 65px;
+}

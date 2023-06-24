@@ -1,0 +1,49 @@
+{template 'common/header'}
+<ul class="nav nav-tabs">
+    <li class="active"><a class="btn-lg" href="">广告列表</a></li>
+    <li><a class="btn-lg" href="{php echo $this->createWebUrl('AdvertPost',array('op'=>'add'))}">发布广告</a></li>
+</ul>
+<div class="main">
+    <div class="category">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                分组列表(<span style="color: #FF0000">可在本页面管理所有广告</span>)
+            </div>
+            <div class="panel-body table-responsive">
+                <table class="table table-hover">
+                    <thead>
+                    <tr>
+                        <th width="100">ID</th>
+                        <th width="150">广告身份</th>
+                        <th width="150">广告类型</th>
+                        <th width="150">广告名称</th>
+                        <th width="150">广告位置</th>
+                        <th width="200">创建时间</th>
+                        <th width="240" style="text-align: center">操作</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {loop $advertList $index $row}
+                    <tr>
+                        <td width="100">{$row['advert_id']}</td>
+                        <td width="150">{$row['advert_class']}</td>
+                        <td width="150">{$row['advert_class_type']}</td>
+                        <td width="150">{$row['advert_name']}</td>
+                        <td width="150">{$row['advert_position']}</td>
+                        <td width="250">{$row['create_time']}</td>
+                        <td width="240" style="text-align: center">
+                            <a href="{php echo $this->createWebUrl('AdvertPost', array('op' => 'update','id'=>$row['advert_id']))}" class="btn btn-primary btn-sm" style="padding: 4px 8px;"> 编辑</a>
+                            <a href="{php echo $this->createWebUrl('AdvertPost', array('op' => 'delete','id'=>$row['advert_id']))}" class="btn btn-danger btn-sm" style="padding: 4px 8px;"> 删除</a>
+                        </td>
+                    </tr>
+                    {/loop}
+                    </tbody>
+                </table>
+                {$pager}
+            </div>
+        </div>
+    </div>
+
+
+</div>
+{template 'common/footer'}

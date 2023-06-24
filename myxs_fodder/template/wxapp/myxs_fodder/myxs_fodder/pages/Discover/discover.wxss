@@ -1,0 +1,37 @@
+.discover-container {
+  height: 100vh; 
+  overflow: hidden;
+  position: relative;
+}
+.row-classify-menu {
+  background-color: #fff;
+  white-space: nowrap;
+}
+.menu-item {
+  width: 90px;
+  display: inline-block;
+  font-size: 16px;
+  text-align: center;
+  line-height: 40px;
+  box-sizing: border-box;
+  color: #80848f;
+
+}
+.discover-cover {
+  height: 100vh;
+  width: 100vw;
+  background-color: black;
+  opacity: .7;
+  position: fixed;
+  z-index: 2;
+}
+.discover-content {
+  padding-bottom: 350rpx;
+}
+.discover-content-noData {
+  text-align: center;
+  margin-top: 200rpx;
+}
+.notify-padding {
+  padding: 15rpx;
+}

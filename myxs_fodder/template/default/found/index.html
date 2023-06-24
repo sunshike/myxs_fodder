@@ -1,0 +1,44 @@
+{template 'common/header'}
+<div class="main">
+    <ul class="nav nav-tabs">
+        {loop $titleList $key $value}
+        <li {if $class == $key }class="active"{/if}><a class="btn-lg" href="{php echo $this->createWebUrl('found',array('class' => $key))}">{$value}</a></li>
+        {/loop}
+    </ul>
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <form action="" method="post" class=" form" enctype="multipart/form-data">
+                <input type="hidden" name="personalid" value="{$personals['id']}" />
+                <div class="form-group">
+                    <label for="start_picurl" class="control-label col-xs-12 col-sm-3 col-md-2">发现页轮播图</label>
+                    <div class="col-sm-9 col-xs-12">
+                        {php echo tpl_form_field_multi_image('found_img', $shuffling['shuffling']);}
+                        <div class="help-block">建议大小750*400</div>
+                    </div>
+                </div>
+                <div class="form-group col-sm-12">
+                    <input type="submit" name="submit" value="提交" class="btn btn-primary col-lg-1" />
+                    <input type="hidden" name="op" value="addad" />
+                </div>
+
+            </form>
+        </div>
+
+
+    </div>
+    <script>
+        require(['bootstrap'],function($){
+            $('.btn').hover(function(){
+                $(this).tooltip('show');
+            },function(){
+                $(this).tooltip('hide');
+            });
+        });
+
+        function drop_confirm(msg, url){
+            if(confirm(msg)){
+                window.location = url;
+            }
+        }
+    </script>
+    {template 'common/footer'}

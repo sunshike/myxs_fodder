@@ -1,0 +1,10 @@
+<view class='startShow'>
+  <image style='height:100%;;width: 100%' src='{{jingruimg}}' bindload="index" mode="scaleToFill"></image>
+</view>
+<view wx:if='{{HttpBl}}' class='footerText'>{{Banquan}}</view>
+<view class="progress-box" hidden="{{loadModal}}">
+    <view class="loader loader-1">
+        <view class="loader-outter"></view>
+        <view class="loader-inner"></view>
+    </view>
+</view>

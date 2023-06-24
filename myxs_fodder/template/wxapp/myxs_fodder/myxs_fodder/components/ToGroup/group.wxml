@@ -1,0 +1,7 @@
+<view class="add-Group {{ hidden ? 'group-hidden' : '' }} {{ isDetail ? 'detail-page-style' : '' }}" >
+  <view>
+    <text>多人群聊</text>
+    <text class="iconfont iconguanbi1" style="font-size: 20px; position: absolute; right: 40px; opacity: .5;" bindtap="toggleGroup"></text>
+  </view>
+  <cell bind:startmessage='startmessage' bind:completemessage="completemessage" class="add-Group-cell" plugid='{{groupId}}' />
+</view>

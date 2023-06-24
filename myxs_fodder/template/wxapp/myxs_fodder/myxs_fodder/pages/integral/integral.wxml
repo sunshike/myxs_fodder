@@ -1,0 +1,117 @@
+<i-toast id="toast" />
+<view class="cu-modal {{modalName=='Modal'?'show':''}}">
+  <view class="cu-dialog">
+    <view class="cu-bar bg-white justify-end">
+      <view class="content">积分规则</view>
+      <view class="action" bindtap="hideModal">
+        <text class="cuIcon-close cuIcon text-red"></text>
+      </view>
+    </view>
+    <view class="notify-padding" style="font-size: .9rem;padding: 20rpx 0;">
+      {{intergralTip}}
+    </view>
+  </view>
+</view>
+
+
+<view>
+  <view class="integral-gradient">
+    <view class='row-title'>
+        <text bindtap="fanhui" style="padding-left: 10rpx;">
+          <text class="cuIcon-back cuIcon" style="font-size: 22px;"></text>
+        </text>
+        <text class='row-title-main'>我的积分</text> 
+      </view>
+      <view class="row1">
+        <view class="row1-top row" style="padding: 80rpx 20rpx 10rpx 20rpx;">
+          <text style="font-size: 2.5rem;">{{intergral}}</text>
+          <text bindtap="openRuleBox" data-target="Modal" class="cuIcon-question cuIcon ques-btn" style="font-size: 1.3rem;"></text>
+        </view>
+        <view class="row1-bottom row" style="padding: 10rpx 20rpx 40rpx 20rpx;">
+          <text bindtap="lookIntergralLog">
+            <text>积分明细</text>
+            <text class="cuIcon-right cuIcon"></text>
+          </text>
+        </view>
+      </view>
+  </view>
+  
+
+  <view class="row-content cu-list menu">
+    <view class="row2 cu-item" style="padding: 0; margin: 20rpx;">
+      <text>任务中心</text>
+      <text>今日获得 <text style="color: rgb(1,168,173);">{{today_intergral}}</text> 积分</text>
+    </view>
+    <view class="cu-item" style="padding: 0; margin: 20rpx;" wx:if="{{LoginIntergral>0}}">
+      <view class="content padding-tb-sm">
+        <view>
+          <text class=" text-blue "></text>登录</view>
+        <view class="text-gray text-sm">
+          <text class=" "></text>每天登录获得{{LoginIntergral}}积分</view>
+      </view>
+      <view class="action">
+        <button bindtap='getPrize' style="opacity: 1;" data-type="login" class="cu-btn bg-red sm" role="button" disabled="{{isLoginPrizeTake}}" aria-disabled="false">{{isLoginPrizeTake ? '已领取' : '领取'}}</button>
+      </view>
+    </view>
+
+    <view class="cu-item" style="padding: 0; margin: 20rpx;" wx:if="{{SignIntergral>0}}">
+      <view class="content padding-tb-sm">
+        <view>
+          <text class=" text-blue "></text>签到</view>
+        <view class="text-gray text-sm">
+          <text class=" "></text>每签到一次得{{SignIntergral}}积分</view>
+      </view>
+      <view class="action"> 
+        <button bindtap='showCalendar' class="cu-btn bg-red sm" role="button" aria-disabled="false">查看</button>
+      </view>
+    </view>
+
+
+    <view class="cu-item" style="padding: 0; margin: 20rpx;" wx:if="{{releaseSendIntergral>0}}">
+      <view class="content padding-tb-sm">
+        <view>
+          <text class=" text-blue "></text>发布素材</view>
+        <view class="text-gray text-sm">
+          <text class=" "></text>每发布一条素材得{{releaseSendIntergral}}积分</view>
+      </view>
+      <view class="action">
+        <button bindtap='onRelease' class="cu-btn bg-yellow sm" role="button" aria-disabled="false">去发布</button>
+      </view>
+    </view>
+
+    <view class="cu-item" style="padding: 0; margin: 20rpx;" wx:if="{{inviteIntergral>0}}">
+      <view class="content padding-tb-sm">
+        <view>
+          <text class=" text-blue "></text>邀请好友</view>
+        <view class="text-gray text-sm">
+          <text class=" "></text>每成功邀请一名好友得{{inviteIntergral}}积分</view>
+      </view>
+      <view class="action">
+        <button bindtap='inviteCoverHint' class="cu-btn bg-green sm" role="button" aria-disabled="false">邀请</button>
+      </view>
+    </view>
+    <view class="bottom-border"></view>
+    
+  </view>
+</view>
+
+<view class="cover" wx:if="{{coverShow}}" bindtap="inviteCoverHint">
+  <text style="color: white; font-size: 2rem; margin-top: 146rpx;">点击分享</text>
+  <text class="cuIcon-forward cuIcon cover-icon"></text>
+</view>
+
+<view wx:if="{{calendarShow}}" class="calendar-container">
+  <calendar
+    id="calendar"
+    bind:afterTapDay="afterTapDay"
+    bind:onTapDay="onTapDay"
+    calendarConfig="{{calendarConfig}}"
+    bind:whenChangeMonth="whenChangeMonth"
+    bind:afterCalendarRender="afterCalendarRender"
+  ></calendar>
+  <button bindtap="onSign" style="margin-top: 70rpx;" disabled="{{isSign}}">{{signLabel}}</button>
+</view>
+
+
+<view class="cover" bindtap="closeCalendar" wx:if="{{calendarShow}}"></view>
+

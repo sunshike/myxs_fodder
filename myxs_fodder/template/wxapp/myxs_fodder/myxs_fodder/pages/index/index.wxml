@@ -1,0 +1,78 @@
+<view class="container-main">
+  <!-- 标题 -->
+  <view class='row-title' style="padding-top: {{tabbarHeight-37}}px; margin-top: 0;" id="header">
+    <text class='iconfont iconsearch' bindtap="GoToSearchPage" style="padding-left: 10rpx; margin-top: 2px; font-size: 22px;"></text>
+    <!-- <text class='row-title-main'>{{tatle}}</text>  -->
+    <text class='row-title-main'>素材列表</text>
+  </view>
+
+  <!-- 分类行 -->
+  <view class="row-classify" id="selectBar">
+    <text class="iconfont iconright {{sortBarOpen ? 'rotate90' : ''}}" bindtap="openSortBar" style="color: #80848f; font-size: 20px;"></text>
+    <scroll-view  scroll-x="true" enable-flex="true" scroll-left='{{menuleft}}' scroll-with-animation='true' class='row-classify-menu'>
+      <view catchtap="scrollSelect" wx:for='{{menulist}}' wx:for-item="x" wx:key="aa" class="menu-item {{menubl==x.class_id ?'sbb':'wbb'}}" id='{{x.class_id}}'>{{x.class_name}}</view>
+    </scroll-view>
+    <text class="index-line"></text>
+    <view class="category-btn" bindtap="toggleCategoryBox">
+      <text class="iconfont iconfenlei1"  style="color: #80848f; font-size: 20px;"></text>
+    </view> 
+  </view>
+  
+  <!-- 排序框 -->
+  <view class="rank-active  {{ isChange ? 'active' : ''}}">
+    <view class='scroll-list'>
+      <scroll-view scroll-y="true" scroll-with-animation="true">
+        <view wx:for="{{categroryList}}" wx:key="index" data-id="{{item.id}}" class="{{ leftCatId === item.id ? 'active' : ''}}" bindtap="leftCatId">
+          {{ item.catName }}
+        </view>
+      </scroll-view>
+      <scroll-view scroll-y="true" scroll-with-animation="true" bindtap="submitSelect">
+        <view wx:for="{{ categroryChildrenObject[leftCatId].children }}" wx:key="index" bindtap='selectCatId' data-id="{{item.id}}" data-name="{{item.catName}}" class="{{ catId === item.id ? 'active' : ''}}">
+          {{ item.catName }}
+        </view>
+      </scroll-view>
+    </view>
+  </view>
+
+  <!-- 分类内容弹框（隐藏） -->
+  <view class="category-box"   style="display:{{categoryBoxShow ? 'block':'none'}};">
+    <view class="category-row1">
+      <text class="category-title">全部分类</text>
+      <view class="close-btn">
+        <text class="iconfont iconguanbi1" bindtap="toggleCategoryBox"  style="font-size: 22px;"></text>
+      </view>
+    </view>
+    <category-nav dataList="{{menulist}}" id="categoryNav" />
+  </view>
+
+  <view bindtap="closeAll" class="cover-index" style="display:{{categoryBoxShow || isChange ? 'block':'none'}};"></view>
+ 
+  <!-- 内容组件 -->
+  <content-list id='content' class_id="{{class_id}}" requestIntface="listContent" bindtogglecomment="togglecommentCover" height="{{contentListHeight}}" />
+  
+</view> 
+
+<!-- 全屏遮罩 -->
+<view  class="cover-index-full" style="display:{{commentShow ? 'block':'none'}};"></view>
+
+<!-- 加载弹窗 -->
+<xs-cover progress="{{progress}}" wx:if="{{isDownload}}"></xs-cover>
+<!-- 提示弹窗 -->
+<i-toast id="toast" />
+ 
+<!-- 每日签到按钮 -->
+<view wx:if='{{isday==1}}' class='Day_sign_show' bindtap='Daysign'>
+  <view wx:if='{{ dot === 1 }}' class='dot'></view>
+  <image src='../../images/Daysign.png' mode="widthFix" style='width:52px'></image>
+  <view class='Day_Show'>
+    <view class='Day_t'>{{day}}</view>
+    <view class='Day_z'>{{week}}</view>
+  </view>
+</view>
+ 
+
+
+
+
+
+

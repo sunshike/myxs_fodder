@@ -1,0 +1,45 @@
+{template 'common/header'}
+<ul class="nav nav-tabs">
+    <li class="active"><a class="btn-lg" href="">公告列表</a></li>
+    <li><a class="btn-lg" href="{php echo $this->createWebUrl('NoticeMess',array('op'=>'add'))}">添加公告</a></li>
+</ul>
+<div class="main">
+    <div class="category">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                公告列表(<span style="color: #FF0000">可在本页面管理所有公告</span>) ,当有多条公告时，按最新发布显示
+            </div>
+            <div class="panel-body table-responsive">
+                <table class="table table-hover">
+                    <thead>
+                    <tr>
+                        <th width="100">ID</th>
+                        <th width="180">标题</th>
+                        <th width="400">内容</th>
+                        <th width="200">添加日期</th>
+                        <th width="240" style="text-align: center">操作</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {loop $noticeList $index $row}
+                    <tr>
+                        <td>{$row['id']}</td>
+                        <td>{$row['notice_title']}</td>
+                        <td style="overflow: hidden" title="{$row['notice_content']}">
+                            <div class="" style="overflow: hidden;    word-break: break-all;text-overflow: ellipsis;white-space: nowrap;width: 245px;">{$row['notice_content']}</div>
+                        </td>
+                        <td>{$row['notice_time']}</td>
+                        <td width="180">
+                            <a href="{php echo $this->createWebUrl('NoticeMess', array('op' => 'update','id'=>$row['id']))}" class="btn btn-primary btn-sm" style="padding: 4px 8px;"> 编辑</a>
+                            <a href="{php echo $this->createWebUrl('NoticeMess', array('op' => 'delete','id'=>$row['id']))}" class="btn btn-danger btn-sm" style="padding: 4px 8px;"> 删除</a>
+                        </td>
+                    </tr>
+                    {/loop}
+                    </tbody>
+                </table>
+                {$pager}
+            </div>
+        </div>
+    </div>
+</div>
+{template 'common/footer'}

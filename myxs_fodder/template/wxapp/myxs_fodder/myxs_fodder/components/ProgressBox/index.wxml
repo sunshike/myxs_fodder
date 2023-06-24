@@ -1,0 +1,7 @@
+<view class="progress-box" hidden="{{isHide}}">
+    <view class="loader loader-1">
+        <view class="loader-outter"></view>
+        <view class="loader-inner"></view>
+    </view>
+    <text class="progress">{{progress}}%</text>
+</view>

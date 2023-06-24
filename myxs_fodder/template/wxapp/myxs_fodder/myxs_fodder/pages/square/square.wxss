@@ -1,0 +1,83 @@
+.page {
+  background-color: #F5F5F5;
+  height: 100vh;
+  width: 100vw;
+  position: relative;
+  overflow: hidden;
+}
+
+.center-header {
+  min-height: 150rpx;
+  background-color: white;
+  padding-top: env(safe-area-inset-top);
+}
+.square-release {
+  position: fixed;
+  bottom: 0;
+}  
+
+.square-title {
+  font-size: 18px;
+  height: 120rpx;
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  padding-bottom: 10rpx;
+}
+.square-sort-box {
+  position: relative;
+}
+.square-cover {
+  position: absolute;
+  height: 100vh;
+  width: 100vw;
+  background-color: black;
+  opacity: .7;
+  z-index: 2;
+}
+.square-sort-box scroll-view {
+  position: absolute;
+  background-color: white;
+  z-index: 3;
+}
+.square-sort-box scroll-view view {
+  border-top: 1px solid #ecf0f1;
+  padding: 20rpx;
+  display: flex;
+  justify-content: space-between;
+}
+.margin-left-sm {
+  margin-left: 20rpx;
+}
+.square-pos {
+  margin-left: 10rpx;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.sort-row {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height: 80rpx;
+}
+.sort-row view text {
+  margin-right: 10rpx;
+}
+.square-scroll {
+  max-height: 40vh;
+}
+
+
+.select-active {
+  color: rgb(255,97,112);
+}
+.icon-reverse {
+  transform: rotate(-180deg);
+}
+.square-icon-dis {
+  transition: .3s all;
+  display: inline-block;
+}
+

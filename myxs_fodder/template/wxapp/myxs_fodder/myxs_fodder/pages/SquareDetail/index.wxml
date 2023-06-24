@@ -1,0 +1,61 @@
+<view class="page">
+  <view id="header" class="detail-header" style="padding-top:{{barHeight-42}}px;">
+    <view class="cu-bar">
+      <view class="action" style="margin-left: 0;padding-right: 30rpx" bindtap="back">
+        <text class="cuIcon-back cuIcon"></text>
+      </view>
+    </view>
+    <view class="detail-header-imgcover" style="background: no-repeat center/80% url({{backgroundSrc}});background-size: cover;"></view>
+    <view class="detail-header-row1">
+      <image src="{{imgSrc}}"></image>
+      <view class="detail-header-row1-right">
+        <view class="detail-header-row1-right-title">{{title}}</view>
+        <view class="detail-header-row1-right-tags">
+          <text>{{hotNum}} 人气</text>
+          <text class="detail-header-row1-right-tags-line">|</text>
+          <text>{{materialNum}} 素材</text>
+        </view>
+      </view>
+    </view>
+    <view class="detail-header-row2" style="width: 18rem;">
+      简介：{{des}}
+    </view>
+    <view class="detail-header-row3">
+      <view class="circle-tag">
+        <text>群主：{{wx}}</text>
+        <text class="cuIcon-right cuIcon"></text>
+      </view>
+      <view class="circle-tag margin-left-10">
+        <text>社群：{{group_classify}}</text>
+        <text class="cuIcon-right cuIcon"></text>
+      </view>
+    </view>
+  </view>
+  <view class="detail-footer">
+    <scroll-view id="selectBar" scroll-x class="bg-white nav detail-tab-list">
+      <view class="flex text-center" style="justify-content: space-around;">
+        <view style="flex: 0;" class="cu-item flex-sub {{index==TabCur?'text-cu':''}}" wx:for="{{tabList}}" wx:key="index" bindtap="tabSelect" data-id="{{index}}">
+          {{item}}
+        </view>
+      </view>
+    </scroll-view>
+    <view class="detail-footer-content">
+      <content-list hidden="{{TabCur == 1}}" bind:todetail="toMaterialDetail" id='content' class_id="0" height="{{contentListHeight}}" requestIntface="ListContentByGroupId" bindtogglecomment="togglecommentCover"  />
+      <square-list hidden="{{TabCur == 0}}" bind:refresh="onListRefresh" height="{{contentListHeight}}" id="squarelist" />
+    </view>
+  </view>
+</view>
+
+
+<!-- 加入群聊 悬浮按钮 -->
+<view class="detail-btn-toGroup" catchtap="toGroup" hidden="{{btnHidden}}">
+  <text class="iconfont iconqunliao" style="font-size: 18px;"></text>
+  <text style="margin-left: 10rpx;">群聊</text>
+</view>
+<view class="detail-btn-toGroup detail-btn-weixin" catchtap="copy_wx" hidden="{{btnHidden}}">
+  <text class="iconfont iconqunzu" style="font-size: 18px;"></text>
+  <text style="margin-left: 10rpx;">微信号</text>
+</view>
+
+<to-group hidden="{{groupHide}}" groupId="{{groupId}}" bind:hide="toGroup"  isDetail="{{ true }}" />
+<view class="detail-cover" hidden="{{groupHide}}"></view>

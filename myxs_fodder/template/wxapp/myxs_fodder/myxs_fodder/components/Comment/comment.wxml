@@ -1,0 +1,26 @@
+<view class="comment-container {{show ? '' : 'comment-hidden'}} {{ isDetail ? 'comment-container-detail' : '' }}">
+	<view class="comment-header" wx:if="{{!isDetail}}">
+		<text class="title">{{totalComment}}条评论</text>
+		<text class="iconfont iconguanbi1" style="font-size: 20px; position: absolute; right: 0; margin-right: 20rpx;" bindtap="toggleComment"></text>
+	</view>
+	<i-load-more loading="{{ isLoading }}" tip="{{loadingTip}}" wx:if="{{dataList.length === 0}}" />
+	<scroll-view lower-threshold="400px" bindscrolltolower="onParentLoadMore" scroll-y="true" class="comment-content" wx:if="{{dataList.length != 0}}">
+		<comment-item binddel="onDel" bindlike="onLike" bindchangeHint="changeHint" wx:for="{{dataList}}" wx:key="indexccc" isDel="{{item.is_delete}}" userId="{{item.member_id}}" commentId="{{commentId}}" discuessId="{{item.id}}" content="{{item.content}}" isAdmin="{{item.is_author}}" likeNum="{{item.discuss_likenum}}" hasLike="{{item.is_like}}" date="{{item.create_time}}" avatar="{{item.member_avatar}}" name="{{item.member_nickname}}">
+			<comment-item binddel="onDel" bindlike="onLike" parentId="{{item.id}}" replyChild="{{itemChild.is_child == '1' ? true : false}}" replyChildName="{{itemChild.discuss_name}}" isChild="{{item.down.length > 0}}" wx:for="{{item.down}}" wx:for-item="itemChild" wx:for-index="itemChildIndex" wx:key="itemChildIndex" bindchangeHint="changeHint" isDel="{{itemChild.is_delete}}" userId="{{itemChild.member_id}}" commentId="{{commentId}}" discuessId="{{itemChild.id}}" content="{{itemChild.content}}" isAdmin="{{itemChild.is_author}}" likeNum="{{itemChild.discuss_likenum}}" hasLike="{{itemChild.is_like}}" date="{{itemChild.create_time}}" avatar="{{itemChild.member_avatar}}" name="{{itemChild.member_nickname}}" />
+			<view class="cu-load load-icon loading" style="line-height: inherit;" hidden="{{!loadMoreLoading || (loadMoreLoadingId != item.id)}}"></view>
+			<button class="comment-load-more" hidden="{{loadMoreLoading && (item.id === loadMoreLoadingId) }}" wx:if="{{ (item.total > 2) && (item.total != item.down.length) }}" bindtap="loadMore" data-id="{{item.id}}" data-parentIndex="{{index}}" data-childIndex="{{itemChildIndex}}">展开更多</button>
+		</comment-item>
+		<view class="comment-parentLoadEnd">到底了</view>
+	</scroll-view>
+
+	<view class="comment-footer {{ isDetail ? 'comment-footer-detail' : '' }}" style="bottom:{{ inputBottom == 0  ? 0 : (inputBottom - 50) }}px;">
+		<input adjust-position="{{false}}" bindkeyboardheightchange="onkeyboard" confirm-type="send" class="weui-input" bindconfirm="submitComment" placeholder="{{hint}}" bindinput="onInput" value="{{inputValue}}" class="comment-input" focus="{{isfocus}}" bindfocus="onFocus" />
+		<text class="iconfont iconbiaoqing" style="font-size: 25px; color: rgb(241,58,120);" bindtap="openEmojis"></text>
+		<text class="iconfont iconfabu4" style="font-size: 25px; color: {{ inputValue ? 'rgb(241,58,120)' :'#80848f' }};" bindtap="submitComment"></text>
+	</view>
+	<i-emoijs bindaddemoijs="addemoijs" height="{{inputBottom - 50}}" isHide="{{ emjoisHide }}" bindcloseemoijs="closeEmoijs" />
+
+
+</view>
+
+<i-toast id="toast" />

@@ -1,0 +1,34 @@
+<view class='werow DiyNav' wx:if='{{opacity!=0}}' style="opacity:{{opacity}};background:rgb(255, 64, 129);color:#fff">
+	<view class='Navicon'></view>
+	<view class='wxf1 NavText'>版本</view>
+	<view class='Navicon'></view>
+</view>
+<view class='indexS' wx:if='{{opacity==0}}'>
+	<i-icon bindtap='home' type='thome' size='26' />
+</view>
+
+<view class='wxf1 wecolumn' style='background-color: rgb(243, 240, 240);'>
+	<view style='height:250px;'>
+		<image class='logo' src='../../images/rqian.jpg'></image>
+
+	</view>
+	<view class='tip'>人生没有白走的路，每一步都算数</view>
+	<view class='copyright'>
+		<view wx:for='{{Edition}}' wx:for-index='i' wx:for-item='x' wx:key="*this">
+			<view class='ml20 mr20 tatle'>{{x.version}}</view>
+			<view class="ml20 mr20 info {{ x.show ? 'shouqi':''}}">
+				<view wx:for='{{x.update}}' wx:for-item='xs' class='text' wx:key="*this">{{xs}}</view>
+				<view wx:if='{{ !x.state}}' class='tr DateStyle'>{{x.Date}}</view>
+			</view>
+			<view wx:if='{{x.state}}' class='werow ShowText ml20 mr20' data-index='{{i}}' bindtap='Show'>
+				<view class='wxf1 DateStyles tl'>{{x.Date}}</view>
+				<view class='wxf1 tr'>
+					{{x.show?'展开查看更多':'收起'}}
+				</view>
+			</view>
+		</view>
+	</view>
+	<view class='wxf1 lxkfz' style=' min-height:95px; background-color: #f9f9f9;' bindtap='wxHao'>
+		联系开发者
+	</view>
+</view>

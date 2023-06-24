@@ -1,0 +1,152 @@
+/**index.wxss**/
+
+.dot {
+  position: absolute;
+  background-color: red;
+  width: 10px;
+  height: 10px;
+  border-radius: 20px;
+  left: -8px;
+  top: 0px;
+}
+
+.sortContainer {
+  margin-top: 110px;
+  height: 86rpx;
+}
+.cover-index-full {
+  height: 100vh;
+  position: fixed;
+  background-color: black;
+  width: 100%;
+  z-index: 3;
+  opacity: .7;
+}
+
+.section {
+  line-height: 82rpx;
+  border-top: 2rpx solid #f2f3f5;
+  border-bottom: 2rpx solid #f2f3f5;
+  display: flex;
+  justify-content: space-between;
+  box-sizing: content-box;
+  position: relative;
+  z-index: 99;
+}
+
+.sel {
+  padding: 0 0 0 0;
+  font-size: 32rpx;
+  color: #3f4552;
+  display: flex;
+  flex-direction: row;
+}
+.indextop {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  z-index: 9999;
+  height: 46px;
+  background-color: rgb(238, 238, 238)
+}
+.CentSearch{
+  margin-top: 212rpx;
+}
+.searchBotton {
+  margin:14rpx 8rpx 0 0;
+  font-size: 28rpx;
+  height: 54rpx;
+  width: 400rpx;
+  line-height: 54rpx;
+  text-align: center;
+  background-color: rgb(247, 247, 247);
+  color: rgb(94, 91, 91);
+}
+.searchBotton_active{
+  background-color: rgb(236, 233, 233);
+}
+.search{
+  background-color: #f2f2f2;
+  height: 80rpx;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  margin-top: 130rpx;
+}
+.search-img{
+  margin:  auto 0 auto 20rpx;
+}
+.placeholder{
+  font-size: 28rpx;
+  color: #d1d1d1;
+  margin-left: 20rpx;
+}
+.search input{
+  height: 100%;
+  width: 600rpx;
+  margin-left: 20px;
+  font-size: 28rpx;
+}
+.search-panel{
+  position: absolute;
+  top: 80rpx;
+}
+.xx-img{
+  height: 37rpx;
+  width: 37rpx;
+  margin: auto 0 auto 10rpx;
+}
+.content-box {
+  height: 50%;
+  padding: 0 20rpx;
+}
+.square-box {
+  height: 50%;
+  padding-bottom: 200rpx;
+}
+.search-list-title {
+  padding: 30rpx;
+  font-weight: 550;
+  color: #aaa;
+}
+.search-list-content {
+  height: 100%;
+  overflow: auto;
+}
+.cu-round {
+  border-radius: 10px;
+}
+.search {
+  margin: 0;
+  background-color: white;
+}
+.cu-bar .search-form {
+  margin: 0;
+  margin-left: 20rpx;
+  width: 63%;
+}
+.cu-action {
+  padding: 0 20rpx;
+  font-weight: 550;
+}
+
+.search-hot-tag {
+  padding: 5rpx 20rpx;
+  background-color: #ecf0f1;
+  margin: 10rpx;
+  border-radius: 10rpx;
+  font-size: .9rem;
+}
+.search-recommdbox {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 10rpx;
+}
+.search-hot-title {
+  font-weight: 550;
+  margin: 20rpx;
+}
+.text-orange {
+  color: rgb(255,97,112);
+}

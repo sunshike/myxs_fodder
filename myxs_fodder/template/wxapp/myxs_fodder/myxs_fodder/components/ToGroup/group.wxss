@@ -1,0 +1,26 @@
+@import "/myxs_fodder/style/iconfont.wxss";
+
+/* 加入群聊 */
+.add-Group {
+  position: fixed;
+  z-index: 9;
+  bottom: 0;
+  width: 100%;
+  background-color: white;
+  height: 200rpx;
+  padding-left: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  transition: .4s all;
+  margin-bottom: calc(100rpx + env(safe-area-inset-bottom) / 2);
+}
+.add-Group-cell {
+  padding-right: 40px;
+}
+.group-hidden {
+  transform: translateY(65vh);
+}
+.detail-page-style {
+  margin-bottom: 0;
+}

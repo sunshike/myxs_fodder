@@ -1,0 +1,125 @@
+<scroll-view scroll-y="true" enhanced="{{ true }}" fastDeceleration="{{ true }}" refresher-enabled="{{ true }}" refresher-triggered="{{ refreshState }}" bindrefresherrefresh="onRefresherrefresh" class="container" style="height: {{height}};"  lower-threshold="300" bindscrolltolower="getMore" bindscroll="onScroll" hidden="{{hidden}}"> 
+
+	<view wx:for="{{ list }}" id="wrp_{{pageIndex}}" wx:for-index="pageIndex" wx:for-item="listSingleItem" wx:key="index">
+		<view wx:if="{{ listSingleItem.length > 0 }}">
+			<view wx:for="{{ listSingleItem }}" wx:for-index="i" bindtap="toDetail" data-content_id="{{x.content_id}}" wx:for-item="x" wx:key="i">
+				<block wx:if="{{x.content_id==undefined}}">
+					<view wx:if='{{x.show == 1}}' style=' position: relative;margin:auto;margin-left:11px;margin-top:10px;margin-right:11px'>
+						<ad unit-id="{{x.advert_text}}"></ad>
+					</view>
+				</block>
+				<block wx:else>
+					<view class="cu-card dynamic no-card">
+						<view class="cu-item shadow">
+							<view class="cu-list menu-avatar">
+								<view class="cu-item">
+									<view class="cu-avatar round lg" style="background-image:url({{x.avatar}});"></view>
+									<view class="content flex-sub" style="width: auto;">
+										<view>{{x.member_name}}</view>
+										<view class="text-gray text-sm flex justify-between">
+											{{x.create_time}}
+										</view>
+									</view>
+									
+
+
+
+									<!-- 显示/关闭按钮 -->
+									<view style="margin-right: 25rpx;" class='adminShowBtnSty werow' wx:if='{{isMyRelease}}' data-pageindex="{{pageIndex}}" data-index='{{i}}' id='{{x.content_id}}' catchtap='adminShow'>
+										<view style='color:#000'>状态：</view>{{x.content_status === '1' ? '显示': '隐藏'}}
+									</view>
+
+									<block wx:if='{{!isMyRelease}}'>
+
+										<!-- 按钮组 -->
+										<view class="flex text-gray flex-align-center" hidden="{{!x.rightIconShow}}">
+											<view class="contentlist-icon-collection">
+												{{x.clnb > 1000 ? x.clnb > 10000 ? (x.clnb - (x.clnb % 1000) ) / 10000 + 'w' : (x.clnb - (x.clnb % 100) ) / 1000 + 'k' : x.clnb }}
+												<text class="iconfont iconcollection-b" catchtap='CollectionL' style="font-size: 20px; margin: 0 10rpx; color: {{x.clstate ? 'rgb(243,59,121)':''}};" data-pageindex="{{pageIndex}}" data-index="{{i}}"  id='{{x.content_id}}' ></text>
+											</view>
+											<button wx:if='{{!isMyRelease}}' class="share-btn" open-type="share" data-pageindex="{{pageIndex}}" data-index="{{i}}" data-id='{{x.content_id}}'>
+												<text class="iconfont iconfenxiang" style="font-size: 20px; padding-right:30rpx;"></text>
+											</button>
+											<text data-index="{{i}}" data-pageindex="{{pageIndex}}" catchtap="onRightIconShow" class="iconfont iconright" style="font-size: 20px;margin-right: 20rpx;"></text>
+										</view>
+										<!-- 展开按钮 -->
+										<text hidden="{{x.rightIconShow}}" data-index="{{i}}" data-pageindex="{{pageIndex}}" catchtap="onRightIconShow" class="iconfont icongengduomore10" style="font-size: 20px;margin-right: 20rpx;"></text>
+
+									</block>
+									
+									
+
+								</view>
+							</view>
+							<view class="text-content">
+								<text class="ArticleStyle {{ x.textShow==1 ? 'ellipsis' : 'unellipsis'}}" data-pageindex="{{pageIndex}}"  data-index="{{i}}" catchtap='TextCopi'>{{x.text}}</text>
+								<view wx:if='{{x.textTypeL}}' class='DataTextShow' catchtap="DataTextTooger" data-pageindex="{{pageIndex}}" data-l='{{i}}'>{{x.ShowBtn}}</view>
+							</view>
+
+
+							<view class="index-list-img">
+								<block wx:if="{{x.type=='video'}}" class='plays'>
+									<block wx:if="{{ x.content_id != videoCurrentId }}">
+										<image class="video-cover-img" lazy-load="{{ true }}" mode="aspectFill" src="{{ x.video_img || 'http://we7-motuota-ltd.oss-cn-shanghai.aliyuncs.com/upload/img/1597827539-2020-08-19-688-6_400_400.png'}}"></image>
+										<text class="iconfont iconshipinbofangshibofang video-cover-img-btn" catchtap="videoShow" data-id="{{x.content_id}}" style="font-size: 40px; "></text>
+									</block>
+									<block wx:else>
+										<video id='video_{{x.content_id}}' src='{{x.content[0]}}' autoplay="{{ true }}" enable-play-gesture="{{ true }}" bindaderror="adVideoError" ad-unit-id="adunit-37f744dedb423770" style='width:100%;'></video>
+									</block>
+								</block>
+								<block wx:else>
+									<image style="width: calc((100vw - 50rpx) / {{ x.content.length <=2 ? x.content.length : x.content.length <=4 ? 2 : 3 }}); height: calc((100vw - 50rpx) / {{ x.content.length <=2 ? x.content.length : x.content.length <=4 ? 2 : 3 }});" wx:for='{{ (x.content2 != false && x.content2 != null) ? x.content2:x.content }}' wx:for-item='imgs' wx:key="d" lazy-load="{{ true }}" data-originImgIndex="{{index}}" data-pageindex="{{pageIndex}}" data-index='{{i}}' src='{{imgs}}' mode="aspectFill" catchtap="previewImage"></image>
+								</block>
+							</view>
+
+							<view class="text-gray text-sm text-right padding content-list-itemBottom">
+								<view style="display: flex;" class="flex-align-center">
+									<view class="contentlist-box-circle" wx:if="{{!!x.circle}}" catchtap="toSocialGroupPage" data-id="{{x.circle_id}}">
+										<text class="iconfont iconshujujieruKafkajiqun" style="font-size: 20px;"></text>
+										<text class="margin-left-10">{{x.circle}}</text>
+									</view>
+									<view class="contentlist-box-circle" style="color: #3498db; margin-left: 20rpx; " wx:if="{{!!x.grouping_name}}">
+										<text class="iconfont iconweibiaoti1" style="font-size: 15px; color: #3498db; "></text>
+										<text class="margin-left-10">{{x.grouping_name}}</text>
+									</view>
+									
+								</view>
+								
+
+								<view style="display: inline-block">
+
+									<text class="iconfont iconxiazai7" catchtap='download' style="font-size: 22px; margin: 0 10rpx;" data-pageindex="{{pageIndex}}" data-index="{{i}}"  id='{{x.content_id}}' data-type='{{x.type}}' member_id='{{x.member_id}}'></text>
+									<text>{{x.donnb > 1000 ? x.donnb > 10000 ? (x.donnb - (x.donnb % 1000) ) / 10000 + 'w' : (x.donnb - (x.donnb % 100) ) / 1000 + 'k' : x.donnb }}</text>
+
+									<text class="iconfont icondianzan" catchtap='onLike' style="font-size: 24px; margin: 0 10rpx; color: {{x.is_like ? 'rgb(243,59,121)':''}};" data-pageindex="{{pageIndex}}" data-index="{{i}}"  id='{{x.content_id}}' wx:if="{{likeBtnShow}}" ></text>
+									<text wx:if="{{likeBtnShow}}">{{x.likenum > 1000 ? x.likenum > 10000 ? (x.likenum - (x.likenum % 1000) ) / 10000 + 'w' : (x.likenum - (x.likenum % 100) ) / 1000 + 'k' : x.likenum }}</text>
+
+									<text class="iconfont iconpinglun1" wx:if="{{commentBtnShow}}" catchtap='toggleComment' style="font-size: 24px; margin: 0 10rpx;" data-pageindex="{{pageIndex}}"  data-commentIndex="{{i}}"  data-commentId='{{x.content_id}}' ></text>
+									<text wx:if="{{commentBtnShow}}">{{x.discuss > 1000 ? x.discuss > 10000 ? (x.discuss - (x.discuss % 1000) ) / 10000 + 'w' : (x.discuss - (x.discuss % 100) ) / 1000 + 'k' : x.discuss }}</text>
+
+								</view>
+
+							</view>
+							<text wx:if='{{isMyRelease}}' class=" padding" data-pageindex="{{pageIndex}}" data-index='{{i}}' id='{{x.content_id}}' style="font-size: 1rem; color: #003985;"  catchtap='adminDelete'>删除</text>
+
+
+						</view>
+					</view>
+				</block>
+			</view>
+		</view>
+		<view wx:else style="height: {{ listSingleItem.height}}px">
+		</view>
+	</view>
+
+	<!-- 加载更多状态显示 -->
+	<i-load-more loading="{{ isLoadMore }}" tip="{{loadingTitle}}" />
+</scroll-view>
+
+<!-- 提示弹窗 -->
+<i-toast id="toast" />
+
+<!-- 评论弹窗 -->
+<my-comment wx:if="{{showComment}}" show="{{commentShow}}" binddelcomment="onDelComment" bindaddcomment="onAddComment" bindhide="toggleComment" commentId="{{commentid}}" />
+
+<i-progress isHide="{{loadModal}}" progress="{{progress}}" />

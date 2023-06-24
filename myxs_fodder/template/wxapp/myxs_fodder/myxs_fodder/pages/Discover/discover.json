@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "i-notice-bar": "../../iview_ui/notice-bar/index",
+    "list-content": "../../components/ContentList/index",
+    "square-list": "../../components/SquareList/index"
+  } 
+}

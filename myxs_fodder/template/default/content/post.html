@@ -1,0 +1,207 @@
+{template 'common/header'}
+<style>
+    .mywrap{
+        display: flex;
+        flex-wrap: wrap;
+    }
+    .copi{
+        width: 28%;margin: 1%;height: 150px;border: #ddd 2px solid;
+    }
+    .fjstyle{
+        background-color: #ddd;
+    }
+    .fjstyleAction{
+        background-color: #428bca;
+        color: #fff;
+    }
+</style>
+<ul class="nav nav-tabs">
+    <li><a class="btn-lg" href="{php echo $this->createWebUrl('content')}">内容列表</a></li>
+    <li {if $operation == 'add'}class="active"{/if}><a class="btn-lg" href="{php echo $this->createWebUrl('contentmess', array('op' => 'add'))}">添加内容</a></li>
+    <li {if $operation == 'content'}class="active"{/if}><a class="btn-lg" href="{php echo $this->createWebUrl('recycle', array('op' => 'content'))}">回收站</a></li>
+</ul>
+<div class="main">
+    <form action="" method="post" class="form-horizontal form" enctype="multipart/form-data" id="form1">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                {if $operation == 'add'}
+                添加内容
+                {/if}
+                {if $operation == 'update'}
+                修改内容(内容ID:{$content['content_id']})
+                {/if}
+                {if $operation == 'look'}
+                查看内容(内容ID:{$content['content_id']})
+                {/if}
+
+            </div>
+            <div class="panel-body table-responsive">
+                {if $operation != 'add'}
+                <div class="form-group">
+                    <label class="col-xs-12 col-sm-3 col-md-2 control-label"><span style='color:red'></span>上传会员</label>
+                    <div class="col-sm-9 col-xs-12">
+                        <input type="text" name="member_id" id="member_id" disabled class="form-control" value="{$member_name}" />
+                    </div>
+                </div>
+                {/if}
+                <div class="form-group">
+                    <label class="col-xs-12 col-sm-3 col-md-2 control-label"><span style='color:red'></span>所属分类：</label>
+                    <div class="col-sm-9 col-xs-12">
+                        <select name="class_id" class="form-control" required="required" id="class_id">
+                            {loop $class $row}
+                            <option {if $content['class_id']==$row['class_id']} selected="selected"{/if} value="{$row['class_id']}">{$row['class_name']}</option>
+                            {/loop}
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-xs-12 col-sm-3 col-md-2 control-label"><span style='color:red'></span>所属分组：</label>
+                    <div class="col-sm-9 col-xs-12">
+                        <select name="grouping_id" class="form-control" required="required" id="grouping_id">
+                            <option {if $content['grouping_id']==$row['grouping_id']} selected="selected"{/if} value="0">默认分组</option>
+                            {loop $groupingList $row}
+                            <option {if $content['grouping_id']==$row['grouping_id']} selected="selected"{/if} value="{$row['grouping_id']}">{$row['grouping_name']}</option>
+                            {/loop}
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-xs-12 col-sm-3 col-md-2 control-label"><span style='color:red'></span>状态：</label>
+                    <div class="col-sm-9 col-xs-12">
+
+                        <label class="radio-inline">
+                            <input type="radio" name="content_status" value="1" {if $content['content_status']==1}checked="checked"{/if}/>显示
+                        </label>
+                        <label class="radio-inline">
+                            <input type="radio" name="content_status" value="2" {if $content['content_status']==2}checked="checked"{/if}/>隐藏
+                        </label>
+
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-sm-1 col-md-2 control-label">虚拟数量：</label>
+                    <div class="col-sm-9 col-xs-12">
+                        <div style="float: left;width: 28px;line-height: 34px;">
+                            <span style='color:red'></span>收藏
+                        </div>
+                        <div class="col-sm-3 col-xs-3">
+                            <input type="text"  class="form-control" name="fictitious_clnb" value="{$content['fictitious_clnb']}" />
+                            {if $operation == 'update'}
+                             <p class="help-block">实际收藏数：{$content['clnb']}</p>
+                            {/if}
+                        </div>
+                        <label class="col-xs-3 col-sm-1 col-md-1 control-label"><span style='color:red'></span>下载</label>
+                        <div class="col-sm-3 col-xs-3">
+                            <input type="text"  class="form-control" name="fictitious_donnb" value="{$content['fictitious_donnb']}" />
+                            {if $operation == 'update'}
+                            <p class="help-block">实际下载数：{$content['donnb']}</p>
+                            {/if}
+                        </div>
+                        <label class="col-xs-3 col-sm-1 col-md-1 control-label"><span style='color:red'></span>分享</label>
+                        <div class="col-sm-3 col-xs-3">
+                            <input type="text"  class="form-control" name="fictitious_sharenb" value="{$content['fictitious_sharenb']}" />
+                            {if $operation == 'update'}
+                            <p class="help-block">实际分享数：{$content['sharenb']}</p>
+                            {/if}
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-xs-12 col-sm-3 col-md-2 control-label"><span style='color:red'></span>文本内容(<span style="color: red">*必填</span>)</label>
+                    <div class="col-sm-9 col-xs-12">
+                        <textarea type="textarea" name="text" class="form-control" style="height: 200px">{$content['text']}</textarea>
+                    </div>
+                </div>
+
+<!--                <div class="form-group">-->
+
+<!--                    <div class="mywrap" style="height: 35px;line-height: 35px;cursor:pointer;">-->
+<!--                        <div {if $content['type']=='video'}class="fjstyle fjstyleAction"{else}class="fjstyle"{/if}  style="flex: 1;text-align: center">视频</div>-->
+<!--                        <div {if $content['type']=='img'}class="fjstyle fjstyleAction"{else}class="fjstyle"{/if}  style="flex: 1;text-align: center">图片</div>-->
+<!--                    </div>-->
+<!--                </div>-->
+                <div class="form-group">
+                    <label class="col-xs-12 col-sm-3 col-md-2 control-label"><span style='color:red'></span>类型：</label>
+                    <div class="col-sm-9 col-xs-12">
+                        <label class="radio-inline">
+                            <input type="radio" name="up_type" value="1" onclick="checkContentType(1)" {if $content['type']=='video'}checked="checked"{/if}/>视频
+                        </label>
+                        <label class="radio-inline">
+                            <input type="radio" name="up_type" value="2" onclick="checkContentType(2)" {if $content['type']=='img'}checked="checked"{/if}/>图片
+                        </label>
+
+                    </div>
+                </div>
+                <script>
+                    function checkContentType(t) {
+                        if(t == 1){
+                            $('#video').show();
+                            $('#image').hide();
+                        }else{
+                            $('#video').hide();
+                            $('#image').show();
+                        }
+                    }
+                </script>
+
+                <div class="form-group" id="video" style="display: {if $content['type']=='video'}block{else}none{/if}">
+                    <label class="col-xs-12 col-sm-3 col-md-2 control-label"><span style='color:red'></span>视频：</label>
+                    <div class="col-sm-9 col-xs-12">
+                        <input type="hidden" name="type" value="video">
+                        {php echo tpl_form_field_video('video_path',$contentimg[0]);}
+                        <div class="help-block">支持MP4</div>
+                    </div>
+                </div>
+
+
+                <div class="form-group" id="image" style="display: {if $content['type']=='img'}block{else}none{/if}">
+                    <label class="col-xs-12 col-sm-3 col-md-2 control-label"><span style='color:red'></span>图片：</label>
+                    <div class="col-sm-9 col-xs-12 gimgs">
+                        <input type="hidden" name="type" value="img">
+                        {php echo tpl_form_field_multi_image('thumbs', $contentimg);}
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+        <div class="form-group col-sm-12">
+            {if $sub}
+            <input type="submit" name="submit" value="提交" class="btn btn-success col-lg-1" />
+            <input type="hidden" name="id" value="{$content['content_id']}" />
+            {/if}
+            <a href="{php echo $this->createWebUrl('content')}" type="button" class="btn btn-primary col-lg-2" >返回上一页</a>
+        </div>
+
+    </form>
+</div>
+<script type="text/javascript">
+    function getObjectURL(file){
+        var url = null;
+        if(window.createObjectURL != undefined){
+            url = window.createObjectURL(file);
+        }else if(window.URL != undefined){
+            url = window.URL.createObjectURL(file);
+        }else if(window.webkitURL != undefined){
+            url = window.webkitURL.createObjectURL(file);
+        }
+        return url;
+    }
+    function getimg(id){
+        $("#"+id).change(function(){
+            var path = $("#"+id).value;
+            var objUrl = getObjectURL(this.files[0]);
+            if(objUrl){
+                $('.'+id).attr("style","background:url('"+objUrl+"') no-repeat ;background-size:100%;");
+                $('.'+id).find('i').hide();
+                $('.zi'+id).hide();
+                $('#'+id+'mess').val(id);
+            }
+        })
+    }
+</script>
+{template 'common/footer'}

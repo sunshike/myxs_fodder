@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "square-list": "../../components/SquareList/index",
+    "content-list": "../../components/ContentList/index",
+    "to-group": "../../components/ToGroup/group"
+  }
+}

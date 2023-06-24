@@ -1,0 +1,89 @@
+.square-list-item {
+  background-color: white;
+  margin: 70rpx 20rpx;
+  display: flex;
+  justify-content: space-between;
+  height: 165rpx;
+}
+.square-list-item-btn {
+  color: white;
+  height: 0;
+  border-bottom: 120rpx solid rgb(255,97,112);
+  border-left: 44rpx solid white;
+  border-top-right-radius: 10rpx;
+  border-bottom-right-radius: 10rpx;
+  line-height: 35rpx;
+  margin: 20rpx;
+} 
+.square-list-item-btn-box {
+  margin-top: 20rpx;
+  padding: 0 20rpx;
+}
+.square-list-item-btn-top {
+  font-size: 1.1rem;
+  font-weight: 550;
+  width: 150rpx;
+  text-align: center;
+  margin: 0;
+  padding: 0;
+  line-height: initial;
+  background: no-repeat;
+  color: white;
+}
+.square-list-item-btn-top::after {
+  border: none;
+}
+.square-list-item-btn-bottom {
+  font-size: .8rem;
+  color: rgba(255,255,255,.8);
+  margin-top: 10rpx;
+  text-align: center;
+}
+.square-list-item-left {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  margin-left: 30rpx;
+  padding-bottom: 14rpx;
+}
+.square-list-item-left .p {
+  width: 10rem;
+  font-size: 1.1rem;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.square-list-item-left-bottom {
+  color: rgba(127, 140, 141,0.8);
+  font-size: .8rem;
+}
+.square-list-item-left-top .image {
+  width: 100rpx;
+  height: 100rpx;
+  position: absolute;
+  top: -50rpx;
+  border-radius: 10rpx;
+  -moz-box-shadow:2px 2px 5px #bdc3c7;
+  -webkit-box-shadow:2px 2px 5px #bdc3c7; 
+  box-shadow:2px 2px 5px #bdc3c7;
+}
+.square-list-item-left-top .text {
+  position: absolute;
+  left: 100rpx;
+  top: -22rpx;
+  margin-left: 15rpx;
+  padding: 10rpx 30rpx;
+  background-color: rgb(255,97,112);
+  color: white;
+  border-top-left-radius: 20rpx;
+  border-bottom-right-radius: 20rpx;
+  font-size: .6rem;
+}
+.square-text-hot {
+  margin: 0 18rpx;
+}
+/* 已加入 */
+.join-active {
+  border-bottom-color: #aaa;
+}

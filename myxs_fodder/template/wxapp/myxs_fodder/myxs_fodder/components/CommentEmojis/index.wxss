@@ -1,0 +1,127 @@
+.emoji {
+  position: fixed;
+  bottom: 0px;
+  left: 0px;
+  width: 100%;
+  transition: all 0.3s;
+  z-index: 10005;
+}
+.emoji .icon-loading {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.emoji .btn-box {
+  right: 0rpx;
+  bottom: 0rpx;
+  position: fixed;
+  background: #f8f8f8;
+  padding: 30rpx;
+}
+.emoji .btn-box .btn-del {
+  background: #ffffff;
+  padding: 20rpx 30rpx;
+  border-radius: 10rpx;
+}
+.emoji .btn-box .btn-del .icon {
+  font-size: 48rpx;
+}
+.emoji::after {
+  content: ' ';
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  height: 1px;
+  border-top: 0.4px solid rgba(235, 237, 245, 0.8);
+  color: rgba(235, 237, 245, 0.8);
+}
+.emoji .scroolView {
+  background: #f8f8f8;
+}
+.emoji .icons {
+  display: flex;
+  flex-wrap: wrap;
+}
+.emoji .icons .img {
+  flex-grow: 1;
+  padding: 20rpx;
+  text-align: left;
+  justify-items: flex-start;
+}
+.emoji .icons .img .icon-image {
+  width: 48rpx;
+  height: 48rpx;
+}
+
+
+
+.sprite {display:inline-block; overflow:hidden; background-repeat: no-repeat;background-image:url(https://s1.ax1x.com/2020/08/12/ajdybd.png);}
+
+.IMG_0061 {width:36px; height:36px; background-position: -0px -0px}
+.IMG_0062 {width:36px; height:36px; background-position: -36px -0px}
+.IMG_0063 {width:36px; height:36px; background-position: -72px -0px}
+.IMG_0064 {width:36px; height:36px; background-position: -0px -36px}
+.IMG_0065 {width:36px; height:36px; background-position: -36px -36px}
+.IMG_0066 {width:36px; height:36px; background-position: -72px -36px}
+.IMG_0067 {width:36px; height:36px; background-position: -0px -72px}
+.IMG_0068 {width:36px; height:36px; background-position: -36px -72px}
+.IMG_0069 {width:36px; height:36px; background-position: -72px -72px}
+.IMG_0070 {width:36px; height:36px; background-position: -0px -108px}
+.IMG_0071 {width:36px; height:36px; background-position: -36px -108px}
+.IMG_0072 {width:36px; height:36px; background-position: -72px -108px}
+.IMG_0073 {width:36px; height:36px; background-position: -0px -144px}
+.IMG_0074 {width:36px; height:36px; background-position: -36px -144px}
+.IMG_0075 {width:36px; height:36px; background-position: -72px -144px}
+.IMG_0076 {width:36px; height:36px; background-position: -0px -180px}
+.IMG_0077 {width:36px; height:36px; background-position: -36px -180px}
+.IMG_0078 {width:36px; height:36px; background-position: -72px -180px}
+.IMG_0079 {width:36px; height:36px; background-position: -0px -216px}
+.IMG_0080 {width:36px; height:36px; background-position: -36px -216px}
+.IMG_0081 {width:36px; height:36px; background-position: -72px -216px}
+.IMG_0082 {width:36px; height:36px; background-position: -0px -252px}
+.IMG_0083 {width:36px; height:36px; background-position: -36px -252px}
+.IMG_0084 {width:36px; height:36px; background-position: -72px -252px}
+.IMG_0085 {width:36px; height:36px; background-position: -0px -288px}
+.IMG_0086 {width:36px; height:36px; background-position: -36px -288px}
+.IMG_0087 {width:36px; height:36px; background-position: -72px -288px}
+.IMG_0088 {width:36px; height:36px; background-position: -0px -324px}
+.IMG_0089 {width:36px; height:36px; background-position: -36px -324px}
+.IMG_0090 {width:36px; height:36px; background-position: -72px -324px}
+.IMG_0091 {width:36px; height:36px; background-position: -0px -360px}
+.IMG_0092 {width:36px; height:36px; background-position: -36px -360px}
+.IMG_0093 {width:36px; height:36px; background-position: -72px -360px}
+.IMG_0094 {width:36px; height:36px; background-position: -0px -396px}
+.IMG_0095 {width:36px; height:36px; background-position: -36px -396px}
+.IMG_0096 {width:36px; height:36px; background-position: -72px -396px}
+.IMG_0097 {width:36px; height:36px; background-position: -0px -432px}
+.IMG_0098 {width:36px; height:36px; background-position: -36px -432px}
+.IMG_0099 {width:36px; height:36px; background-position: -72px -432px}
+.IMG_0100 {width:36px; height:36px; background-position: -0px -468px}
+.IMG_0101 {width:36px; height:36px; background-position: -36px -468px}
+.IMG_0102 {width:36px; height:36px; background-position: -72px -468px}
+.IMG_0103 {width:36px; height:36px; background-position: -0px -504px}
+.IMG_0104 {width:36px; height:36px; background-position: -36px -504px}
+.IMG_0105 {width:36px; height:36px; background-position: -72px -504px}
+.IMG_0106 {width:36px; height:36px; background-position: -0px -540px}
+.IMG_0107 {width:36px; height:36px; background-position: -36px -540px}
+.IMG_0108 {width:36px; height:36px; background-position: -72px -540px}
+.IMG_0109 {width:36px; height:36px; background-position: -0px -576px}
+.IMG_0110 {width:36px; height:36px; background-position: -36px -576px}
+.IMG_0111 {width:36px; height:36px; background-position: -72px -576px}
+.IMG_0112 {width:36px; height:36px; background-position: -0px -612px}
+.IMG_0113 {width:36px; height:36px; background-position: -36px -612px}
+.IMG_0114 {width:36px; height:36px; background-position: -72px -612px}
+.IMG_0115 {width:36px; height:36px; background-position: -0px -648px}
+.IMG_0116 {width:36px; height:36px; background-position: -36px -648px}
+.IMG_0117 {width:36px; height:36px; background-position: -72px -648px}
+.IMG_0118 {width:36px; height:36px; background-position: -0px -684px}
+.IMG_0119 {width:36px; height:36px; background-position: -36px -684px}
+.IMG_0120 {width:36px; height:36px; background-position: -72px -684px}
+.IMG_0121 {width:36px; height:36px; background-position: -0px -720px}
+.IMG_0122 {width:36px; height:36px; background-position: -36px -720px}
+
+
+
+

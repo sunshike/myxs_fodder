@@ -1,0 +1,134 @@
+{template 'common/header'}
+<style>
+    .wrap{
+        display: flex;
+        flex-wrap: wrap;
+    }
+    .copi{
+        width: 28%;margin: 1%;height: 150px;border: #ddd 2px solid;
+    }
+</style>
+<ul class="nav nav-tabs">
+    <li><a class="btn-lg" href="{php echo $this->createWebUrl('Shuffling')}">轮播列表</a></li>
+    <li {if $operation == 'add'}class="active"{/if}><a class="btn-lg" href="{php echo $this->createWebUrl('ShufflingPost', array('op' => 'add'))}">发布轮播</a></li>
+</ul>
+<div class="main">
+    <form action="" method="post" class="form-horizontal form" enctype="multipart/form-data" id="form1">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                {if $operation == 'add'}
+                发布轮播
+                {/if}
+                {if $operation == 'update'}
+                修改轮播(轮播ID:{$content['shuffling_id']})
+                {/if}
+                {if $operation == 'look'}
+                查看轮播(轮播ID:{$content['shuffling_id']})
+                {/if}
+
+            </div>
+            <div class="panel-body table-responsive">
+                <div class="form-group">
+                    <label class="col-xs-12 col-sm-3 col-md-2 control-label"><span style='color:red'></span>轮播位置</label>
+                    <div class="col-sm-9 col-xs-12">
+                        <select name="shuffling_position" class="form-control" required="required" id="shuffling_position">
+                            {loop $shufflingPosition $row $value}
+                            <option {if $content['shuffling_position']==$row} selected="selected"{/if} value="{$row}">{$value}</option>
+                            {/loop}
+                        </select>
+                        <div class="help-block">如当前位置存在轮播，再次发布将替换之前的内容</div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-xs-12 col-sm-3 col-md-2 control-label"><span style='color:red'></span>状态：</label>
+                    <div class="col-sm-9 col-xs-12">
+
+                        <label class="radio-inline">
+                            <input type="radio" name="shuffling_status" value="1" {if $content['shuffling_status']==1}checked="checked"{/if}/>显示
+                        </label>
+                        <label class="radio-inline">
+                            <input type="radio" name="shuffling_status" value="2"  {if $content['shuffling_status']==2}checked="checked"{/if}/>隐藏
+                        </label>
+                        <div class="help-block">当前状态默认为隐藏，如需更改请变更选择</div>
+                    </div>
+                </div>
+                <div class="form-group fjBody fjBody_fj" >
+                    <label class="col-xs-12 col-sm-3 col-md-2 control-label"><span style='color:red'></span>图片：</label>
+                    <div class="col-sm-9 col-xs-12 gimgs">
+
+                        <script type="text/javascript">
+                            function uploadMultiImage(elm) {
+                                var name = $(elm).next().val();
+                                util.image( "", function(urls){
+                                    $.each(urls, function(idx, url){
+                                        $(elm).parent().parent().next().append('<div class="multi-item"><img onerror="this.src=\'../addons/myxs_fodder/static/images/nopic.png\'; this.title=\'图片未找到.\'" src="'+url.url+'" class="img-responsive img-thumbnail"><input type="hidden" name="'+name+'[]" value="'+url.attachment+'"><em class="close" title="删除这张图片" onclick="deleteMultiImage(this)">×</em></div>');
+                                    });
+                                }, {"multiple":true,"direct":false,"fileSizeLimit":5120000});
+                            }
+                            function deleteMultiImage(elm){
+                                require(["jquery"], function($){
+                                    $(elm).parent().remove();
+                                });
+                            }
+                        </script>
+                        <div class="input-group">
+                            <input type="text" class="form-control" readonly="readonly" value="" placeholder="批量上传图片" autocomplete="off">
+                            <span class="input-group-btn">
+                                <button class="btn btn-primary" type="button" onclick="uploadMultiImage(this);">选择图片</button>
+                                <input type="hidden" value="thumbs">
+                            </span>
+                        </div>
+
+                        <div class="input-group multi-img-details ui-sortable">
+                            <input type="hidden" name="type" value="img">
+                            {loop $contentimg $index $row}
+                            <div class="multi-item">
+                                <img onerror="this.src='../addons/myxs_fodder/static/images/nopic.png'; this.title='图片未找到.'" src="{php echo tomedia($row)}" class="img-responsive img-thumbnail">
+                                <input type="hidden" name="thumbs[]" value="{$row}">
+                                <em class="close" title="删除这张图片" onclick="deleteMultiImage(this)">×</em>
+                            </div>
+                            {/loop}
+                        </div>
+                        <div class="help-block">最多上传三张图片</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-group col-sm-12">
+            {if $sub}
+            <input type="submit" name="submit" value="提交" class="btn btn-success col-lg-1" />
+            <input type="hidden" name="id" value="{$content['shuffling_id']}" />
+            {/if}
+            &nbsp; &nbsp;
+            <a href="{php echo $this->createWebUrl('shuffling')}" type="button" class="btn btn-primary col-lg-2" >返回上一页</a>
+        </div>
+
+    </form>
+</div>
+<script type="text/javascript">
+
+    function getObjectURL(file){
+        var url = null;
+        if(window.createObjectURL != undefined){
+            url = window.createObjectURL(file);
+        }else if(window.URL != undefined){
+            url = window.URL.createObjectURL(file);
+        }else if(window.webkitURL != undefined){
+            url = window.webkitURL.createObjectURL(file);
+        }
+        return url;
+    }
+    function getimg(id){
+        $("#"+id).change(function(){
+            var path = $("#"+id).value;
+            var objUrl = getObjectURL(this.files[0]);
+            if(objUrl){
+                $('.'+id).attr("style","background:url('"+objUrl+"') no-repeat ;background-size:100%;");
+                $('.'+id).find('i').hide();
+                $('.zi'+id).hide();
+                $('#'+id+'mess').val(id);
+            }
+        })
+    }
+</script>
+{template 'common/footer'}

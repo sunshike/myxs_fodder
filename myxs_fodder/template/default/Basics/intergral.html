@@ -1,0 +1,129 @@
+{template 'common/header'}
+<div class="main">
+    <ul class="nav nav-tabs">
+        {loop $titleList $key $value}
+        <li {if $class == $key }class="active"{/if}><a class="btn-lg" href="{php echo $this->createWebUrl('basics',array('class' => $key))}">{$value}</a></li>
+        {/loop}
+    </ul>
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <form action="" method="post" class=" form" enctype="multipart/form-data">
+                <input type="hidden" name="personalid" value="{$personals['id']}" />
+                <div class="form-group">
+                    <label class="col-xs-12 col-sm-3 col-md-2 control-label">新用户关注赠送积分数</label>
+                    <div class="col-sm-9 col-xs-12">
+                        <input type="text" name="givingIntergral" class="form-control" value="{$system_seting['givingIntergral']}">
+                        <div class="help-block">新用户关注后平台赠送的积分数</div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-xs-12 col-sm-3 col-md-2 control-label">每日登陆赠送积分</label>
+                    <div class="col-sm-9 col-xs-12">
+                        <input type="text" name="LoginIntergral" class="form-control" value="{$system_seting['LoginIntergral']}">
+                        <div class="help-block">每日登陆赠送积分</div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-xs-12 col-sm-3 col-md-2 control-label">每日签到赠送积分</label>
+                    <div class="col-sm-9 col-xs-12">
+                        <input type="text" name="SignIntergral" class="form-control" value="{$system_seting['SignIntergral']}">
+                        <div class="help-block">每日签到赠送积分</div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-xs-12 col-sm-3 col-md-2 control-label">发布素材奖励积分数</label>
+                    <div class="col-sm-9 col-xs-12">
+                        <input type="text" name="releaseSendIntergral" class="form-control" value="{$system_seting['releaseSendIntergral']}">
+                        <div class="help-block">用户发布素材奖励的积分数</div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-xs-12 col-sm-3 col-md-2 control-label">下载素材扣除积分数</label>
+                    <div class="col-sm-9 col-xs-12">
+                        <input type="text" name="takeOutIntergral" class="form-control" value="{$system_seting['takeOutIntergral']}">
+                        <div class="help-block">用户下载素材扣除的积分数</div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-xs-12 col-sm-3 col-md-2 control-label">转发素材奖励的积分数</label>
+                    <div class="col-sm-9 col-xs-12">
+                        <input type="text" name="rewardIntergral" class="form-control" value="{$system_seting['rewardIntergral']}">
+                        <div class="help-block">用户转发素材奖励的积分数</div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-xs-12 col-sm-3 col-md-2 control-label">观看视频奖励积分</label>
+                    <div class="col-sm-9 col-xs-12">
+                        <input type="text" name="videoIntergral" class="form-control" value="{$system_seting['videoIntergral']}">
+                        <div class="help-block">用户观看视频奖励积分</div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-xs-12 col-sm-3 col-md-2 control-label">观看视频奖励上限</label>
+                    <div class="col-sm-9 col-xs-12">
+                        <input type="text" name="videoUpIntergral" class="form-control" value="{$system_seting['videoUpIntergral']}">
+                        <div class="help-block">观看视频奖励上限</div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-xs-12 col-sm-3 col-md-2 control-label">邀请好友奖励</label>
+                    <div class="col-sm-9 col-xs-12">
+                        <input type="text" name="inviteIntergral" class="form-control" value="{$system_seting['inviteIntergral']}">
+                        <div class="help-block">邀请好友奖励</div>
+                    </div>
+                </div>
+<!--                <div class="form-group">-->
+<!--                    <label class="col-xs-12 col-sm-3 col-md-2 control-label">当日最多转发次数</label>-->
+<!--                    <div class="col-sm-9 col-xs-12">-->
+<!--                        <input type="text" name="forwardIntergral" class="form-control" value="{$system_seting['forwardIntergral']}">-->
+<!--                        <div class="help-block">设置后可限制用户转发分享次数,不填写(为0)即为不限制</div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div class="form-group">-->
+<!--                    <label for="start_picurl" class="control-label col-xs-12 col-sm-3 col-md-2">积分充值联系人微信二维码</label>-->
+<!--                    <div class="col-sm-9 col-xs-12">-->
+<!--                        {php echo tpl_form_field_image('adminErWeiImg', $system_seting['adminErWeiImg']);}-->
+<!--                        <div class="help-block">当用户需充值时 展示该二维码 加好友进行手动充值</div>-->
+<!--                    </div>-->
+<!--                </div>-->
+                <div class="form-group">
+                    <label class="col-xs-12 col-sm-3 col-md-2 control-label">积分充值联系人微信号</label>
+                    <div class="col-sm-9 col-xs-12">
+                        <input type="text" name="adminWxNum" class="form-control" value="{$system_seting['adminWxNum']}" />
+                        <div class="help-block">当用户需充值时 复制微信号 加好友进行手动充值</div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-xs-12 col-sm-3 col-md-2 control-label">积分充值说明</label>
+                    <div class="col-sm-9 col-xs-12">
+                        <textarea type="textarea" name="intergralTip" class="form-control" style="height: 200px">{$system_seting['intergralTip']}</textarea>
+                        <div class="help-block">积分充值说明(最好设置三点，不然前台样式有变)</div>
+                    </div>
+                </div>
+                <div class="form-group col-sm-12">
+                    <input type="submit" name="submit" value="提交" class="btn btn-primary col-lg-1" />
+                    <input type="hidden" name="op" value="addad" />
+                </div>
+
+            </form>
+        </div>
+
+
+    </div>
+    <script>
+        require(['bootstrap'],function($){
+            $('.btn').hover(function(){
+                $(this).tooltip('show');
+            },function(){
+                $(this).tooltip('hide');
+            });
+        });
+
+        function drop_confirm(msg, url){
+            if(confirm(msg)){
+                window.location = url;
+            }
+        }
+    </script>
+    {template 'common/footer'}

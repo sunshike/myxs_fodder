@@ -1,0 +1,26 @@
+/* myxs_fodder/pages/MyRelease/MyRelease.wxss */
+
+.dot {
+  position: absolute;
+  background-color: red;
+  width: 10px;
+  height: 10px;
+  border-radius: 20px;
+  left: -8px;
+  top: 0px;
+}
+.myrelease-icons {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.cover-index {
+  height: 100vh;
+  position: fixed;
+  background-color: black;
+  width: 100%;
+  z-index: 3;
+  opacity: .7;
+}
+

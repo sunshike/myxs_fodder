@@ -1,0 +1,182 @@
+{template 'common/header'}
+<div class="main">
+    <ul class="nav nav-tabs">
+        {loop $titleList $key $value}
+            <li {if $class == $key }class="active"{/if}><a class="btn-lg" href="{php echo $this->createWebUrl('basics',array('class' => $key))}">{$value}</a></li>
+        {/loop}
+    </ul>
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <form action="" method="post" class=" form" enctype="multipart/form-data">
+                <input type="hidden" name="personalid" value="{$personals['id']}" />
+
+                <div class="form-group">
+                    <label class="col-xs-12 col-sm-3 col-md-2 control-label">系统名称</label>
+                    <div class="col-sm-9 col-xs-12">
+                        <input type="text" name="title" class="form-control" value="{$system_seting['title']}">
+                        <div class="help-block">设置小程序名称</div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-xs-12 col-sm-3 col-md-2 control-label">编辑昵称</label>
+                    <div class="col-sm-9 col-xs-12">
+                        <input type="text" name="member_name" class="form-control" value="{$system_seting['member_name']}">
+                        <div class="help-block">设置小程序内容显示编辑名称</div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-xs-12 col-sm-3 col-md-2 control-label">底部版权</label>
+                    <div class="col-sm-9 col-xs-12">
+                        <input type="text" name="copyright" class="form-control" value="{$system_seting['copyright']}">
+                        <div class="help-block">设置小程序底部版权</div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-xs-12 col-sm-3 col-md-2 control-label">群聊功能ID</label>
+                    <div class="col-sm-9 col-xs-12">
+                        <input type="text" name="group_chat" class="form-control" value="{$system_seting['group_chat']}">
+                        <div class="help-block">群聊功能ID 为空时前台不显示加入群聊按钮</div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-xs-12 col-sm-3 col-md-2 control-label">腾讯地图KEY</label>
+                    <div class="col-sm-9 col-xs-12">
+                        <input type="text" name="map_key" class="form-control" value="{$system_seting['map_key']}">
+                        <div class="help-block">腾讯地图KEY  <a target="_blank" style="color: red" href="https://lbs.qq.com/miniProgram/jsSdk/jsSdkGuide/jsSdkOverview">申请KEY</a></div>
+                    </div>
+                </div>
+                <!--<div class="form-group">-->
+                    <!--<label class="col-xs-12 col-sm-3 col-md-2 control-label"><span style='color:red'></span>指定分组浏览</label>-->
+                    <!--<div class="col-sm-9 col-xs-12">-->
+                        <!--<label class="radio-inline">-->
+                            <!--<input type="radio" name="grouping" value="1" {if $system_seting['grouping']==1}checked="checked"{/if}/>开启-->
+                        <!--</label>-->
+                        <!--<label class="radio-inline">-->
+                            <!--<input type="radio" name="grouping" value="2" {if $system_seting['grouping']==2}checked="checked"{/if}/>关闭-->
+                        <!--</label>-->
+                        <!--<div class="help-block">设置是否开启指定用户组浏览，如果开启此设置，请设置分组密码</div>-->
+                    <!--</div>-->
+                <!--</div>-->
+
+                <div class="form-group">
+                    <label class="col-xs-12 col-sm-3 col-md-2 control-label"><span style='color:red'></span>日签开关</label>
+                    <div class="col-sm-9 col-xs-12">
+                        <label class="radio-inline">
+                            <input type="radio" name="day_sign_status" value="1" {if $system_seting['day_sign_status']==1}checked="checked"{/if}/>开启
+                        </label>
+                        <label class="radio-inline">
+                            <input type="radio" name="day_sign_status" value="2" {if $system_seting['day_sign_status']==2}checked="checked"{/if}/>关闭
+                        </label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-xs-12 col-sm-3 col-md-2 control-label"><span style='color:red'></span>视频显示开关</label>
+                    <div class="col-sm-9 col-xs-12">
+                        <label class="radio-inline">
+                            <input type="radio" name="video_is_show" value="1" {if $system_seting['video_is_show']==1}checked="checked"{/if}/>开启
+                        </label>
+                        <label class="radio-inline">
+                            <input type="radio" name="video_is_show" value="2" {if $system_seting['video_is_show']==2}checked="checked"{/if}/>关闭
+                        </label>
+                    </div>
+                </div>
+
+
+<!--                <div class="form-group">-->
+<!--                    <label class="col-xs-12 col-sm-3 col-md-2 control-label"><span style='color:red'></span>水印开关</label>-->
+<!--                    <div class="col-sm-9 col-xs-12">-->
+<!--                        <label class="radio-inline">-->
+<!--                            <input type="radio" name="watermark_status" value="1" {if $system_seting['watermark_status']==1}checked="checked"{/if}/>开启-->
+<!--                        </label>-->
+<!--                        <label class="radio-inline">-->
+<!--                            <input type="radio" name="watermark_status" value="0" {if $system_seting['watermark_status']==0}checked="checked"{/if}/>关闭-->
+<!--                        </label>-->
+<!--                    </div>-->
+<!--                </div>-->
+                <div class="form-group">
+                    <label class="col-xs-12 col-sm-3 col-md-2 control-label">分享简介</label>
+                    <div class="col-sm-9 col-xs-12">
+                        <input type="text" name="share_txt" class="form-control" value="{$system_seting['share_txt']}">
+                        <div class="help-block">设置小程序分享简介</div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="start_picurl" class="control-label col-xs-12 col-sm-3 col-md-2">分享封面图</label>
+                    <div class="col-sm-9 col-xs-12">
+                        {php echo tpl_form_field_image('share_bg', $system_content['share_bg']);}
+                        <div class="help-block">设置小程序分享封面图</div>
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    <label for="start_picurl" class="control-label col-xs-12 col-sm-3 col-md-2">LOGO</label>
+                    <div class="col-sm-9 col-xs-12">
+                        {php echo tpl_form_field_image('logo_bg', $system_content['logo_bg']);}
+                        <div class="help-block">不上传，不显示</div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="start_picurl" class="control-label col-xs-12 col-sm-3 col-md-2">日签底部二维码</label>
+                    <div class="col-sm-9 col-xs-12">
+                        {php echo tpl_form_field_image('qr_bg', $system_content['qr_bg']);}
+                        <div class="help-block">不上传生成海报没有二维码</div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="start_picurl" class="control-label col-xs-12 col-sm-3 col-md-2">程序启动页</label>
+                    <div class="col-sm-9 col-xs-12">
+                        {php echo tpl_form_field_image('stat_bg', $system_content['stat_bg']);}
+                        <div class="help-block">不上传则不显示启动页，尺寸为：750*400</div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="start_picurl" class="control-label col-xs-12 col-sm-3 col-md-2">违规替换图片</label>
+                    <div class="col-sm-9 col-xs-12">
+                        {php echo tpl_form_field_image('wg_img', $system_content['wg_img']);}
+                        <div class="help-block">当用户上传的图片违规时  会将图片替换为该图片</div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-xs-12 col-sm-3 col-md-2 control-label">图片素材检测路径</label>
+                    <div class="col-sm-9 col-xs-12">
+                        <input type="text" disabled class="form-control" value="{$check_url}">
+                        <div class="help-block">图片素材检测路径 需要手动将此链接添加至计划任务运行</div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-xs-12 col-sm-3 col-md-2 control-label">社群发布须知</label>
+                    <div class="col-sm-9 col-xs-12">
+                        <textarea type="textarea" name="communityTip" class="form-control" style="height: 200px">{$system_seting['communityTip']}</textarea>
+                        <div class="help-block">社群发布须知</div>
+                    </div>
+                </div>
+                <div class="form-group col-sm-12">
+                    <input type="submit" name="submit" value="提交" class="btn btn-primary col-lg-1" />
+                    <input type="hidden" name="op" value="addad" />
+                </div>
+
+            </form>
+        </div>
+
+
+</div>
+    <script>
+        require(['bootstrap'],function($){
+            $('.btn').hover(function(){
+                $(this).tooltip('show');
+            },function(){
+                $(this).tooltip('hide');
+            });
+        });
+
+        function drop_confirm(msg, url){
+            if(confirm(msg)){
+                window.location = url;
+            }
+        }
+    </script>
+{template 'common/footer'}

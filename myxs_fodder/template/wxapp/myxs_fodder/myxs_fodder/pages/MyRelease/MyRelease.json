@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "my-comment": "../../components/Comment/comment",
+    "content-list": "../../components/ContentList/index"
+  }
+}

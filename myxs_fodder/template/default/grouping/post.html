@@ -1,0 +1,141 @@
+{template 'common/header'}
+<style>
+    .wrap{
+        display: flex;
+        flex-wrap: wrap;
+    }
+    .copi{
+        width: 28%;margin: 1%;height: 150px;border: #ddd 2px solid;
+    }
+</style>
+<ul class="nav nav-tabs">
+    <li><a class="btn-lg" href="{php echo $this->createWebUrl('Grouping')}">分组列表</a></li>
+    <li {if $operation == 'add'}class="active"{/if}><a class="btn-lg" href="{php echo $this->createWebUrl('GroupingPost', array('op' => 'add'))}">添加分组</a></li>
+</ul>
+<div class="main">
+    <form action="" method="post" class="form-horizontal form" enctype="multipart/form-data" id="form1">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                {if $operation == 'add'}
+                添加分组
+                {/if}
+                {if $operation == 'update'}
+                修改分组(分组ID:{$content['grouping_id']})
+                {/if}
+                {if $operation == 'look'}
+                查看分组(分组ID:{$content['grouping_id']})
+                {/if}
+
+            </div>
+            <div class="panel-body table-responsive">
+                <div class="form-group">
+                    <label class="col-xs-12 col-sm-3 col-md-2 control-label"><span style='color:red'></span>分组名称</label>
+                    <div class="col-sm-9 col-xs-12">
+                        <input type="text"  class="form-control" name="grouping_name" value="{$content['grouping_name']}" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-xs-12 col-sm-3 col-md-2 control-label"><span style='color:red'></span>分组邀请码</label>
+                    <div class="col-sm-9 col-xs-12">
+                        <input type="text"  class="form-control" name="grouping_passwd" value="{$content['grouping_passwd']}" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-xs-12 col-sm-3 col-md-2 control-label"><span style='color:red'></span>分组管理员</label>
+                    <div class="col-sm-9 col-xs-12">
+                        <input type="text"  class="form-control"  id="groupManagement" name="groupManagement"  value="{$content['grouping_admin']}" />
+                        <div class="help-block">设置该分组管理员  请输入用户昵称进行查询</div>
+                    </div>
+                </div>
+                <input type="hidden" class="form-control"  id="admin_id"  name="admin_id" value="{$content['admin_id']}">
+                <div class="form-group" id="userMessGroup">
+                    <label class="col-xs-12 col-sm-3 col-md-2 control-label"><span style='color:red'></span></label>
+                    <div class="col-sm-9 col-xs-12" id="userMessGroupList"></div>
+
+                </div>
+            </div>
+        </div>
+        <div class="form-group col-sm-12">
+            {if $sub}
+            <input type="submit" name="submit" value="提交" class="btn btn-success col-lg-1" />
+            <input type="hidden" name="id" value="{$content['grouping_id']}" />
+            {/if}
+            &nbsp; &nbsp;
+            <a href="{php echo $this->createWebUrl('Grouping')}" type="button" class="btn btn-primary col-lg-2" >返回上一页</a>
+        </div>
+
+    </form>
+</div>
+<style>
+    .selected{
+        border: 1px solid red
+    }
+</style>
+<script type="text/javascript">
+    $('#userMessGroup').hide();
+    $('#userMessGroupList').html('');
+    function getObjectURL(file){
+        var url = null;
+        if(window.createObjectURL != undefined){
+            url = window.createObjectURL(file);
+        }else if(window.URL != undefined){
+            url = window.URL.createObjectURL(file);
+        }else if(window.webkitURL != undefined){
+            url = window.webkitURL.createObjectURL(file);
+        }
+        return url;
+    }
+    function choseThis(id) {
+       let name=$('#user'+id).html();
+       $('#groupManagement').val(name);
+       $('#admin_id').val(id);
+        $('#'+id).addClass("selected") .siblings().removeClass("selected");
+        $('#'+id).click(function () {
+            $(this).addClass("selected") .siblings().removeClass("selected");
+        });
+    }
+    function getimg(id){
+        $("#"+id).change(function(){
+            var path = $("#"+id).value;
+            var objUrl = getObjectURL(this.files[0]);
+            if(objUrl){
+                $('.'+id).attr("style","background:url('"+objUrl+"') no-repeat ;background-size:100%;");
+                $('.'+id).find('i').hide();
+                $('.zi'+id).hide();
+                $('#'+id+'mess').val(id);
+            }
+        })
+    }
+    $('#groupManagement').bind("input propertychange",function () {
+        var groupManagement=$(this).val();
+        $('#userMessGroupList').html('');
+        if(groupManagement!=""){
+            $.ajax({
+                type: 'POST',
+                url: "{php echo $this->createWebUrl('GetUserToNickName')}",
+                data: {
+                    nickName:groupManagement,
+                },
+                success: function (res) {
+                    if (res){
+                        let arr=JSON.parse(res);
+                        if(arr.length>0){
+                            $('#userMessGroup').show();
+                        }
+                        $('#userMessGroupList').html('');
+                        for(let k in arr){
+                            $('#userMessGroupList').append('<div style="float:left;width:113px;height:130px;margin:0 10px 10px 0 ;" id="'+arr[k].member_id+'" onclick="choseThis('+arr[k].member_id+')"">\n' +
+                                '<img src="'+arr[k].member_head_portrait+'" style="display:block;width:107px;height:107px">\n' +
+                                '<div id="user'+arr[k].member_id+'" style="text-align:center;width: 113px;overflow: hidden">'+arr[k].member_name+'</div>\n' +
+                                '</div>')
+                        }
+                    }
+                }
+            });
+        }else{
+            $('#userMessGroupList').html('');
+        }
+
+    })
+</script>
+{template 'common/footer'}

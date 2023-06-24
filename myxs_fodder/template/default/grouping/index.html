@@ -1,0 +1,47 @@
+{template 'common/header'}
+    <ul class="nav nav-tabs">
+        <li class="active"><a class="btn-lg" href="">分组列表</a></li>
+        <li><a class="btn-lg" href="{php echo $this->createWebUrl('GroupingPost',array('op'=>'add'))}">添加分组</a></li>
+    </ul>
+<div class="main">
+<div class="category">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            分组列表(<span style="color: #FF0000">可在本页面管理所有用户组</span>)
+        </div>
+        <div class="panel-body table-responsive">
+            <table class="table table-hover">
+                <thead>
+                <tr>
+                    <th width="100">ID</th>
+                    <th width="150">名称</th>
+                    <th width="150">邀请码</th>
+                    <th width="150">管理员</th>
+                    <th width="200">创建时间</th>
+                    <th width="240" style="text-align: center">操作</th>
+                </tr>
+                </thead>
+                <tbody>
+                {loop $groupingList $index $row}
+                <tr>
+                    <td width="100">{$row['grouping_id']}</td>
+                    <td width="150">{$row['grouping_name']}</td>
+                    <td width="150">{$row['grouping_passwd']}</td>
+                    <td width="150">{$row['grouping_admin']}</td>
+                    <td width="250">{$row['create_time']}</td>
+                    <td width="240" style="text-align: center">
+                        <a href="{php echo $this->createWebUrl('GroupingPost', array('op' => 'update','id'=>$row['grouping_id']))}" class="btn btn-primary btn-sm" style="padding: 4px 8px;"> 编辑</a>
+                        <a href="{php echo $this->createWebUrl('GroupingPost', array('op' => 'delete','id'=>$row['grouping_id']))}" class="btn btn-danger btn-sm" style="padding: 4px 8px;"> 删除</a>
+                    </td>
+                </tr>
+                {/loop}
+                </tbody>
+            </table>
+            {$pager}
+        </div>
+    </div>
+</div>
+
+
+</div>
+{template 'common/footer'}
