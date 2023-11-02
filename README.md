@@ -4,7 +4,7 @@
 ## 🔈 小程序端用微信原生框架开发
 
 ## 🔗 链接
-- 💻 演示地址：[demo演示站](https://w7.5ycz.com)
+- 💻 演示地址：[demo演示站](https://we7.5ycz.com)
 
 ### 目录说明
 - 小程序端：wechatApp
